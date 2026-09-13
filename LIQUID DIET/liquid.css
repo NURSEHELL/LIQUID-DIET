@@ -1,0 +1,7 @@
+
+.actionlog {
+    height: 100px;
+    width: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

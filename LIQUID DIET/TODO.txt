@@ -1,0 +1,12 @@
+LIQUID DIET is a NO-SKIN inspired game for browsers, coded with Javascript.
+
+TO-DO:
+- Priority -
+Item usage
+Item drops
+Sequential enemies
+
+- Other -
+UI
+High Score
+Leaderboard
