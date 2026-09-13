@@ -1,22 +1,64 @@
-// Enemy array.
-// "NAME", "Images/img_src", HP, [Attack Pattern (6 turns)]
-
+// Enemy array. "NAME", "Images/img_src", HP, [Attack Pattern (6 turns), Item Drop]
 const Enemies = [
-    ["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 0, 1, 0, 1, 0] ],
-    ["PITYFUL DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 1, 0, 1] ]
+    ["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 0, 1, 0, 1, 0], 1 ],
+    ["PITIFUL DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 1, 0, 1], 2 ],
+]
+// 0 = Wait / 1 = Attack 1HP
+
+// Item array. "NAME", "Images/img_src", Utility, Utility Specifics]
+const Items = [
+    ["Empty", "Images/Item_Empty.png", itemNull, null],
+    ["Energy Drink", "Images/Item_Energy.png", itemHeal, 1],
+    ["Sludge", "Images/Item_Sludge.png", itemDMG, 2],
 ]
 
-// 0 = Wait / 1 = Attack 1HP
+// Item Utility
+function itemNull() {}
+
+    function itemExhaust() {
+        document.getElementById("itemSlot").addEventListener("click", Items[0][2]);
+        itemChoose = Items[0];
+    }
+
+function itemHeal() {
+    currentPlayerHP += Items[Enemies[randomEnemy][4]][3]
+    document.getElementById("playerHP").innerHTML = currentPlayerHP;
+
+itemExhaust();
+}
+
+function itemDMG() {
+    currentEnemyHP -= Items[Enemies[randomEnemy][4]][3]
+    document.getElementById("enemyHP").innerHTML = currentEnemyHP;
+
+itemExhaust();
+}
+
+//
+
+// Discard Item
+
+function itemDiscard() {
+itemExhaust();
+randomizeEnemy();
+}
 
 var currentPlayerHP = 3;
 document.getElementById("playerHP").innerHTML = currentPlayerHP;
+discardItem.disabled = true;
 
-
+// ON LOAD
+itemChoose = Items[0];
+document.getElementById("itemSlot").addEventListener ("click", pickItem);
+document.getElementById("itemSlot").addEventListener ("click", useItem);
 window.onload = function() {
-  randomizeEnemy();
+randomizeEnemy();
 };
 
 function randomizeEnemy() {
+    playerAttack.disabled = false;
+    discardItem.disabled = true;
+    document.getElementById("actionLog").innerHTML = " ";
 elapsedTurns = 0;
 
 // Randomize an enemy
@@ -31,9 +73,11 @@ enemyName = Enemies[randomEnemy][0];
     document.getElementById("enemyName").innerHTML = enemyName;
     document.getElementById("enemyImg").src = Enemies[randomEnemy][1];
 }
+//
 
     // ENEMY TURN
 function enemyTurn() {
+discardItem.disabled = true
 
 // IF enemy waits (0)
 if (Enemies[randomEnemy][3][elapsedTurns] == 0) {
@@ -55,8 +99,15 @@ playerAttack.disabled = false;
 // Enemy Defeat
 function enemyDefeat() {
 document.getElementById("actionLog").innerHTML += "Enemy defeated! You win! <br>";
-    document.getElementById("enemyImg").src = "Images/PLACEHOLDER.png";
-    setTimeout(() => { randomizeEnemy(); playerAttack.disabled = false;}, 2000);
+document.getElementById("enemyImg").src = "Images/PLACEHOLDER.png";
+itemDrop();
+}
+
+function itemDrop() {
+itemChoose = Items[Enemies[randomEnemy][4]];
+document.getElementById("actionLog").innerHTML += "ITEM GOT! " + itemChoose[0] + "<br>";
+document.getElementById("actionLog").innerHTML += "Choose an item to replace. <br>";
+discardItem.disabled = false;
 }
 
 
