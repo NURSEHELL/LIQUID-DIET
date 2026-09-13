@@ -1,12 +1,29 @@
 LIQUID DIET is a NO-SKIN inspired game for browsers, coded with Javascript.
 
+* I'm unsure how to implement items. Inventory?
+How many items would it hold? Or maybe you can
+only hold onto one item at a time?
+
 TO-DO:
+
 - Priority -
+Losing
 Item usage
 Item drops
-Sequential enemies
+Accuracy
+Sequential enemies (DONE)
+
 
 - Other -
+Original Sprites
 UI
 High Score
 Leaderboard
+
+IDEAS:
+
+Unexpected events?
+Different Weapons (Differing accuracy and damage)
+Psychopomp-esque portrait indicating player HP
+Underlying story? Reocurring motifs?
+Enemy dialogue
