@@ -2,14 +2,16 @@
 const Enemies = [
     ["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 0, 1, 0, 1, 0], 1],
     ["PITIFUL DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 1, 0, 1], 2],
+    ["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 2, [1, 1, 0, 0, 0, 1], 3],
 ]
 // 0 = Wait / 1 = Attack 1HP
 
 // Item array. "NAME", "Images/img_src", Utility, Utility Specifics]
 const Items = [
-    ["Empty", "Images/Item_Empty.png", itemNull],
+    ["Empty", "Images/Item_Empty.png", itemNull, 0],
     ["Energy Drink", "Images/Item_Energy.png", itemHeal, 1],
     ["Sludge", "Images/Item_Sludge.png", itemDMG, 2],
+    ["Chimera Fetus", "Images/Item_Fetus.png", itemDMG, 1],
 ]
 
 
@@ -18,13 +20,13 @@ enemyItemDrop = Items[0]
 currentPlayerHP = 3
 
 function itemHeal() {
-    currentPlayerHP += itemSlot1[3]
+    currentPlayerHP += itemSlot1[3];
     document.getElementById("playerHP").innerHTML = currentPlayerHP;
     useItem()
 }
 
 function itemDMG() {
-    currentEnemyHP -= itemSlot1[3]
+    currentEnemyHP -= itemSlot1[3];
     document.getElementById("enemyHP").innerHTML = currentEnemyHP;
     useItem()
 }
@@ -34,9 +36,21 @@ function itemNull() {
 }
 
 function useItem() {
+        document.getElementById("actionLog").innerHTML += "You used the " + itemSlot1[0] + ". <br>";
         itemSlot1 = Items[0];
         document.getElementById("inventory1").innerHTML = itemSlot1[0];
-        document.getElementById("actionLog").innerHTML += "You used your thingy <br>";
+		
+		// Disables inventory until Attack
+		inventory1.disabled = true;
+		
+		// Check for enemy HP in case of Sludge-Kill
+		if (currentEnemyHP >= 1) {
+            return;
+        }
+		
+        else {
+            enemyDefeat();
+        };
 }
 
 // ON PAGE LOAD
@@ -52,9 +66,7 @@ window.onload = function () {
 function randomizeEnemy() {
     elapsedTurns = 0;
     playerAttack.disabled = false;
-
-    // Clear log
-    document.getElementById("actionLog").innerHTML = " ";
+	inventory1.disabled = false;
 
     // Randomize
     randomEnemy = Math.floor(Math.random() * Enemies.length);
@@ -65,10 +77,10 @@ function randomizeEnemy() {
     document.getElementById("enemyHP").innerHTML = currentEnemyHP;
     document.getElementById("enemyName").innerHTML = enemyName;
     document.getElementById("enemyImg").src = Enemies[randomEnemy][1];
+	
+	// Clear log (Battle intro)
+    document.getElementById("actionLog").innerHTML = enemyName + " is here... <br>";
 }
-//
-
-currentPlayerHP = 3;
 
 // ENEMY TURN
 
@@ -87,31 +99,57 @@ function enemyTurn() {
 
     if (Enemies[randomEnemy][3][elapsedTurns] == 2) {
         document.getElementById("actionLog").innerHTML += "The enemy heals itself! <br>";
-        currentPlayerHP += 2;
+        currentEnemyHP += 2;
     }
 
     document.getElementById("playerHP").innerHTML = currentPlayerHP;
     playerAttack.disabled = false;
+	inventory1.disabled = false;
 
 
+}
+
+// Player Defeat
+function playerDefeat() {
+	playerAttack.disabled = true;
+	inventory1.disabled = true;
+	document.getElementById("actionLog").innerHTML += "You have died. The end.";
+    setTimeout(() => { playerRevive(); playerAttack.disabled = false;}, 2000);
+}
+
+// Player Revive
+function playerRevive() {
+	currentPlayerHP = 3;
+	document.getElementById("playerHP").innerHTML = currentPlayerHP;
+	document.getElementById("actionLog").innerHTML = " ";
+	itemSlot1 = Items[0]
+	enemyItemDrop = Items[0]
+    document.getElementById("inventory1").innerHTML = itemSlot1[0];
+	randomizeEnemy();
 }
 
 // Enemy Defeat
 function enemyDefeat() {
     enemyItemDrop = Items[Enemies[randomEnemy][4]];
+    document.getElementById("actionLog").innerHTML += "Enemy defeated! You win! <br>";
+    document.getElementById("enemyImg").src = "Images/Enemy_DEFEATED.png";
 
-if (itemSlot1 = Items[0]) {
+        if (currentEnemyHP < 0) {
+        currentEnemyHP = 0;
+        document.getElementById("enemyHP").innerHTML = 0;
+    }
+
+if (itemSlot1 == Items[0]) {
         document.getElementById("inventory1").innerHTML = enemyItemDrop[0];
         document.getElementById("inventory1").addEventListener("click", enemyItemDrop[2], { once: true });
         itemSlot1 = enemyItemDrop;
+    document.getElementById("actionLog").innerHTML += "ITEM GOT! " + enemyItemDrop[0] + "<br>";
+        setTimeout(() => { randomizeEnemy() }, 2500);
+}
+else {
+    setTimeout(() => { randomizeEnemy() }, 2500);
 }
 
-    document.getElementById("actionLog").innerHTML += "Enemy defeated! You win! <br>";
-    document.getElementById("enemyImg").src = "Images/Enemy_DEFEATED.png";
-    document.getElementById("actionLog").innerHTML += "ITEM GOT! " + enemyItemDrop[0] + "<br>";
-
-    // Next Enemy
-    setTimeout(() => { randomizeEnemy() }, 2500);
 }
 
 // Item Systems
@@ -122,11 +160,17 @@ if (itemSlot1 = Items[0]) {
 
 function Attack() {
     playerAttack.disabled = true
+	inventory1.disabled = true
 
 
     currentEnemyHP -= 1;
     document.getElementById("actionLog").innerHTML += "You attack the enemy! <br>";
     document.getElementById("enemyHP").innerHTML = currentEnemyHP;
+
+        if (currentPlayerHP < 0) {
+        currentPlayerHP = 0;
+        document.getElementById("playerHP").innerHTML = 0;
+    }
 
     setTimeout(() => {
 
@@ -142,7 +186,13 @@ function Attack() {
         else {
             enemyDefeat();
         };
+		
+		if (currentPlayerHP <= 0) {
+			playerDefeat();
+		}
 
     }, 1000);
 
 }
+
+
