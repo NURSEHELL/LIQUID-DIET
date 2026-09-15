@@ -20,47 +20,6 @@ enemyItemDrop = Items[0];
 currentPlayerHP = 3;
 roundCounter = 1;
 
-// ITEMS
-
-function itemHeal() {
-    currentPlayerHP += itemSlot1[3];
-    document.getElementById("playerHP").innerHTML = currentPlayerHP;
-    useItem();
-}
-
-function itemDMG() {
-    currentEnemyHP -= itemSlot1[3];
-    document.getElementById("enemyHP").innerHTML = currentEnemyHP;
-    useItem();
-}
-
-/* Commented-out for now cause I can't figure out why it only shows up once.
-
-function itemNull() {
-    document.getElementById("actionLog").innerHTML += "You have no items... <br>";
-}
-
-*/
-
-function useItem() {
-	
-		document.getElementById("actionLog").innerHTML += "You used the " + itemSlot1[0] + ". <br>";
-        itemSlot1 = Items[0];
-        document.getElementById("inventory1").innerHTML = itemSlot1[0];
-			
-		// Disables inventory until Attack
-		// inventory1.disabled = true;
-			
-		// Check for enemy HP in case of Sludge-Kill
-		if (currentEnemyHP >= 1) {
-            return;
-        }
-		
-        else {
-            enemyDefeat();
-        }
-}
-
 // ON PAGE LOAD
 
 window.onload = function () {
@@ -69,7 +28,6 @@ window.onload = function () {
 	inventory1.disabled = true;
     document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
     randomizeEnemy();
-
 };
 
 // RANDOM ENEMY
@@ -245,4 +203,43 @@ function Attack() {
 
     }, 1000);
 
+}
+
+// ITEMS
+
+function itemHeal() {
+    currentPlayerHP += itemSlot1[3];
+    document.getElementById("playerHP").innerHTML = currentPlayerHP;
+    useItem();
+}
+
+function itemDMG() {
+    currentEnemyHP -= itemSlot1[3];
+    document.getElementById("enemyHP").innerHTML = currentEnemyHP;
+    useItem();
+}
+
+// Commented-out for now cause I can't figure out why it only shows up once.
+
+// function itemNull() {
+//     document.getElementById("actionLog").innerHTML += "You have no items... <br>";
+// }
+
+function useItem() {
+	
+		document.getElementById("actionLog").innerHTML += "You used the " + itemSlot1[0] + ". <br>";
+        itemSlot1 = Items[0];
+        document.getElementById("inventory1").innerHTML = itemSlot1[0];
+			
+		// Disables inventory until Attack
+		// inventory1.disabled = true;
+			
+		// Check for enemy HP in case of Sludge-Kill
+		if (currentEnemyHP >= 1) {
+            return;
+        }
+		
+        else {
+            enemyDefeat();
+        }
 }
