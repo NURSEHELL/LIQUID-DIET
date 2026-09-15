@@ -34,41 +34,40 @@ function itemDMG() {
     useItem();
 }
 
+/* Commented-out for now cause I can't figure out why it only shows up once.
+
 function itemNull() {
     document.getElementById("actionLog").innerHTML += "You have no items... <br>";
 }
 
+*/
+
 function useItem() {
 	
-		// If item = Empty
-		if (itemSlot1 == Items[0]) {
-			itemNull();
-		}
+		document.getElementById("actionLog").innerHTML += "You used the " + itemSlot1[0] + ". <br>";
+        itemSlot1 = Items[0];
+        document.getElementById("inventory1").innerHTML = itemSlot1[0];
 			
-		else {
-	        document.getElementById("actionLog").innerHTML += "You used the " + itemSlot1[0] + ". <br>";
-	        itemSlot1 = Items[0];
-	        document.getElementById("inventory1").innerHTML = itemSlot1[0];
+		// Disables inventory until Attack
+		// inventory1.disabled = true;
 			
-			// Disables inventory until Attack
-			// inventory1.disabled = true;
-			
-			// Check for enemy HP in case of Sludge-Kill
-			if (currentEnemyHP >= 1) {
-	            return;
-	        }
-			
-	        else {
-	            enemyDefeat();
-	        }
-		}
+		// Check for enemy HP in case of Sludge-Kill
+		if (currentEnemyHP >= 1) {
+            return;
+        }
+		
+        else {
+            enemyDefeat();
+        }
+	}
 }
 
 // ON PAGE LOAD
 
 window.onload = function () {
     document.getElementById("playerHP").innerHTML = currentPlayerHP;
-    document.getElementById("inventory1").innerHTML = itemSlot1[0];
+    //document.getElementById("inventory1").innerHTML = itemSlot1[0];
+	inventory1.disabled = true;
     document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
     randomizeEnemy();
 
@@ -79,8 +78,11 @@ window.onload = function () {
 function randomizeEnemy() {
     elapsedTurns = 0;
     playerAttack.disabled = false;
-	inventory1.disabled = false;
 
+	if (itemSlot1 != Items[0]) {
+	inventory1.disabled = false;
+	}
+	
     // Randomize
     randomEnemy = Math.floor(Math.random() * Enemies.length);
 
@@ -117,7 +119,10 @@ function enemyTurn() {
 
     document.getElementById("playerHP").innerHTML = currentPlayerHP;
     playerAttack.disabled = false;
+	
+	if (itemSlot1 != Items[0]) {
 	inventory1.disabled = false;
+	}
 
 
 }
@@ -147,6 +152,7 @@ function playerRevive() {
 	itemSlot1 = Items[0];
 	enemyItemDrop = Items[0];
     document.getElementById("inventory1").innerHTML = itemSlot1[0];
+	inventory1.disabled = true;
 	roundCounter = 1;
     document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
 	randomizeEnemy();
