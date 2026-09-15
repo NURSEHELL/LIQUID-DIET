@@ -27,7 +27,7 @@ function randomizeEnemy() {
     playerAttack.disabled = false;
 
 	if (itemSlot1 == Items[0]) {
-	inventory1.disabled = true;
+		inventory1.disabled = true;
 	}
 	
     // Randomize
@@ -80,8 +80,6 @@ function enemyTurn() {
 	if (itemSlot1 == Items[0]) {
 	inventory1.disabled = true;
 	}
-
-
 }
 
 // PLAYER DEFEAT
@@ -217,9 +215,10 @@ function itemDMG() {
 
 // Commented-out for now cause I can't figure out why it only shows up once.
 
-// function itemNull() {
+ function itemNull() {
+	 return;
 //     document.getElementById("actionLog").innerHTML += "You have no items... <br>";
-// }
+ }
 
 function useItem() {
 	
