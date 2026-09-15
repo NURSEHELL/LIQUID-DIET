@@ -3,7 +3,7 @@ const Enemies = [
     ["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 0, 1, 0, 1, 0], 1],
     ["PITIFUL DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 1, 0, 1], 2],
     ["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 2, [1, 1, 0, 0, 0, 1], 3],
-]
+];
 // 0 = Wait / 1 = Attack 1HP
 
 // Item array. "NAME", "Images/img_src", Utility, Utility Specifics]
@@ -12,24 +12,24 @@ const Items = [
     ["Energy Drink", "Images/Item_Energy.png", itemHeal, 1],
     ["Sludge", "Images/Item_Sludge.png", itemDMG, 2],
     ["Chimera Fetus", "Images/Item_Fetus.png", itemDMG, 1],
-]
+];
 
 
-itemSlot1 = Items[0]
-enemyItemDrop = Items[0]
-currentPlayerHP = 3
-roundCounter = 1
+itemSlot1 = Items[0];
+enemyItemDrop = Items[0];
+currentPlayerHP = 3;
+roundCounter = 1;
 
 function itemHeal() {
     currentPlayerHP += itemSlot1[3];
     document.getElementById("playerHP").innerHTML = currentPlayerHP;
-    useItem()
+    useItem();
 }
 
 function itemDMG() {
     currentEnemyHP -= itemSlot1[3];
     document.getElementById("enemyHP").innerHTML = currentEnemyHP;
-    useItem()
+    useItem();
 }
 
 function itemNull() {
@@ -51,7 +51,7 @@ function useItem() {
 		
         else {
             enemyDefeat();
-        };
+        }
 }
 
 // ON PAGE LOAD
@@ -81,7 +81,7 @@ function randomizeEnemy() {
     document.getElementById("enemyImg").src = Enemies[randomEnemy][1];
 	
 	// Clear log (Battle intro)
-    document.getElementById("actionLog").innerHTML = "<strong>" enemyName + "</strong> is here... <br>";
+    document.getElementById("actionLog").innerHTML = "<strong>" + enemyName + "</strong> is here... <br>";
 }
 
 // ENEMY TURN
@@ -131,8 +131,8 @@ function playerRevive() {
 	currentPlayerHP = 3;
 	document.getElementById("playerHP").innerHTML = currentPlayerHP;
 	document.getElementById("actionLog").innerHTML = " ";
-	itemSlot1 = Items[0]
-	enemyItemDrop = Items[0]
+	itemSlot1 = Items[0];
+	enemyItemDrop = Items[0];
     document.getElementById("inventory1").innerHTML = itemSlot1[0];
 	randomizeEnemy();
 }
@@ -156,7 +156,7 @@ function enemyDefeat() {
 	}
 	
 	// Up Round Counter by 1
-	roundCounter++
+	roundCounter++;
     document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
 
 	// Check for Overkill
@@ -171,10 +171,10 @@ function enemyDefeat() {
         document.getElementById("inventory1").addEventListener("click", enemyItemDrop[2], { once: true });
         itemSlot1 = enemyItemDrop;
     document.getElementById("actionLog").innerHTML += "<strong>ITEM GOT!</strong> " + enemyItemDrop[0] + "<br>";
-        setTimeout(() => { randomizeEnemy() }, 2500);
+        setTimeout(() => { randomizeEnemy(); }, 2500);
 }
 else {
-    setTimeout(() => { randomizeEnemy() }, 2500);
+    setTimeout(() => { randomizeEnemy(); }, 2500);
 }
 
 }
@@ -186,8 +186,8 @@ else {
 // PLAYER ATTACK
 
 function Attack() {
-    playerAttack.disabled = true
-	inventory1.disabled = true
+    playerAttack.disabled = true;
+	inventory1.disabled = true;
 
 
     currentEnemyHP -= 1;
@@ -204,7 +204,7 @@ function Attack() {
 
         elapsedTurns += 1;
         if (elapsedTurns >= 6) {
-            elapsedTurns = 0
+            elapsedTurns = 0;
         }
 
         if (currentEnemyHP >= 1) {
@@ -213,7 +213,7 @@ function Attack() {
 
         else {
             enemyDefeat();
-        };
+        }
 		
 		if (currentPlayerHP <= 0) {
 			playerDefeat();
@@ -222,5 +222,3 @@ function Attack() {
     }, 1000);
 
 }
-
-
