@@ -18,6 +18,7 @@ const Items = [
 itemSlot1 = Items[0]
 enemyItemDrop = Items[0]
 currentPlayerHP = 3
+roundCounter = 1
 
 function itemHeal() {
     currentPlayerHP += itemSlot1[3];
@@ -57,6 +58,7 @@ function useItem() {
 window.onload = function () {
     document.getElementById("playerHP").innerHTML = currentPlayerHP;
     document.getElementById("inventory1").innerHTML = itemSlot1[0];
+    document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
     randomizeEnemy();
 
 };
@@ -79,7 +81,7 @@ function randomizeEnemy() {
     document.getElementById("enemyImg").src = Enemies[randomEnemy][1];
 	
 	// Clear log (Battle intro)
-    document.getElementById("actionLog").innerHTML = enemyName + " is here... <br>";
+    document.getElementById("actionLog").innerHTML = "<strong>" enemyName + "</strong> is here... <br>";
 }
 
 // ENEMY TURN
@@ -94,7 +96,7 @@ function enemyTurn() {
     // IF enemy attacks (1)
     if (Enemies[randomEnemy][3][elapsedTurns] == 1) {
         document.getElementById("actionLog").innerHTML += "The enemy attacks! <br>";
-        currentPlayerHP -= 1;
+        currentPlayerHP--;
     }
 
     if (Enemies[randomEnemy][3][elapsedTurns] == 2) {
@@ -113,11 +115,18 @@ function enemyTurn() {
 function playerDefeat() {
 	playerAttack.disabled = true;
 	inventory1.disabled = true;
-	document.getElementById("actionLog").innerHTML += "You have died. The end.";
-    setTimeout(() => { playerRevive(); playerAttack.disabled = false;}, 2000);
+	document.getElementById("actionLog").innerHTML += "You have died. <strong>The end.</strong> <br> <h2 style='cursor: pointer;'><u>Try again?</u></h2>";
+	
+	// Check to avoid accidental resets
+	if (currentPlayerHP <= 0) {
+		document.getElementById("actionLog").addEventListener("click", playerRevive);
+	}
+	
+    //Old Reset Timer: setTimeout(() => { playerRevive(); playerAttack.disabled = false;}, 2000);
 }
 
-// Player Revive
+// PLAYER REVIVE (Full Reset)
+
 function playerRevive() {
 	currentPlayerHP = 3;
 	document.getElementById("playerHP").innerHTML = currentPlayerHP;
@@ -128,22 +137,40 @@ function playerRevive() {
 	randomizeEnemy();
 }
 
-// Enemy Defeat
+// ENEMY DEFEAT
+
 function enemyDefeat() {
     enemyItemDrop = Items[Enemies[randomEnemy][4]];
-    document.getElementById("actionLog").innerHTML += "Enemy defeated! You win! <br>";
-    document.getElementById("enemyImg").src = "Images/Enemy_DEFEATED.png";
+    document.getElementById("actionLog").innerHTML += "Enemy defeated! <strong>You win!</strong> <br>";
+	
+	// Different Death Pic (there's no doubt a better way to check than using the name)
+	switch (enemyName) {
+		case "PATHETIC DUMMY":
+		case "PITIFUL DUMMY":
+		document.getElementById("enemyImg").src = "Images/Enemy_DEFEATED_DUMMY.png";
+		break;
+		
+		case "ANASTASIA'S CHIMERA":
+		document.getElementById("enemyImg").src = "Images/Enemy_DEFEATED_CHIMERA.png";
+		break;
+	}
+	
+	// Up Round Counter by 1
+	roundCounter++
+    document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
 
-        if (currentEnemyHP < 0) {
+	// Check for Overkill
+    if (currentEnemyHP < 0) {
         currentEnemyHP = 0;
         document.getElementById("enemyHP").innerHTML = 0;
     }
 
-if (itemSlot1 == Items[0]) {
+	// Grant Item
+	if (itemSlot1 == Items[0]) {
         document.getElementById("inventory1").innerHTML = enemyItemDrop[0];
         document.getElementById("inventory1").addEventListener("click", enemyItemDrop[2], { once: true });
         itemSlot1 = enemyItemDrop;
-    document.getElementById("actionLog").innerHTML += "ITEM GOT! " + enemyItemDrop[0] + "<br>";
+    document.getElementById("actionLog").innerHTML += "<strong>ITEM GOT!</strong> " + enemyItemDrop[0] + "<br>";
         setTimeout(() => { randomizeEnemy() }, 2500);
 }
 else {
@@ -167,7 +194,8 @@ function Attack() {
     document.getElementById("actionLog").innerHTML += "You attack the enemy! <br>";
     document.getElementById("enemyHP").innerHTML = currentEnemyHP;
 
-        if (currentPlayerHP < 0) {
+	// Player HP minimum
+    if (currentPlayerHP < 0) {
         currentPlayerHP = 0;
         document.getElementById("playerHP").innerHTML = 0;
     }
