@@ -78,8 +78,8 @@ function randomizeEnemy() {
     elapsedTurns = 0;
     playerAttack.disabled = false;
 
-	if (itemSlot1 != Items[0]) {
-	inventory1.disabled = false;
+	if (itemSlot1 == Items[0]) {
+	inventory1.disabled = true;
 	}
 	
     // Randomize
@@ -119,8 +119,8 @@ function enemyTurn() {
     document.getElementById("playerHP").innerHTML = currentPlayerHP;
     playerAttack.disabled = false;
 	
-	if (itemSlot1 != Items[0]) {
-	inventory1.disabled = false;
+	if (itemSlot1 == Items[0]) {
+	inventory1.disabled = true;
 	}
 
 
