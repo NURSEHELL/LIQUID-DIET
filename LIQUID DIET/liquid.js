@@ -20,16 +20,6 @@ enemyItemDrop = Items[0];
 currentPlayerHP = 3;
 roundCounter = 1;
 
-// ON PAGE LOAD
-
-window.onload = function () {
-    document.getElementById("playerHP").innerHTML = currentPlayerHP;
-    //document.getElementById("inventory1").innerHTML = itemSlot1[0];
-	inventory1.disabled = true;
-    document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
-    randomizeEnemy();
-};
-
 // RANDOM ENEMY
 
 function randomizeEnemy() {
@@ -53,6 +43,16 @@ function randomizeEnemy() {
 	// Clear log (Battle intro)
     document.getElementById("actionLog").innerHTML = "<strong>" + enemyName + "</strong> is here... <br>";
 }
+
+// ON PAGE LOAD
+
+window.onload = function () {
+    document.getElementById("playerHP").innerHTML = currentPlayerHP;
+    //document.getElementById("inventory1").innerHTML = itemSlot1[0];
+	inventory1.disabled = true;
+    document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
+    randomizeEnemy();
+};
 
 // ENEMY TURN
 
