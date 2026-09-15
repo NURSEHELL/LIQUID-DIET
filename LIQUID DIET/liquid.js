@@ -20,6 +20,8 @@ enemyItemDrop = Items[0];
 currentPlayerHP = 3;
 roundCounter = 1;
 
+// ITEMS
+
 function itemHeal() {
     currentPlayerHP += itemSlot1[3];
     document.getElementById("playerHP").innerHTML = currentPlayerHP;
@@ -33,28 +35,37 @@ function itemDMG() {
 }
 
 function itemNull() {
-    document.getElementById("actionLog").innerHTML += "There is no item in this slot... <br>";
+    document.getElementById("actionLog").innerHTML += "You have no items... <br>";
 }
 
 function useItem() {
-        document.getElementById("actionLog").innerHTML += "You used the " + itemSlot1[0] + ". <br>";
-        itemSlot1 = Items[0];
-        document.getElementById("inventory1").innerHTML = itemSlot1[0];
-		
-		// Disables inventory until Attack
-		inventory1.disabled = true;
-		
-		// Check for enemy HP in case of Sludge-Kill
-		if (currentEnemyHP >= 1) {
-            return;
-        }
-		
-        else {
-            enemyDefeat();
-        }
+	
+		// If item = Empty
+		if (itemSlot1 == Items[0]) {
+			itemNull();
+		}
+			
+		else {
+	        document.getElementById("actionLog").innerHTML += "You used the " + itemSlot1[0] + ". <br>";
+	        itemSlot1 = Items[0];
+	        document.getElementById("inventory1").innerHTML = itemSlot1[0];
+			
+			// Disables inventory until Attack
+			// inventory1.disabled = true;
+			
+			// Check for enemy HP in case of Sludge-Kill
+			if (currentEnemyHP >= 1) {
+	            return;
+	        }
+			
+	        else {
+	            enemyDefeat();
+	        }
+		}
 }
 
 // ON PAGE LOAD
+
 window.onload = function () {
     document.getElementById("playerHP").innerHTML = currentPlayerHP;
     document.getElementById("inventory1").innerHTML = itemSlot1[0];
@@ -123,29 +134,21 @@ function playerDefeat() {
 		document.getElementById("actionLog").addEventListener("click", playerRevive);
 	}
 	
-    //Old Reset Timer: setTimeout(() => { playerRevive(); playerAttack.disabled = false;}, 2000);
+    // Old Reset Timer
+	// setTimeout(() => { playerRevive(); playerAttack.disabled = false;}, 2000);
 }
 
 // PLAYER REVIVE (Full Reset)
 
 function playerRevive() {
-	// HP Reset
 	currentPlayerHP = 3;
 	document.getElementById("playerHP").innerHTML = currentPlayerHP;
-	
-	// Actionlog Reset
-	document.getElementById("actionLog").innerHTML = " ";
-	
-	// Items Reset
+	document.getElementById("actionLog").innerHTML = "";
 	itemSlot1 = Items[0];
 	enemyItemDrop = Items[0];
     document.getElementById("inventory1").innerHTML = itemSlot1[0];
-	
-	// Round Reset
 	roundCounter = 1;
     document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
-	
-	// Restart
 	randomizeEnemy();
 	playerAttack.disabled = false;
 }
@@ -189,11 +192,10 @@ function enemyDefeat() {
         itemSlot1 = enemyItemDrop;
     document.getElementById("actionLog").innerHTML += "<strong>ITEM GOT!</strong> " + enemyItemDrop[0] + "<br>";
         setTimeout(() => { randomizeEnemy(); }, 2500);
-}
-else {
-    setTimeout(() => { randomizeEnemy(); }, 2500);
-}
-
+	}
+	else {
+	    setTimeout(() => { randomizeEnemy(); }, 2500);
+	}
 }
 
 // Item Systems
