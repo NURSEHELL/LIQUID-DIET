@@ -111,7 +111,8 @@ function enemyTurn() {
 
 }
 
-// Player Defeat
+// PLAYER DEFEAT
+
 function playerDefeat() {
 	playerAttack.disabled = true;
 	inventory1.disabled = true;
@@ -128,18 +129,34 @@ function playerDefeat() {
 // PLAYER REVIVE (Full Reset)
 
 function playerRevive() {
+	// HP Reset
 	currentPlayerHP = 3;
 	document.getElementById("playerHP").innerHTML = currentPlayerHP;
+	
+	// Actionlog Reset
 	document.getElementById("actionLog").innerHTML = " ";
+	
+	// Items Reset
 	itemSlot1 = Items[0];
 	enemyItemDrop = Items[0];
     document.getElementById("inventory1").innerHTML = itemSlot1[0];
+	
+	// Round Reset
+	roundCounter = 1;
+    document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
+	
+	// Restart
 	randomizeEnemy();
+	playerAttack.disabled = false;
 }
 
 // ENEMY DEFEAT
 
 function enemyDefeat() {
+	// Disabling attack/inv so player can't lower to -1HP
+	playerAttack.disabled = true;
+	inventory1.disabled = true;
+	
     enemyItemDrop = Items[Enemies[randomEnemy][4]];
     document.getElementById("actionLog").innerHTML += "Enemy defeated! <strong>You win!</strong> <br>";
 	
