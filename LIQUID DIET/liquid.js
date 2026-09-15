@@ -59,7 +59,6 @@ function useItem() {
         else {
             enemyDefeat();
         }
-	}
 }
 
 // ON PAGE LOAD
