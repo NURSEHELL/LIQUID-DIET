@@ -230,6 +230,7 @@ function useItem() {
 	
 		document.getElementById("actionLog").innerHTML += "You used the " + itemSlot1[0] + ". <br>";
         itemSlot1 = Items[0];
+		inventory1.disabled = true;
         document.getElementById("inventory1").innerHTML = itemSlot1[0];
 			
 		// Disables inventory until Attack
