@@ -29,6 +29,9 @@ function randomizeEnemy() {
 	if (itemSlot1 == Items[0]) {
 		inventory1.disabled = true;
 	}
+	else {
+		inventory1.disabled = false;
+	}
 	
     // Randomize
     randomEnemy = Math.floor(Math.random() * Enemies.length);
@@ -78,7 +81,10 @@ function enemyTurn() {
     playerAttack.disabled = false;
 	
 	if (itemSlot1 == Items[0]) {
-	inventory1.disabled = true;
+		inventory1.disabled = true;
+	}
+	else {
+		inventory1.disabled = false;
 	}
 }
 
