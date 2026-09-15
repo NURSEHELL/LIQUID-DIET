@@ -161,10 +161,6 @@ function enemyDefeat() {
 	}
 }
 
-// Item Systems
-
-//
-
 // PLAYER ATTACK
 
 function Attack() {
