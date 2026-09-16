@@ -1,3 +1,8 @@
+button, img {
+	user-select: none;
+}
+
+/* OLD CSS:
 
 .actionlog {
     height: 300px;
@@ -5,3 +10,5 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+*/
