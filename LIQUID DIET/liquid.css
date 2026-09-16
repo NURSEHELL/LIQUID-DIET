@@ -1,8 +1,9 @@
+/* This is so buttons and images don't get highlighted */
 button, img {
 	user-select: none;
 }
 
-/* OLD CSS:
+/* Left this here still. I think it's better without, now... but up to you
 
 .actionlog {
     height: 300px;
