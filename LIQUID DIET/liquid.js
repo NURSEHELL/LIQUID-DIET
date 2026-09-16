@@ -133,6 +133,7 @@ function playerRevive() {
     enemyDrop = Items[0];
     document.getElementById("inventory1").innerHTML = itemSlot1[0];
     inventory1.disabled = true;
+	currentWeapon = Weapons[0];
     roundCounter = 1;
     document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
     randomizeEnemy();
@@ -162,7 +163,7 @@ function weaponDiscard() {
 // ENEMY DEFEAT
 
 function enemyDefeat() {
-    // Disabling attack/inv so player can't lower to -1HP
+    // Enemy can't get to Minus HP
     playerAttack.disabled = true;
     inventory1.disabled = true;
 
@@ -181,32 +182,54 @@ function enemyDefeat() {
     document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
 
     // Check for Overkill
+	if (currentEnemyHP < 0) {
+		currentEnemyHP = 0;
+		document.getElementById("enemyHP").innerHTML = currentEnemyHP;
+		enemyDrop = Items[4];
 
+		// Bonus Overkill Item
+		if (itemSlot1 == Items[0]) {
+			document.getElementById("inventory1").innerHTML = enemyDrop[0];
+			document.getElementById("inventory1").addEventListener("click", enemyDrop[2], { once: true });
+			itemSlot1 = enemyDrop;
+			document.getElementById("actionLog").innerHTML += "<strong><u>OVERKILL!!</u> ITEM GOT!</strong> " + enemyDrop[0] + "<br>";
+			setTimeout(() => { randomizeEnemy(); }, 2500);
+		}
+		else {
+			document.getElementById("actionLog").innerHTML += "<strong><u>OVERKILL!!</u></strong> " + enemyDrop[0] + "<br>";
+			setTimeout(() => { randomizeEnemy(); }, 2500);
+		}
+	}
+	
+	if (Enemies[randomEnemy][5] == 0) {
 
-    if (Enemies[randomEnemy][5] == 0) {
+		// Grant Drop
+		if (itemSlot1 == Items[0]) {
 
-        // Grant Drop
-        if (itemSlot1 == Items[0]) {
+			itemSlot1 = enemyDrop;
+			document.getElementById("inventory1").innerHTML = enemyDrop[0];
+			document.getElementById("inventory1").addEventListener("click", enemyDrop[2], { once: true });
+			document.getElementById("actionLog").innerHTML += "<strong>ITEM GOT!</strong> " + enemyDrop[0] + "<br>";
+			setTimeout(() => { randomizeEnemy(); }, 2500);
+		}
 
-            itemSlot1 = enemyDrop;
-            document.getElementById("inventory1").innerHTML = enemyDrop[0];
-            document.getElementById("inventory1").addEventListener("click", enemyDrop[2], { once: true });
-            document.getElementById("actionLog").innerHTML += "<strong>ITEM GOT!</strong> " + enemyDrop[0] + "<br>";
-            setTimeout(() => { randomizeEnemy(); }, 2500);
-        }
+		else {
+			setTimeout(() => { randomizeEnemy(); }, 2500);
+		}
+	}
 
-        else {
-            setTimeout(() => { randomizeEnemy(); }, 2500);
-        }
-    }
+	if (Enemies[randomEnemy][5] == 1) {
+		if (currentWeapon == Weapons[0]) {
+			document.getElementById("actionLog").innerHTML += "<strong>WEAPON GOT!</strong> " + enemyDrop[0] + "<br>";
 
-    else if (Enemies[randomEnemy][5] == 1) {
-        document.getElementById("actionLog").innerHTML += "<strong>WEAPON GOT!</strong> " + enemyDrop[0] + "<br>";
-        weaponMenu.style.visibility = "visible";
-        weaponDiscardBtn.disabled = false;
-        weaponEquipBtn.disabled = false;
-    }
-
+			weaponDiscardBtn.disabled = false;
+			weaponEquipBtn.disabled = false;
+		}
+		
+		else {
+			setTimeout(() => { randomizeEnemy(); }, 2500);
+		}
+	}
 
     else {
         setTimeout(() => { randomizeEnemy(); }, 2500);
@@ -229,6 +252,10 @@ function Attack() {
         currentEnemyHP -= currentWeapon[2];
         document.getElementById("actionLog").innerHTML += "You attack the enemy! <br>";
         document.getElementById("enemyHP").innerHTML = currentEnemyHP;
+		
+		if (currentEnemyHP < 0) {
+			document.getElementById("enemyHP").innerHTML = 0;
+		}
 
     }
     else {
