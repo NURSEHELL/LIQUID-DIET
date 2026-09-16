@@ -12,6 +12,7 @@ const Items = [
     ["Energy Drink", "Images/Item_Energy.png", itemHeal, 1],
     ["Sludge", "Images/Item_Sludge.png", itemDMG, 2],
     ["Chimera Fetus", "Images/Item_Fetus.png", itemDMG, 1],
+	["Juicy Nectar", "Images/Item_Blood.png", itemHeal, 2],
 ];
 
 
@@ -147,7 +148,22 @@ function enemyDefeat() {
     document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
 
 	// Check for Overkill
-    if (currentEnemyHP < 0) {
+    if (currentEnemyHP <= -1) {
+		enemyItemDrop = Items[4];
+		
+		// Bonus Overkill Item
+		if (itemSlot1 == Items[0]) {
+			document.getElementById("inventory1").innerHTML = enemyItemDrop[0];
+			document.getElementById("inventory1").addEventListener("click", enemyItemDrop[2], { once: true });
+			itemSlot1 = enemyItemDrop;
+			document.getElementById("actionLog").innerHTML += "<strong><u>OVERKILL!!</u> ITEM GOT!</strong> " + enemyItemDrop[0] + "<br>";
+			setTimeout(() => { randomizeEnemy(); }, 2500);
+		}
+		else {
+			document.getElementById("actionLog").innerHTML += "<strong><u>OVERKILL!!</u></strong> " + enemyItemDrop[0] + "<br>";
+			setTimeout(() => { randomizeEnemy(); }, 2500);
+		}
+		
         currentEnemyHP = 0;
         document.getElementById("enemyHP").innerHTML = 0;
     }
@@ -157,7 +173,7 @@ function enemyDefeat() {
         document.getElementById("inventory1").innerHTML = enemyItemDrop[0];
         document.getElementById("inventory1").addEventListener("click", enemyItemDrop[2], { once: true });
         itemSlot1 = enemyItemDrop;
-    document.getElementById("actionLog").innerHTML += "<strong>ITEM GOT!</strong> " + enemyItemDrop[0] + "<br>";
+		document.getElementById("actionLog").innerHTML += "<strong>ITEM GOT!</strong> " + enemyItemDrop[0] + "<br>";
         setTimeout(() => { randomizeEnemy(); }, 2500);
 	}
 	else {
