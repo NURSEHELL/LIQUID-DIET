@@ -12,7 +12,8 @@ Item usage (DONE)
 Item drops (DONE)
 Accuracy (DONE)
 Sequential enemies (DONE)
-Different Weapons (Differing accuracy and damage)
+Different Weapons (DONE)
+Enemy tiers
 Enemy dialogue
 High Score
 
@@ -22,6 +23,7 @@ UI
 
 IDEAS:
 
+Different "depths" (Difficulty ramp)
 Unexpected events?
 Psychopomp-esque portrait indicating player HP
 Underlying story? Reocurring motifs?
