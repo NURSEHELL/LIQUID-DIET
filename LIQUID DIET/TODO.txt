@@ -7,23 +7,21 @@ only hold onto one item at a time?
 TO-DO:
 
 - Priority -
-Losing
-Item usage
-Item drops
+Losing (DONE)
+Item usage (DONE)
+Item drops (DONE)
 Accuracy
 Sequential enemies (DONE)
-
+Different Weapons (Differing accuracy and damage)
+Enemy dialogue
+High Score
 
 - Other -
 Original Sprites
 UI
-High Score
-Leaderboard
 
 IDEAS:
 
 Unexpected events?
-Different Weapons (Differing accuracy and damage)
 Psychopomp-esque portrait indicating player HP
 Underlying story? Reocurring motifs?
-Enemy dialogue
