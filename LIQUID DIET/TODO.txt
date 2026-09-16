@@ -10,7 +10,7 @@ TO-DO:
 Losing (DONE)
 Item usage (DONE)
 Item drops (DONE)
-Accuracy
+Accuracy (DONE)
 Sequential enemies (DONE)
 Different Weapons (Differing accuracy and damage)
 Enemy dialogue
