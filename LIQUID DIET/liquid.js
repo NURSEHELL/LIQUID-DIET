@@ -221,7 +221,7 @@ function enemyDefeat() {
 	if (Enemies[randomEnemy][5] == 1) {
 		if (currentWeapon == Weapons[0]) {
 			document.getElementById("actionLog").innerHTML += "<strong>WEAPON GOT!</strong> " + enemyDrop[0] + "<br>";
-
+			weaponMenu.style.visibility = "visible";
 			weaponDiscardBtn.disabled = false;
 			weaponEquipBtn.disabled = false;
 		}
