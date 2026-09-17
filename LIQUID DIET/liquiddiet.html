@@ -2,36 +2,38 @@
 <html>
     <head>
         <title>LIQUID DIET</title>
-<link rel="stylesheet" href="liquid.css">
+		<link rel="stylesheet" href="liquid.css">
     </head>
-    <body>
-        <h1 style="margin-bottom: 0">LIQUID DIET</h1>
-<h2 id="roundNum" style="margin-top: 0"></h2>
-<h3 id="enemyName"></h3>
-<p>Enemy HP: <span id="enemyHP"> </span></p>
-<img id="enemyImg" src="Images/PLACEHOLDER.png" alt="Enemy">
-<br>
-<button id="playerAttack" onclick="Attack()"> Attack </button>
-<p>Your HP: <span id="playerHP"></span></p>
+	<body>
+		<h1 style="margin-bottom: 0">LIQUID DIET</h1>
+		<h2 id="roundNum" style="margin-top: 0"></h2>
+		<h3 id="enemyName"></h3>
+		<p>Enemy HP: <span id="enemyHP"> </span></p>
+		<img id="enemyImg" src="Images/PLACEHOLDER.png" alt="Enemy">
 
-<button id="inventory1">Empty</button>
+		<br>
 
-    <h5> ACTION LOG </h5>
-    <div class="actionlog">
-<p id="actionLog"></p>
-</div>
+		<button id="playerAttack" onclick="Attack()"> Attack </button>
+		<button id="talking" onclick="talkTo()"> Talk </button>
+		<button id="runAway" onclick="Run()"> Run </button>
 
+		<p id="playerStats">Your HP: <span id="playerHP"></span></p>
 
-<div class="weaponmenu" id="weaponMenu">
-<h3> Weapon Menu</h3>
-<button id="weaponEquipBtn">Equip Weapon</button>
-<button id="weaponDiscardBtn">Discard Weapon</button>
-</div>
+		<button id="inventory1" onclick="useItem1()">Empty</button>
+		<button id="inventory2" onclick="useItem2()">Empty</button>
+		<button id="inventory3" onclick="useItem3()">Empty</button>
 
+		<h5> ACTION LOG </h5>
+		<div class="actionlog">
+		<p id="actionLog"></p>
+		</div>
 
-<!-- <h5> ELAPSED TURNS</h5>   <p id="turns"> </p> -->
+		<div class="weaponmenu" id="weaponMenu">
+		<h3> Weapon Menu </h3>
+		<button id="weaponEquipBtn">Equip</button>
+		<button id="weaponDiscardBtn">Discard</button>
+		</div>
 
-
-    
-            <script src="liquid.js"> </script>
-</body></html>
+		<script src="liquid.js"> </script>
+	</body>
+</html>
