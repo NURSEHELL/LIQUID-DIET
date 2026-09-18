@@ -136,7 +136,7 @@ function randomizeEnemy() {
 		
 		// PLACEHOLDER DEBUG CONSOLE LOG
 		console.log(" ");
-		console.log("All item slots taken. fullInv is now",fullInv);
+		console.log("All item slots taken. fullInv is",fullInv);
 		console.log(" ");
 	}
 	
@@ -411,7 +411,7 @@ function weaponEquip() {
 	document.getElementById("playerWPN").innerHTML = "<strong>" + currentWeapon[0] + "</strong>";
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
-	console.log("You should now have", currentWeapon[2] + "ATK and", (currentWeapon[2] * 2) + " on CRITs");
+	console.log("You should now have", currentWeapon[2], "ATK and", (currentWeapon[2] * 2), " on CRITs");
 	
 }
 
@@ -424,7 +424,7 @@ function weaponDiscard() {
     weaponMenu.style.visibility = "hidden";
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
-	console.log("You should still have", currentWeapon[2] + "ATK and", (currentWeapon[2] * 2) + " on CRITs)");
+	console.log("You should still have", currentWeapon[2], "ATK and", (currentWeapon[2] * 2), " on CRITs");
 	
 }
 
@@ -458,7 +458,7 @@ function grantDrop() {
 		
 		// PLACEHOLDER DEBUG CONSOLE LOG
 		console.log(" ");
-		console.log("OVERKILL!! Enemy died at ", lastEnemyHP + "HP");
+		console.log("OVERKILL!! Enemy died at ", lastEnemyHP, "HP");
 		console.log("juicyHeal should be one above & always positive:", juicyHeal);
 		console.log(" ");
 		
@@ -694,7 +694,7 @@ function Run() {
 	else {
 		
 		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log("runRNG =", runRNG, "(Off by", (runOffLimit-runRNG) + ")");
+		console.log("runRNG =", runRNG, "( Off by", (runOffLimit-runRNG), ")");
 		
 		runFail = true;
 		actionLine++;
@@ -720,35 +720,35 @@ function Run() {
 // ITEMS (Use & Details)
 
 function useItem1() {
+	itemUsed = itemSlot1;
 	item1Used = true;
 	fullInv = false;
-	itemUsed = itemSlot1;
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
 	console.log(" ");
-	console.log("Using Item 1. fullInv is now", fullInv);
+	console.log("Using Item 1. fullInv is", fullInv);
 	console.log(" ");
 }
 
 function useItem2() {
+	itemUsed = itemSlot2;
 	item2Used = true;
 	fullInv = false;
-	itemUsed = itemSlot2;
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
 	console.log(" ");
-	console.log("Using Item 2. fullInv is now", fullInv);
+	console.log("Using Item 2. fullInv is", fullInv);
 	console.log(" ");
 }
 
 function useItem3() {
+	itemUsed = itemSlot3;
 	item3Used = true;
 	fullInv = false;
-	itemUsed = itemSlot3;
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
 	console.log(" ");
-	console.log("Using Item 3. fullInv is now", fullInv);
+	console.log("Using Item 3. fullInv is", fullInv);
 	console.log(" ");
 }
 
@@ -780,27 +780,25 @@ function itemHeal() {
 	
 	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/20</strong>";
 	
-	switch (itemUsed) {
-		case itemSlot1:
-			itemSlot1 = Items[0];
-			inventory1.disabled = true;
-			document.getElementById("inventory1").innerHTML = itemSlot1[0];
-			item1Used = false;
-		break;
-		
-		case itemSlot2:
-			itemSlot2 = Items[0];
-			inventory2.disabled = true;
-			document.getElementById("inventory2").innerHTML = itemSlot2[0];
-			item2Used = false;
-		break;
-		
-		case itemSlot3:
-			itemSlot3 = Items[0];
-			inventory3.disabled = true;
-			document.getElementById("inventory3").innerHTML = itemSlot3[0];
-			item3Used = false;
-		break;
+	if (item1Used == true) {
+		itemSlot1 = Items[0];
+		inventory1.disabled = true;
+		document.getElementById("inventory1").innerHTML = itemSlot1[0];
+		item1Used = false;
+	}
+	
+	if (item2Used == true) {
+		itemSlot2 = Items[0];
+		inventory2.disabled = true;
+		document.getElementById("inventory2").innerHTML = itemSlot2[0];
+		item2Used = false;
+	}
+	
+	if (item3Used == true) {
+		itemSlot3 = Items[0];
+		inventory3.disabled = true;
+		document.getElementById("inventory3").innerHTML = itemSlot3[0];
+		item3Used = false;
 	}
 }
 
@@ -810,27 +808,25 @@ function itemDMG() {
 		actionLine++;
 		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong> and inflicted <strong>" + itemUsed[3] + "DMG!</strong><br></span>";
 	
-	switch (itemUsed) {
-		case itemSlot1:
-			itemSlot1 = Items[0];
-			inventory1.disabled = true;
-			document.getElementById("inventory1").innerHTML = itemSlot1[0];
-			item1Used = false;
-		break;
-		
-		case itemSlot2:
-			itemSlot2 = Items[0];
-			inventory2.disabled = true;
-			document.getElementById("inventory2").innerHTML = itemSlot2[0];
-			item2Used = false;
-		break;
-		
-		case itemSlot3:
-			itemSlot3 = Items[0];
-			inventory3.disabled = true;
-			document.getElementById("inventory3").innerHTML = itemSlot3[0];
-			item3Used = false;
-		break;
+	if (item1Used == true) {
+		itemSlot1 = Items[0];
+		inventory1.disabled = true;
+		document.getElementById("inventory1").innerHTML = itemSlot1[0];
+		item1Used = false;
+	}
+	
+	if (item2Used == true) {
+		itemSlot2 = Items[0];
+		inventory2.disabled = true;
+		document.getElementById("inventory2").innerHTML = itemSlot2[0];
+		item2Used = false;
+	}
+	
+	if (item3Used == true) {
+		itemSlot3 = Items[0];
+		inventory3.disabled = true;
+		document.getElementById("inventory3").innerHTML = itemSlot3[0];
+		item3Used = false;
 	}
 	
 	// Check for HP in case of Overkill
@@ -856,12 +852,12 @@ function itemNull() {
 if (debugtest == true) {
 	currentPlayerHP = maxPlayerHP;
 	
-	const ATK = currentWeapon[2];
-	const HPS = currentPlayerHP;
-	let STAT = ATK;
+	let ATK = currentWeapon[2];
+	let HPS = currentPlayerHP;
+	var STAT = undefined;
+	var CHOICE = undefined;
 	
 	console.log("DEBUGTEST: ATK currently at", currentWeapon[2]);
-	console.log("DEBUGTEST: Currently editing ATK.")
 	console.log("DEBUGTEST: Press Left to change HP. Press Right to get back to ATK.");
 	console.log("DEBUGTEST: Press Up to raise, Down to lower.");
 	console.log(" ");
@@ -870,42 +866,48 @@ if (debugtest == true) {
 		
         if (event.key == "ArrowUp") {
 			STAT++;
-			if (STAT == ATK) {
+			if (CHOICE == ATK) {
 				currentWeapon[2] = STAT;
 				console.log("DEBUGTEST: ATK raised to", STAT);
+				return;
 			}
-			else if (STAT == HPS) {
+			else if (CHOICE == HPS) {
 				currentPlayerHP = STAT;
 				console.log("DEBUGTEST: HP raised to", STAT);
+				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/20</strong>";
+				return;
 			}
-
-            console.log("DEBUGTEST: ATK raised to", STAT);
         }
 		else if (event.key == "ArrowDown") {
 			STAT--;
-            if (STAT == ATK) {
+            if (CHOICE == ATK) {
 				currentWeapon[2] = STAT;
 				console.log("DEBUGTEST: ATK lowered to", STAT);
+				return;
 			}
-			else if (STAT == HPS) {
+			else if (CHOICE == HPS) {
 				currentPlayerHP = STAT;
 				console.log("DEBUGTEST: HP lowered to", STAT);
+				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/20</strong>";
+				return;
 			}
         }
 		else if (event.key == "ArrowLeft") {
-			if (STAT != HPS)
+			if (CHOICE != HPS)
 			{
-				STAT = HPS;
-				
-				console.log("DEBUGTEST: Switched to HP editing");
+				CHOICE = HPS;
+				console.log(" ");
+				console.log("DEBUGTEST: Now editing HP. Currently at", HPS);
+				return;
 			}
 		}
 		else if (event.key == "ArrowRight") {
-			if (STAT != ATK)
+			if (CHOICE != ATK)
 			{
-				STAT = ATK;
-				
-				console.log("DEBUGTEST: Switched to ATK editing");
+				CHOICE = ATK;
+				console.log(" ");
+				console.log("DEBUGTEST: Now editing ATK. Currently at", ATK);
+				return;
 			}
 		}
     });
