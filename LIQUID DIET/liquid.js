@@ -28,7 +28,7 @@ const Weapons = [
 
 // SETUP
 
-debugtest = false;
+debugmode = false;
 
 lastEnemyHP = 0;
 juicyHeal = 2;
@@ -226,7 +226,7 @@ function randomizeEnemy() {
 // ON PAGE LOAD
 
 window.onload = function () {
-    document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/20</strong>";
+    document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
     disableInvs();
     document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
     randomizeEnemy();
@@ -301,7 +301,7 @@ function enemyTurn() {
         elapsedTurns = 0;
     }
 
-    document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/20</strong>";
+    document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
     playerAttack.disabled = false;
 	
 	if (line >= Enemies[randomEnemy][6].length) {
@@ -369,8 +369,9 @@ function playerDefeat() {
 function playerRevive() {
 	line = 0;
     currentPlayerHP = 5;
+	maxPlayerHP = 20;
 	document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span>';
-    document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/20</strong>";
+    document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 	itemSlot1 = Items[0];
 	itemSlot2 = Items[0];
 	itemSlot3 = Items[0];
@@ -407,7 +408,7 @@ function weaponEquip() {
     weaponMenu.style.visibility = "hidden";
 	
 	document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Weapon: <span id="playerWPN"></span>';
-	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/20</strong>";
+	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 	document.getElementById("playerWPN").innerHTML = "<strong>" + currentWeapon[0] + "</strong>";
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
@@ -618,12 +619,23 @@ function Attack() {
 	
     else if (hitRNG <= hitRate) {
         currentEnemyHP -= currentWeapon[2];
-		actionLine++;
-		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You attack the enemy!<br></span>";
-        document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 		
+		// Enemy HP minimum (visually)
 		if (currentEnemyHP < 0) {
 			document.getElementById("enemyHP").innerHTML = "<strong>" + 0 + "/" + currentEnemyMaxHP + "</strong>";
+		}
+		
+		// Check if weapon does healing damage
+		if (currentEnemyHP > currentEnemyMaxHP) {
+			currentEnemyMaxHP = currentEnemyHP;
+			actionLine++
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You attack the enemy! Strangely, it heals them...<br></span>";
+			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+		}
+		else {
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You attack the enemy!<br></span>";
+			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 		}
     }
 		
@@ -635,11 +647,11 @@ function Attack() {
     // Player HP min/max
     if (currentPlayerHP < 0) {
         currentPlayerHP = 0;
-        document.getElementById("playerHP").innerHTML = "<strong>" + 0 + "/20</strong>";
+        document.getElementById("playerHP").innerHTML = "<strong>" + 0 + "/" + maxPlayerHP + "</strong>";
     }
     if (currentPlayerHP > maxPlayerHP) {
-        currentPlayerHP = 20;
-        document.getElementById("playerHP").innerHTML = "<strong>" + 20 + "/20</strong>";
+        currentPlayerHP = maxPlayerHP;
+        document.getElementById("playerHP").innerHTML = "<strong>" + maxPlayerHP + "/" + maxPlayerHP + "</strong>";
     }
 
     setTimeout(() => {
@@ -725,7 +737,6 @@ function useItem1() {
 	fullInv = false;
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
-	console.log(" ");
 	console.log("Using Item 1. fullInv is", fullInv);
 	console.log(" ");
 }
@@ -736,7 +747,6 @@ function useItem2() {
 	fullInv = false;
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
-	console.log(" ");
 	console.log("Using Item 2. fullInv is", fullInv);
 	console.log(" ");
 }
@@ -747,7 +757,6 @@ function useItem3() {
 	fullInv = false;
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
-	console.log(" ");
 	console.log("Using Item 3. fullInv is", fullInv);
 	console.log(" ");
 }
@@ -778,7 +787,7 @@ function itemHeal() {
 		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong> and regained <strong>" + itemUsed[3] + "HP!</strong><br></span>";
 	}
 	
-	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/20</strong>";
+	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 	
 	if (item1Used == true) {
 		itemSlot1 = Items[0];
@@ -847,68 +856,212 @@ function itemNull() {
 }
 
 
-// DEBUG TEST
+// DEBUG MODE
 
-if (debugtest == true) {
-	currentPlayerHP = maxPlayerHP;
+if (debugmode == true) {
 	
-	let ATK = currentWeapon[2];
-	let HPS = currentPlayerHP;
-	var STAT = undefined;
+	var STAT = 0;
 	var CHOICE = undefined;
 	
-	console.log("DEBUGTEST: ATK currently at", currentWeapon[2]);
-	console.log("DEBUGTEST: Press Left to change HP. Press Right to get back to ATK.");
-	console.log("DEBUGTEST: Press Up to raise, Down to lower.");
-	console.log(" ");
+	console.log("DEBUG MODE ACTIVE - INSTRUCTIONS:");
+	console.log("Press RIGHT to edit Attack DMG. Press RIGHT TWICE to edit Enemy HP.")
+	console.log("Press LEFT to edit Player HP. Press LEFT TWICE to edit Max HP.");
+	console.log("Press UP to Raise Stat. Press DOWN to Lower Stat.");
+	console.log("Press R to Reroll Enemy (doesn't reset stats). Press K to Reset Run (resets stats).");
+	console.log("Press P to Pass Round (doesn't reset stats). Press H to read instructions again.");
+	console.log("####################################################################################################");
 	
 	document.addEventListener("keyup", function(event) {
 		
-        if (event.key == "ArrowUp") {
+		// INSTRUCTIONS
+		if (event.keyCode == 72) {
+			console.log("####################################################################################################");
+			console.log("Press RIGHT to edit Attack DMG. Press RIGHT TWICE to edit Enemy HP.")
+			console.log("Press LEFT to edit Player HP. Press LEFT TWICE to edit Max HP.");
+			console.log("Press UP to Raise Stat. Press DOWN to Lower Stat.");
+			console.log("Press R to Reroll Enemy (doesn't reset stats). Press K to Reset Run (resets stats).");
+			console.log("Press P to Pass Round (brings enemy to 0HP). Press H to read instructions again.");
+			console.log("####################################################################################################");
+			return;
+		}
+		
+		// RESET RUN
+		else if (event.keyCode == 75) {
+			console.log("####################################################################################################");
+			playerRevive();
+			console.log("DEBUG MODE: Run reset successfully.");
+			return;
+		}
+		
+		// PASS ROUND
+		else if (event.keyCode == 80) {
+			document.getElementById("enemyHP").innerHTML = "<strong>" + 0 + "/" + currentEnemyMaxHP + "</strong>";
+			console.log("####################################################################################################");
+			enemyDefeat();
+			console.log("DEBUG MODE: Enemy killed successfully.");
+			console.log("/!\\ PLEASE WAIT UNTIL NEXT ENEMY BEFORE USING DEBUG AGAIN.");
+			return;
+		}
+		
+		// REROLL ENEMY
+		else if (event.keyCode == 82) {
+			console.log("####################################################################################################");
+			randomizeEnemy();
+			console.log("DEBUG MODE: Enemy rerolled successfully.");
+			console.log("INFO: The enemy might look the same, but it isn't.");
+			return;
+		}
+		
+		// RAISE STAT
+        else if (event.key == "ArrowUp") {
+			
+			if (CHOICE === undefined) {
+				console.log("DEBUG MODE: Nothing is selected! Press H (or read above) for instructions!");
+				return;
+			}
+			
 			STAT++;
-			if (CHOICE == ATK) {
+			
+			if (CHOICE === "Enemy HP") {
+				currentEnemyHP = STAT;
+				currentEnemyMaxHP = STAT;
+				document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+				console.log(CHOICE, "raised to", STAT);
+				return;
+			}
+			else if (CHOICE === "Attack DMG") {
 				currentWeapon[2] = STAT;
-				console.log("DEBUGTEST: ATK raised to", STAT);
-				return;
 			}
-			else if (CHOICE == HPS) {
+			else if (CHOICE === "Player HP") {
 				currentPlayerHP = STAT;
-				console.log("DEBUGTEST: HP raised to", STAT);
-				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/20</strong>";
-				return;
+				
+				if (currentPlayerHP > maxPlayerHP) {
+					maxPlayerHP = currentPlayerHP;
+				}
+				
+				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 			}
-        }
+			else if (CHOICE === "Max HP") {
+				maxPlayerHP = STAT;
+				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+			}
+			
+			console.log(CHOICE, "raised to", STAT);
+		}
+		
+		// LOWER STAT
 		else if (event.key == "ArrowDown") {
+			
+			if (CHOICE === undefined) {
+				console.log("DEBUG MODE: Nothing is selected! Press H (or read above) for instructions!");
+				return;
+			}
+			
 			STAT--;
-            if (CHOICE == ATK) {
+			
+			if (CHOICE === "Enemy HP") {
+				currentEnemyHP = STAT;
+				document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+				
+				if (currentEnemyHP <= 0) {
+					enemyDefeat();
+					console.log("/!\\ PLEASE WAIT UNTIL NEXT ENEMY BEFORE USING DEBUG AGAIN.");
+					return;
+				}
+			}
+            else if (CHOICE === "Attack DMG") {
 				currentWeapon[2] = STAT;
-				console.log("DEBUGTEST: ATK lowered to", STAT);
-				return;
 			}
-			else if (CHOICE == HPS) {
+			else if (CHOICE === "Player HP") {
 				currentPlayerHP = STAT;
-				console.log("DEBUGTEST: HP lowered to", STAT);
-				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/20</strong>";
-				return;
+				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+				
+				if (currentPlayerHP <= 0) {
+					playerDefeat();
+					console.log("/!\\ PLEASE RESET RUN BEFORE USING DEBUG AGAIN.");
+					return;
+				}
 			}
-        }
+			else if (CHOICE === "Max HP") {
+				maxPlayerHP = STAT;
+				
+				if (maxPlayerHP < currentPlayerHP) {
+					currentPlayerHP = maxPlayerHP;
+				}
+				
+				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+				
+				if (currentPlayerHP <= 0) {
+					playerDefeat();
+					console.log("/!\\ PLEASE RESET RUN BEFORE USING DEBUG AGAIN.");
+					return;
+				}
+			}
+			
+			console.log(CHOICE, "lowered to", STAT);
+		}
+		
+		// SWITCH LEFT (Enemy HP -> Attack DMG -> Player HP -> Max HP)
 		else if (event.key == "ArrowLeft") {
-			if (CHOICE != HPS)
-			{
-				CHOICE = HPS;
-				console.log(" ");
-				console.log("DEBUGTEST: Now editing HP. Currently at", HPS);
+			if (CHOICE === "Enemy HP") {
+				CHOICE = "Attack DMG";
+				STAT = currentWeapon[2];
+				console.log("####################################################################################################");
+				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentWeapon[2]);
+				console.log("INFO: Lowering to negative will heal enemy when you attack.");
+				return;
+			}
+			if (CHOICE === "Attack DMG" || CHOICE === undefined) {
+				CHOICE = "Player HP";
+				STAT = currentPlayerHP;
+				console.log("####################################################################################################");
+				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentPlayerHP);
+				console.log("INFO: Raising past Max HP will ALSO raise Max HP. Lowering to 0 will kill you.");
+				return;
+			}
+			else if (CHOICE === "Player HP") {
+				CHOICE = "Max HP";
+				STAT = maxPlayerHP;
+				console.log("####################################################################################################");
+				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", maxPlayerHP);
+				console.log("INFO: Lowering below Player HP will ALSO lower Player HP.");
+			}
+			else if (CHOICE === "Max HP") {
+				console.log("DEBUG MODE: Nothing past " + CHOICE + ". Press RIGHT to switch.");
 				return;
 			}
 		}
+		
+		// SWITCH RIGHT (Max HP -> Player HP -> Attack DMG -> Enemy HP)
 		else if (event.key == "ArrowRight") {
-			if (CHOICE != ATK)
-			{
-				CHOICE = ATK;
-				console.log(" ");
-				console.log("DEBUGTEST: Now editing ATK. Currently at", ATK);
+			if (CHOICE === "Max HP") {
+				CHOICE = "Player HP";
+				STAT = currentPlayerHP;
+				console.log("####################################################################################################");
+				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentPlayerHP);
+				console.log("INFO: Raising past Max HP will ALSO raise Max HP. Lowering to 0 will kill you.");
+				return;
+			}
+			else if (CHOICE === "Player HP" || CHOICE === undefined) {
+				CHOICE = "Attack DMG";
+				STAT = currentWeapon[2];
+				console.log("####################################################################################################");
+				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentWeapon[2]);
+				console.log("INFO: Lowering to negative will heal enemy when you attack.");
+				return;
+			}
+			else if (CHOICE === "Attack DMG") {
+				CHOICE = "Enemy HP";
+				STAT = currentEnemyHP;
+				console.log("####################################################################################################");
+				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentEnemyHP);
+				console.log("INFO: Raising will ALSO raise the enemy's Max HP. Lowering to 0 will kill it.");
+				return;
+			}
+			else if (CHOICE === "Enemy HP") {
+				console.log("DEBUG MODE: Nothing past " + CHOICE + ". Press LEFT to switch.")
 				return;
 			}
 		}
-    });
+	});
 }
