@@ -45,7 +45,7 @@ const Weapons = [
 
 // SETUP
 
-debugmode = false;
+debugmode = true;
 
 lastEnemyHP = 0;
 juicyHeal = 2;
@@ -726,7 +726,7 @@ function enemyDefeat() {
 		
 		case 20:
 			enemyDrop = Weapons[3]; // BOSS 2 (Hand Puppet, WPN)
-			grantDrop();
+			grantWeapon();
 		break;
 		
 		case 30:
