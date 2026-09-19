@@ -45,7 +45,7 @@ const Weapons = [
 
 // SETUP
 
-debugmode = false;
+debugmode = true;
 
 // Juicyheal stuff
 lastEnemyHP = 0;
@@ -63,8 +63,11 @@ currentEnemyMinHP = 0;
 currentEnemyHP = 3;
 currentEnemyMaxHP = currentEnemyHP;
 enemyDrop = Items[0];
-specialEnemy = undefined; // Yes, these two are different
-specialEncounter = false; // and both are important
+specialEnemy = undefined;		// Yes, these two "special" ones are different and both important
+specialEncounter = false;
+currentEnemyLines = undefined;  // These fix an issue with dialogue for reskinned enemies
+lastReskin = undefined;         // I realized halfway through that reskinned enemies...
+lastReskinLines = 0;            // ... probably won't be in the final game, but... :(
 
 // Player stuff
 maxPlayerHP = 20;
@@ -170,6 +173,7 @@ function randomizeEnemy() {
 	
 	if (enemyKilled == true) {
 		enemyKilled = false;
+		
 		// Up Round Counter by 1
 		roundCounter++;
 		document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
@@ -179,9 +183,11 @@ function randomizeEnemy() {
 
 	switch (roundCounter) {
 		case 10:
-			randomEnemy = Enemies[3]; // BOSS 1 (Cheshire Child)
+			randomEnemy = Enemies[3]; // BOSS 1 (RESKIN of Miss Obeast)
 			specialEnemy = randomEnemy;
 			specialEncounter = true;
+			
+			lastReskin = specialEnemy;
 			
 			enemyName = "CHESHIRE CHILD";
 			
@@ -196,20 +202,21 @@ function randomizeEnemy() {
 			}
 			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "The <strong>" + enemyName + "</strong> comes your way...!<br></span>";
 			
-			specialEnemy[6] = ['<i>"Let my caress guide you..."</i> <br>', '<i>"... or not! Heehee..."</i> <br>', '<i>"What? Don\'t trust me?"</i> <br>', '<i>"Oh, you poor thing."</i> <br>'];
+			var arr = randomEnemy[6];
+			arr.unshift('<i>"Let my caress guide you..."</i> <br>', '<i>"... or not! Heehee..."</i> <br>', '<i>"What? Don\'t trust me?"</i> <br>', '<i>"Oh, you poor thing."</i> <br>');
 			
-			if (line >= specialEnemy[6].length) {
-				talking.disabled = true;
-			}
-			else {
-				talking.disabled = false;
-			}
+			console.log(arr);
+			
+			currentEnemyLines = 4;
+			lastReskinLines = currentEnemyLines;
 		break;
 		
 		case 20:
-			randomEnemy = Enemies[0]; // BOSS 2 (Cowardly Dummy)
+			randomEnemy = Enemies[0]; // BOSS 2 (RESKIN of Pathetic Dummy)
 			specialEnemy = randomEnemy;
-			specialEncounter = true;
+			specialEncounter = true
+			
+			lastReskin = specialEnemy;
 			
 			enemyName = "COWARDLY DUMMY";
 			
@@ -224,20 +231,21 @@ function randomizeEnemy() {
 			}
 			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "The <strong>" + enemyName + "</strong> wants to fight!<br></span>";
 			
-			specialEnemy[6] = ['<i>"I-I won\'t let you hurt anyone, you hear me?!"</i> <br>', '<i>"L-Leave me alone! ... Or else!!"</i> <br>', '<i>The enemy is stuttering...</i> <br>', '<i>"W-What do you want?!"</i> <br>'];
+			var arr = randomEnemy[6];
+			arr.unshift('<i>"I-I won\'t let you hurt anyone, you hear me?!"</i> <br>', '<i>"L-Leave me alone! ... Or else!!"</i> <br>', '<i>The enemy is stuttering...</i> <br>', '<i>"W-What do you want?!"</i> <br>', '<i>"I... I won\'t let you hurt ANYONE!!"</i> <br>');
 			
-			if (line >= specialEnemy[6].length) {
-				talking.disabled = true;
-			}
-			else {
-				talking.disabled = false;
-			}
+			console.log(arr);
+			
+			currentEnemyLines = 5;
+			lastReskinLines = currentEnemyLines;
 		break;
 		
 		case 30:
-			randomEnemy = Enemies[2]; // BOSS 3 (Ultimate Chimera)
+			randomEnemy = Enemies[2]; // BOSS 3 (RESKIN of Anastasia's Chimera)
 			specialEnemy = randomEnemy;
 			specialEncounter = true;
+			
+			lastReskin = specialEnemy;
 			
 			enemyName = "ULTIMATE CHIMERA";
 			
@@ -252,20 +260,23 @@ function randomizeEnemy() {
 			}
 			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "The <strong>" + enemyName + "</strong> rushes towards you!!<br></span>";
 			
-			specialEnemy[6] = ['<i>"Haha! My name\'s a MOTHER 3 reference!"</i> <br>', '<i>"Uh, I mean, ROAR."</i> <br>', '<i>The enemy is roaring incessantly...</i> <br>'];
+			var arr = randomEnemy[6];
+			arr.unshift('<i>"Haha! My name\'s a MOTHER 3 reference!"</i> <br>', '<i>"Uh, I mean, ROAR."</i> <br>', '<i>The enemy is roaring incessantly...</i> <br>');
 			
-			if (line >= specialEnemy[6].length) {
-				talking.disabled = true;
-			}
-			else {
-				talking.disabled = false;
-			}
+			console.log(arr);
+			
+			currentEnemyLines = 3;
+			lastReskinLines = currentEnemyLines;
 		break;
 		
 		case 48:
 			randomEnemy = Enemies[4]; // SPECIAL 1 (Chapelle d'Or)
 			specialEnemy = randomEnemy;
 			specialEncounter = true;
+			
+			lastReskin = specialEnemy;
+			
+			currentEnemyLines = randomEnemy[6].length;
 			
 			enemyName = specialEnemy[0];
 			document.getElementById("enemyName").innerHTML = specialEnemy[0];
@@ -275,13 +286,6 @@ function randomizeEnemy() {
 			currentEnemyHP = specialEnemy[2];
 			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "Where do <strong>YOU</strong> think you're going?<br></span>";
 			
-			if (line >= specialEnemy[6].length) {
-				talking.disabled = true;
-			}
-			else {
-				talking.disabled = false;
-			}
-			
 			// Custom Round Alert
 			alertTitle = "LIQUID DIET";
 			alertMainText = "Congratulations!<br>You have reached a wonderful place.";
@@ -290,10 +294,50 @@ function randomizeEnemy() {
 		break;
 		
 		default:
-			specialEnemy = undefined;
-			specialEncounter = false;
-		
+			var sameEnemy = undefined;
+			//var lastEnemyLines = currentEnemyLines;
+			
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies.length-1), 0));
+			if (lastReskin == undefined) {
+				console.log("LASTRESKIN: NONE / CURRENTENEMY:", Enemies[randomEnemy][0]);			
+			}
+			else {
+				console.log("LASTRESKIN:", lastReskin[0], "/ CURRENTENEMY:", Enemies[randomEnemy][0]);
+				
+				if (Enemies[randomEnemy][0] == lastReskin[0]) {
+					sameEnemy = true;
+				}
+				else {
+					sameEnemy = false;
+				}	
+			}
+			
+			currentEnemyLines = Enemies[randomEnemy][6].length;
+			
+			console.log("SAMEENEMY", sameEnemy, "CURRENTENEMYLINES", currentEnemyLines, "LASTRESKINLINES", lastReskinLines, "CURRENTENEMYLINES=LASTRESKINLINES", (currentEnemyLines == lastReskinLines));
+			
+			if (sameEnemy && currentEnemyLines != lastReskinLines) {
+				console.log("UHOH, NEW NONSPECIAL ENEMY");
+				for (i = 0; i < lastReskinLines; i++) {
+					Enemies[randomEnemy][6].shift(i);
+					console.log("REMOVING DIALOGUE ARRAY THING PART", i);
+					
+					if (i == lastReskinLines-1) {
+						currentEnemyLines = (Enemies[randomEnemy][6].length);
+						console.log("ALL DONE, CURRENTENEMYLINES", currentEnemyLines);
+						specialEncounter = false;
+						lastReskin = undefined;
+					}
+				}
+			}
+			else {
+				specialEncounter = false;
+				console.log("NO NEED TO UNSHIFT DIALOGUE ARRAY");
+			}
+			
+			specialEnemy = undefined;
+			
+			console.log(Enemies[randomEnemy][6]);
 			console.log("randomEnemy should be", 0, "at min,", Enemies.length-1, "at max. | Enemy:", randomEnemy, "/ Enemies.length:", Enemies.length);
 			
 			enemyName = Enemies[randomEnemy][0];
@@ -307,14 +351,14 @@ function randomizeEnemy() {
 				currentEnemyHP = Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1));
 			}
 			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "<strong>" + enemyName + "</strong> stares at you...<br></span>";
-			
-			if (line >= Enemies[randomEnemy][6].length) {
-				talking.disabled = true;
-			}
-			else {
-				talking.disabled = false;
-			}
 		break;
+	}
+	
+	if (line >= currentEnemyLines) {
+		talking.disabled = true;
+	}
+	else {
+		talking.disabled = false;
 	}
 	
 	if (itemSlot1 != Items[0] && itemSlot2 != Items[0] && itemSlot3 != Items[0]) {
@@ -372,29 +416,22 @@ window.onload = function () {
 // TALKING TO ENEMIES
 
 function talkTo() {
+	currentEnemyLines = currentEnemyLines;
+	
 	actionLine++;
 	
+	// PLACEHOLDER DEBUG CONSOLE LOG
+	console.log("Dialogue", (line+1), "/", currentEnemyLines);
+		
 	if (specialEnemy == undefined) {
-		
-		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log("Dialogue", (line+1), "/", Enemies[randomEnemy][6].length);
-	
 		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + Enemies[randomEnemy][6][line] + '</span>';
-		
-		if (line >= Enemies[randomEnemy][6].length) {
-			talking.disabled = true;
-		}
 	}
 	else {
-		
-		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log("Dialogue", (line+1), "/", specialEnemy[6].length);
-		
 		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + specialEnemy[6][line] + '</span>';
-		
-		if (line >= specialEnemy[6].length) {
-			talking.disabled = true;
-		}
+	}
+	
+	if (line >= currentEnemyLines) {
+		talking.disabled = true;
 	}
 	
 	line++;
@@ -449,13 +486,6 @@ function enemyTurn() {
 			
 			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 		}
-		
-		if (line >= Enemies[randomEnemy][6].length) {
-			talking.disabled = true;
-		}
-		else {
-			talking.disabled = false;
-		}
 	}
 	else {
 		// IF enemy waits (0)
@@ -487,13 +517,13 @@ function enemyTurn() {
 			
 			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 		}
-		
-		if (line >= specialEnemy[6].length) {
-			talking.disabled = true;
-		}
-		else {
-			talking.disabled = false;
-		}
+	}
+	
+	if (line >= currentEnemyLines) {
+		talking.disabled = true;
+	}
+	else {
+		talking.disabled = false;
 	}
 
     elapsedTurns++;
@@ -800,7 +830,7 @@ function enemyDefeat() {
 		
 		case 10:
 			enemyDrop = Items[5]; // BOSS 1 (Electric Caress, ITEM)
-			if (anyItem == Items[0] && fullInv == false) {
+			if (anyItem == Items[0]) {
 				grantDrop();
 			}
 		break;
@@ -812,7 +842,7 @@ function enemyDefeat() {
 		
 		case 30:
 			enemyDrop = Items[6]; // BOSS 3 (Piercing Gaze, ITEM)
-			if (anyItem == Items[0] && fullInv == false) {
+			if (anyItem == Items[0]) {
 				grantDrop();
 			}
 		break;
