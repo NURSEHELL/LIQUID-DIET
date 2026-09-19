@@ -45,7 +45,7 @@ const Weapons = [
 
 // SETUP
 
-debugmode = true;
+debugmode = false;
 
 // Juicyheal stuff
 lastEnemyHP = 0;
@@ -205,8 +205,6 @@ function randomizeEnemy() {
 			var arr = randomEnemy[6];
 			arr.unshift('<i>"Let my caress guide you..."</i> <br>', '<i>"... or not! Heehee..."</i> <br>', '<i>"What? Don\'t trust me?"</i> <br>', '<i>"Oh, you poor thing."</i> <br>');
 			
-			console.log(arr);
-			
 			currentEnemyLines = 4;
 			lastReskinLines = currentEnemyLines;
 		break;
@@ -234,8 +232,6 @@ function randomizeEnemy() {
 			var arr = randomEnemy[6];
 			arr.unshift('<i>"I-I won\'t let you hurt anyone, you hear me?!"</i> <br>', '<i>"L-Leave me alone! ... Or else!!"</i> <br>', '<i>The enemy is stuttering...</i> <br>', '<i>"W-What do you want?!"</i> <br>', '<i>"I... I won\'t let you hurt ANYONE!!"</i> <br>');
 			
-			console.log(arr);
-			
 			currentEnemyLines = 5;
 			lastReskinLines = currentEnemyLines;
 		break;
@@ -262,8 +258,6 @@ function randomizeEnemy() {
 			
 			var arr = randomEnemy[6];
 			arr.unshift('<i>"Haha! My name\'s a MOTHER 3 reference!"</i> <br>', '<i>"Uh, I mean, ROAR."</i> <br>', '<i>The enemy is roaring incessantly...</i> <br>');
-			
-			console.log(arr);
 			
 			currentEnemyLines = 3;
 			lastReskinLines = currentEnemyLines;
@@ -295,9 +289,9 @@ function randomizeEnemy() {
 		
 		default:
 			var sameEnemy = undefined;
-			//var lastEnemyLines = currentEnemyLines;
 			
-			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies.length-1), 0));
+			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies.length-1), 0)); // -1 = Negative amount of Special Enemies
+			
 			if (lastReskin == undefined) {
 				console.log("LASTRESKIN: NONE / CURRENTENEMY:", Enemies[randomEnemy][0]);			
 			}
@@ -314,19 +308,16 @@ function randomizeEnemy() {
 			
 			currentEnemyLines = Enemies[randomEnemy][6].length;
 			
-			console.log("SAMEENEMY", sameEnemy, "CURRENTENEMYLINES", currentEnemyLines, "LASTRESKINLINES", lastReskinLines, "CURRENTENEMYLINES=LASTRESKINLINES", (currentEnemyLines == lastReskinLines));
-			
 			if (sameEnemy && currentEnemyLines != lastReskinLines) {
-				console.log("UHOH, NEW NONSPECIAL ENEMY");
 				for (i = 0; i < lastReskinLines; i++) {
 					Enemies[randomEnemy][6].shift(i);
 					console.log("REMOVING DIALOGUE ARRAY THING PART", i);
 					
 					if (i == lastReskinLines-1) {
 						currentEnemyLines = (Enemies[randomEnemy][6].length);
-						console.log("ALL DONE, CURRENTENEMYLINES", currentEnemyLines);
 						specialEncounter = false;
 						lastReskin = undefined;
+						console.log("ALL DONE, CURRENTENEMYLINES", currentEnemyLines);
 					}
 				}
 			}
@@ -336,9 +327,6 @@ function randomizeEnemy() {
 			}
 			
 			specialEnemy = undefined;
-			
-			console.log(Enemies[randomEnemy][6]);
-			console.log("randomEnemy should be", 0, "at min,", Enemies.length-1, "at max. | Enemy:", randomEnemy, "/ Enemies.length:", Enemies.length);
 			
 			enemyName = Enemies[randomEnemy][0];
 			document.getElementById("enemyName").innerHTML = enemyName;
@@ -365,9 +353,7 @@ function randomizeEnemy() {
 		fullInv = true;
 		
 		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log(" ");
-		console.log("All item slots taken. fullInv is",fullInv);
-		console.log(" ");
+		console.log("All item slots taken. fullInv is", fullInv);
 	}
 
 	// Set enemy HP
@@ -690,10 +676,7 @@ function grantDrop() {
 			juicyHeal = Math.abs((currentEnemyHP)-1);
 			
 			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log(" ");
-			console.log("OVERKILL. Enemy died at", currentEnemyHP, "HP");
-			console.log("juicyHeal should be one above & always positive:", juicyHeal);
-			console.log(" ");
+			console.log("OVERKILL. Enemy died at", currentEnemyHP, "HP. juicyHeal should be one above & always positive:", juicyHeal);
 		}
 		
 		if (enemyDrop[2] == itemNull) {
