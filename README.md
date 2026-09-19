@@ -1,2 +1,2 @@
 # LIQUID-DIET
-A browser game inspired by NO-SKIN. A Javascript coding exercise for myself!
+A browser game inspired by NO-SKIN. A Javascript coding exercise for NURSEHELL (with help by SEOKU)!
