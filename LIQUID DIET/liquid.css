@@ -1,4 +1,4 @@
-button, img {
+img, noHighlight, #alertBox {
 	user-select: none;
 }
 
@@ -6,13 +6,84 @@ button, img {
     visibility: hidden;
 }
 
-/* OLD CSS:
-
-.actionlog {
-    height: 300px;
-    width: 200px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+/* No highlight between buttons */
+.noHighlight {
+	user-select: none;
 }
 
-*/
+
+/* CUSTOM ALERT SHENANIGANS */
+
+/* Greyed-out BG */
+#hideAway {
+	background-color: rgba(0, 0, 0, 0.3);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 10000;
+}
+
+/* Whole Alert */
+#alertBox {
+	display: block;
+    top: calc(50vh - 150px);
+    left: calc(50vw - 175px);
+	scale: 1.5;
+	position: relative;
+	width: 300px;
+	min-height: 100px;
+	margin-top: 50px;
+	border: 2px solid black;
+	border-radius: 0.5em;
+	background-color: white;
+	background-repeat: no-repeat;
+	background-position: 20px 30px;
+}
+
+#hideAway > #alertBox {
+	position: fixed;
+}
+
+/* Alert Title */
+#alertBox h1 {
+	margin:0;
+	font:bold 1.2em monospace;
+	background-color: #3073BB;
+	color: white;
+	border-start-start-radius: 0.4em;
+	border-start-end-radius: 0.4em;
+	border-bottom: 2px solid #000;
+	padding: 2px 0 2px 5px;
+}
+
+/* Alert Main Text */
+#alertBox p {
+	font: 1em monospace;
+	text-align: center;
+	height: fit-content;
+}
+
+/* Alert Button */
+#alertBox #closeBtn {
+	display: block;
+	position: relative;
+	margin: 5px auto;
+	padding: 7px;
+	padding-left: 1em;
+	padding-right: 1em;
+	width: max-content;
+	font: bold 1.3em monospace;
+	text-transform: uppercase;
+	text-align: center;
+	color: white;
+	background-color: #3073BB;
+	border-radius: 3px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#alertBox #closeBtn:hover {
+	background-color: #1F4C7D;
+}

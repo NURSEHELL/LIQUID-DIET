@@ -22,7 +22,7 @@ const Items = [
     ["Energy Drink", "Images/Item_Energy.png", itemHeal, 1],
     ["Sludge", "Images/Item_Sludge.png", itemDMG, 2],
     ["Chimera Fetus", "Images/Item_Fetus.png", itemDMG, 1],
-    ["Juicy Nectar", "Images/Item_Blood.png", itemHeal, 2], // True Heal value in itemHeal();
+    ["Juicy Nectar", "Images/Item_Blood.png", itemHeal, 2], // True heal value in itemHeal function
 	
 	// Fake items (5 - 6)
 	["Electric Caress", "Images/Item_ObeastFur.png", itemHeal, -1], // Dropped by Round 10 boss
@@ -39,38 +39,53 @@ const Weapons = [
 	["Spiky Tails", "Images/Weapon_Tail.png", 3, 750],
 	
 	// Fake weapons (3 - 3)
-	["Hand Puppet", "Images/Weapon_Dummy.png", -2, 950], // Dropped by Round 20 boss
+	["Hand Puppet", "Images/Weapon_Dummy.png", -2, 1000], // Dropped by Round 20 boss (activates special timer)
 ];
 
 
 // SETUP
 
-debugmode = true;
+debugmode = false;
 
+// Juicyheal stuff
 lastEnemyHP = 0;
 juicyHeal = 2;
 enemyKilled = false;
-ranOff = false;
-runFail = false;
-line = 0;
+
+// Actionlog stuff
+line = 0; 		// The dialogue line of an enemy
 actionLine = 1;
 deleteLine = 1;
-maxLines = 11;
-currentEnemyHP = 3;
+maxLines = 11; 	// Amount of lines readable in the actionlog (+1), can be changed
 
+// Enemy stuff
+currentEnemyMinHP = 0;
+currentEnemyHP = 3;
+currentEnemyMaxHP = currentEnemyHP;
+enemyDrop = Items[0];
+specialEnemy = undefined; // Yes, these two are different
+specialEncounter = false; // and both are important
+
+// Player stuff
 maxPlayerHP = 20;
 currentPlayerHP = 5;
-roundCounter = 1;
+ranOff = false;
+runFail = false;
+currentWeapon = Weapons[0];
+specialTimerActive = false; // Timer for certain special events (Hand Puppet expiration, etc.)
+specialTimer = 1; 			// Counter for said timer
+specialTimerMax = 1; 		// Max for said timer, can be changed in randomizeEnemy function
 
+// HTML stuff
+roundCounter = 1;
 weaponMenu.style.visibility = "hidden";
 weaponEquipBtn.disabled = true;
 weaponDiscardBtn.disabled = true;
 document.getElementById("weaponEquipBtn").addEventListener("click", weaponEquip);
 document.getElementById("weaponDiscardBtn").addEventListener("click", weaponDiscard);
 
-item1Used = false;
-item2Used = false;
-item3Used = false;
+// Inventory stuff
+clickFix = false; // Fixes a weird issue with negative itemHeal
 itemSlot1 = Items[0];
 itemSlot2 = Items[0];
 itemSlot3 = Items[0];
@@ -78,6 +93,12 @@ anyItem = itemSlot1 || itemSlot2 || itemSlot3;
 fullInv = false;
 itemUsed = undefined;
 
+// Alert stuff
+alertTitle = "ALERT TEST";
+alertMainText = "Wow!<br>You just tested the cool alert.";
+alertButtonText = "AWESOME BRO";
+
+// Disable/Enable functions
 function disableActs() {
 	playerAttack.disabled = true;
 	talking.disabled = true;
@@ -120,16 +141,25 @@ function enableAll() {
 	inventory3.disabled = false;
 }
 
-enemyDrop = Items[0];
-currentWeapon = Weapons[0];
-
 
 // RANDOM ENEMY
 
 function randomizeEnemy() {
 	
+	if (!specialTimerActive) {
+		specialTimer = 1;
+	}
+
+	if (currentWeapon == Weapons[3]) { // EVENT: Hand Puppet expiration
+		specialTimerMax = 3;		   // LASTS: 3 Player attacks
+	}								   // EDITS: Heal enemies on attack
+	
     elapsedTurns = 0;
 	line = 0;
+	
+	actionLine = 1;
+	deleteLine = 1;
+	console.log("actionLine:", actionLine, "/ deleteLine:", deleteLine);
 	
 	// Round up if ran away
 	if (ranOff == true) {
@@ -149,20 +179,26 @@ function randomizeEnemy() {
 
 	switch (roundCounter) {
 		case 10:
-			randomEnemy = Enemies[3]; // BOSS 1 (Miss Obeast)
+			randomEnemy = Enemies[3]; // BOSS 1 (Cheshire Child)
+			specialEnemy = randomEnemy;
+			specialEncounter = true;
 			
-			enemyName = Enemies[3][0];
+			enemyName = "CHESHIRE CHILD";
 			
-			document.getElementById("enemyName").innerHTML = Enemies[3][0];
-			document.getElementById("enemyImg").src = Enemies[3][1];
+			document.getElementById("enemyName").innerHTML = enemyName;
+			document.getElementById("enemyImg").src = specialEnemy[1];
 			
-			currentEnemyHP = Math.round(Enemies[3][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2);
-			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "A strong <strong>" + enemyName + "</strong> comes your way...!<br></span>";
+			if (currentWeapon == Weapons[3]) {
+				currentEnemyHP = Math.round((specialEnemy[2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2) + 3);
+			}
+			else {
+				currentEnemyHP = Math.round(specialEnemy[2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2);
+			}
+			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "The <strong>" + enemyName + "</strong> comes your way...!<br></span>";
 			
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Planned Enemy HP:", Enemies[3][2], "+ (", currentWeapon[2], "+ (", roundCounter, "/ 10 ) - 1 ) * 2 =", Math.round(Enemies[3][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2), "// currentEnemyHP =", currentEnemyHP, "(BOSSFIGHT)");
+			specialEnemy[6] = ['<i>"Let my caress guide you..."</i> <br>', '<i>"... or not! Heehee..."</i> <br>', '<i>"What? Don\'t trust me?"</i> <br>', '<i>"Oh, you poor thing."</i> <br>'];
 			
-			if (line >= Enemies[3][6].length) {
+			if (line >= specialEnemy[6].length) {
 				talking.disabled = true;
 			}
 			else {
@@ -171,20 +207,26 @@ function randomizeEnemy() {
 		break;
 		
 		case 20:
-			randomEnemy = Enemies[0]; // BOSS 2 (Pathetic Dummy)
+			randomEnemy = Enemies[0]; // BOSS 2 (Cowardly Dummy)
+			specialEnemy = randomEnemy;
+			specialEncounter = true;
 			
-			enemyName = Enemies[0][0];
+			enemyName = "COWARDLY DUMMY";
 			
-			document.getElementById("enemyName").innerHTML = Enemies[0][0];
-			document.getElementById("enemyImg").src = Enemies[0][1];
+			document.getElementById("enemyName").innerHTML = enemyName;
+			document.getElementById("enemyImg").src = specialEnemy[1];
 			
-			currentEnemyHP = Math.round(Enemies[0][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2);
-			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "A strong <strong>" + enemyName + "</strong> comes your way...!<br></span>";
+			if (currentWeapon == Weapons[3]) {
+				currentEnemyHP = Math.round((specialEnemy[2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 4) + 3);
+			}
+			else {
+				currentEnemyHP = Math.round(specialEnemy[2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 4);
+			}
+			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "The <strong>" + enemyName + "</strong> wants to fight!<br></span>";
 			
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Planned Enemy HP:", Enemies[0][2], "+ (", currentWeapon[2], "+ (", roundCounter, "/ 10 ) - 1 ) * 2 =", Math.round(Enemies[0][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2), "// currentEnemyHP =", currentEnemyHP, "(BOSSFIGHT)");
+			specialEnemy[6] = ['<i>"I-I won\'t let you hurt anyone, you hear me?!"</i> <br>', '<i>"L-Leave me alone! ... Or else!!"</i> <br>', '<i>The enemy is stuttering...</i> <br>', '<i>"W-What do you want?!"</i> <br>'];
 			
-			if (line >= Enemies[0][6].length) {
+			if (line >= specialEnemy[6].length) {
 				talking.disabled = true;
 			}
 			else {
@@ -193,20 +235,26 @@ function randomizeEnemy() {
 		break;
 		
 		case 30:
-			randomEnemy = Enemies[2]; // BOSS 3 (Anastasia's Chimera)
+			randomEnemy = Enemies[2]; // BOSS 3 (Ultimate Chimera)
+			specialEnemy = randomEnemy;
+			specialEncounter = true;
 			
-			enemyName = Enemies[2][0];
+			enemyName = "ULTIMATE CHIMERA";
 			
-			document.getElementById("enemyName").innerHTML = Enemies[2][0];
-			document.getElementById("enemyImg").src = Enemies[2][1];
+			document.getElementById("enemyName").innerHTML = enemyName;
+			document.getElementById("enemyImg").src = specialEnemy[1];
 			
-			currentEnemyHP = Math.round(Enemies[2][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2);
-			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "A strong <strong>" + enemyName + "</strong> comes your way...!<br></span>";
+			if (currentWeapon == Weapons[3]) {
+				currentEnemyHP = Math.round((specialEnemy[2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 6) + 3);
+			}
+			else {
+				currentEnemyHP = Math.round(specialEnemy[2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 6);
+			}
+			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "The <strong>" + enemyName + "</strong> rushes towards you!!<br></span>";
 			
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Planned Enemy HP:", Enemies[2][2], "+ (", currentWeapon[2], "+ (", roundCounter, "/ 10 ) - 1 ) * 2 =", Math.round(Enemies[2][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2), "// currentEnemyHP =", currentEnemyHP, "(BOSSFIGHT)");
+			specialEnemy[6] = ['<i>"Haha! My name\'s a MOTHER 3 reference!"</i> <br>', '<i>"Uh, I mean, ROAR."</i> <br>', '<i>The enemy is roaring incessantly...</i> <br>'];
 			
-			if (line >= Enemies[2][6].length) {
+			if (line >= specialEnemy[6].length) {
 				talking.disabled = true;
 			}
 			else {
@@ -216,27 +264,35 @@ function randomizeEnemy() {
 		
 		case 48:
 			randomEnemy = Enemies[4]; // SPECIAL 1 (Chapelle d'Or)
+			specialEnemy = randomEnemy;
+			specialEncounter = true;
 			
-			enemyName = Enemies[4][0];
-			document.getElementById("enemyName").innerHTML = Enemies[4][0];
-			document.getElementById("enemyImg").src = Enemies[4][1];
+			enemyName = specialEnemy[0];
+			document.getElementById("enemyName").innerHTML = specialEnemy[0];
+			document.getElementById("enemyImg").src = specialEnemy[1];
+			document.getElementById("enemyImg").style.height = "8.5em";
 			
-			alert("Where are you going?");
-			currentEnemyHP = Enemies[4][2];
-			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "Where are you going?<br></span>";
+			currentEnemyHP = specialEnemy[2];
+			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "Where do <strong>YOU</strong> think you're going?<br></span>";
 			
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Planned Enemy HP:", Enemies[4][2], "// currentEnemyHP =", currentEnemyHP, "(SPECIAL ENCOUNTER)");
-			
-			if (line >= Enemies[4][6].length) {
+			if (line >= specialEnemy[6].length) {
 				talking.disabled = true;
 			}
 			else {
 				talking.disabled = false;
 			}
+			
+			// Custom Round Alert
+			alertTitle = "LIQUID DIET";
+			alertMainText = "Congratulations!<br>You have reached a wonderful place.";
+			alertButtonText = "ACCEPT";
+			alert();
 		break;
 		
 		default:
+			specialEnemy = undefined;
+			specialEncounter = false;
+		
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies.length-1), 0));
 			console.log("randomEnemy should be", 0, "at min,", Enemies.length-1, "at max. | Enemy:", randomEnemy, "/ Enemies.length:", Enemies.length);
 			
@@ -244,11 +300,13 @@ function randomizeEnemy() {
 			document.getElementById("enemyName").innerHTML = enemyName;
 			document.getElementById("enemyImg").src = Enemies[randomEnemy][1];
 			
-			currentEnemyHP = Math.min(Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1)), 20);
+			if (currentWeapon == Weapons[3]) {
+				currentEnemyHP = Math.round((Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1)) + 3);
+			}
+			else {
+				currentEnemyHP = Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1));
+			}
 			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "<strong>" + enemyName + "</strong> stares at you...<br></span>";
-			
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Planned Enemy HP:", Enemies[randomEnemy][2], "+ (", currentWeapon[2], "+ (", roundCounter, "/ 10 ) - 1 ) =", Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1)), "// currentEnemyHP =", currentEnemyHP);
 			
 			if (line >= Enemies[randomEnemy][6].length) {
 				talking.disabled = true;
@@ -267,53 +325,6 @@ function randomizeEnemy() {
 		console.log("All item slots taken. fullInv is",fullInv);
 		console.log(" ");
 	}
-	
-	actionLine = 1;
-	deleteLine = 1;
-	console.log(actionLine, deleteLine);
-	
-	// HP Set for all types of Rounds
-/*	switch (roundCounter) {
-		default:
-			currentEnemyHP = Math.min(Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1)), 20);
-			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "<strong>" + enemyName + "</strong> stares at you...<br></span>";
-			
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Planned Enemy HP:", Enemies[randomEnemy][2], "+ (", currentWeapon[2], "+ (", roundCounter, "/ 10 ) - 1 ) =", Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1)), "// currentEnemyHP =", currentEnemyHP);
-		break;
-		
-		case 10:
-			currentEnemyHP = Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2);
-			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "A strong <strong>" + enemyName + "</strong> comes your way...!<br></span>";
-			
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Planned Enemy HP:", Enemies[randomEnemy][2], "+ (", currentWeapon[2], "+ (", roundCounter, "/ 10 ) - 1 ) * 2 =", Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2), "// currentEnemyHP =", currentEnemyHP, "(BOSSFIGHT)");
-		break;
-		
-		case 20:
-			currentEnemyHP = Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 4);
-			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "A fearsome <strong>" + enemyName + "</strong> wants to fight!<br></span>";
-			
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Planned Enemy HP:", Enemies[randomEnemy][2], "+ (", currentWeapon[2], "+ (", roundCounter, "/ 10 ) - 1 ) * 4 =", Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 4), "// currentEnemyHP =", currentEnemyHP, "(BOSSFIGHT)");
-		break;
-		
-		case 30:
-			currentEnemyHP = Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 6);
-			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "A terrifying <strong>" + enemyName + "</strong> rushes towards you!!<br></span>";
-			
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Planned Enemy HP:", Enemies[randomEnemy][2], "+ (", currentWeapon[2], "+ (", roundCounter, "/ 10 ) - 1 ) * 6 =", Math.round(Enemies[randomEnemy][2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 6), "// currentEnemyHP =", currentEnemyHP, "(BOSSFIGHT)");
-		break;
-		
-		case 48:
-			alert("Where are you going?");
-			currentEnemyHP = Enemies[randomEnemy][2];
-			document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "Where are you going?<br></span>";
-			
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Planned Enemy HP:", Enemies[randomEnemy][2], "// currentEnemyHP =", currentEnemyHP, "(SPECIAL ENCOUNTER)");
-    }*/
 
 	// Set enemy HP
 	currentEnemyMaxHP = currentEnemyHP;
@@ -321,14 +332,7 @@ function randomizeEnemy() {
 	
 	playerAttack.disabled = false;
 	
-/*	if (line >= Enemies[currentEnemy][6].length) {
-		talking.disabled = true;
-	}
-	else {
-		talking.disabled = false;
-	}*/
-
-    if (itemSlot1 == Items[0]) {
+	if (itemSlot1 == Items[0]) {
         inventory1.disabled = true;
     }
     else {
@@ -368,18 +372,33 @@ window.onload = function () {
 // TALKING TO ENEMIES
 
 function talkTo() {
-	
-	// PLACEHOLDER DEBUG CONSOLE LOG
-	console.log("Dialogue", (line+1), "/", Enemies[randomEnemy][6].length);
-	
 	actionLine++;
-	document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + Enemies[randomEnemy][6][line] + '</span>';
+	
+	if (specialEnemy == undefined) {
+		
+		// PLACEHOLDER DEBUG CONSOLE LOG
+		console.log("Dialogue", (line+1), "/", Enemies[randomEnemy][6].length);
+	
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + Enemies[randomEnemy][6][line] + '</span>';
+		
+		if (line >= Enemies[randomEnemy][6].length) {
+			talking.disabled = true;
+		}
+	}
+	else {
+		
+		// PLACEHOLDER DEBUG CONSOLE LOG
+		console.log("Dialogue", (line+1), "/", specialEnemy[6].length);
+		
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + specialEnemy[6][line] + '</span>';
+		
+		if (line >= specialEnemy[6].length) {
+			talking.disabled = true;
+		}
+	}
+	
 	line++;
 	talking.disabled = true;
-	
-	if (line >= Enemies[randomEnemy][6].length) {
-		talking.disabled = true;
-	}
 	
 	// Actionlog Autoscroll
 
@@ -398,35 +417,84 @@ function talkTo() {
 
 function enemyTurn() {
 
-	// IF enemy waits (0)
-    if (Enemies[randomEnemy][3][elapsedTurns] == 0) {
-	
-	actionLine++;
-	document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy is waiting... <br></span>";
-    }
-
-    // IF enemy attacks (1)
-    if (Enemies[randomEnemy][3][elapsedTurns] == 1) {
-	
-		actionLine++;
-		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy attacks! <br></span>";
-        currentPlayerHP--;
-    }
-
-	// IF enemy heals (2)
-    if (Enemies[randomEnemy][3][elapsedTurns] == 2) {
-	
-		actionLine++;
-		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy heals itself! <br></span>";
-        currentEnemyHP += 2;
+	if (specialEnemy == undefined) {
+		// IF enemy waits (0)
+		if (Enemies[randomEnemy][3][elapsedTurns] == 0) {
 		
-		// Check to avoid overhealing
-		if (currentEnemyHP > currentEnemyMaxHP) {
-			currentEnemyHP = currentEnemyMaxHP;
+		actionLine++;
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy is waiting... <br></span>";
+		}
+
+		// IF enemy attacks (1)
+		if (Enemies[randomEnemy][3][elapsedTurns] == 1) {
+		
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy attacks! <br></span>";
+			currentPlayerHP--;
+			
+			maxHP = false;
+		}
+
+		// IF enemy heals (2)
+		if (Enemies[randomEnemy][3][elapsedTurns] == 2) {
+		
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy heals itself! <br></span>";
+			currentEnemyHP += 2;
+			
+			// Check to avoid overhealing
+			if (currentEnemyHP > currentEnemyMaxHP) {
+				currentEnemyHP = currentEnemyMaxHP;
+			}
+			
+			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 		}
 		
-        document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
-    }
+		if (line >= Enemies[randomEnemy][6].length) {
+			talking.disabled = true;
+		}
+		else {
+			talking.disabled = false;
+		}
+	}
+	else {
+		// IF enemy waits (0)
+		if (specialEnemy[3][elapsedTurns] == 0) {
+		
+		actionLine++;
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy is waiting... <br></span>";
+		}
+
+		// IF enemy attacks (1)
+		if (specialEnemy[3][elapsedTurns] == 1) {
+		
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy attacks! <br></span>";
+			currentPlayerHP--;
+		}
+
+		// IF enemy heals (2)
+		if (specialEnemy[3][elapsedTurns] == 2) {
+		
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy heals itself! <br></span>";
+			currentEnemyHP += 2;
+			
+			// Check to avoid overhealing
+			if (currentEnemyHP > currentEnemyMaxHP) {
+				currentEnemyHP = currentEnemyMaxHP;
+			}
+			
+			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+		}
+		
+		if (line >= specialEnemy[6].length) {
+			talking.disabled = true;
+		}
+		else {
+			talking.disabled = false;
+		}
+	}
 
     elapsedTurns++;
     if (elapsedTurns >= 6) {
@@ -435,13 +503,6 @@ function enemyTurn() {
 
     document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
     playerAttack.disabled = false;
-	
-	if (line >= Enemies[randomEnemy][6].length) {
-		talking.disabled = true;
-	}
-	else {
-		talking.disabled = false;
-	}
 
     if (itemSlot1 == Items[0]) {
         inventory1.disabled = true;
@@ -464,7 +525,10 @@ function enemyTurn() {
         inventory3.disabled = false;
     }
 	
-	if (runFail == false) {
+	if (runFail == true) {
+		runAway.disabled = true;
+	}
+	else {
 		runAway.disabled = false;
 	}
 	
@@ -524,15 +588,30 @@ function playerRevive() {
 // WEAPON MENU
 
 function weaponEquip() {
-	
-	if (Enemies[randomEnemy][5] == 1) {
-		currentWeapon = Weapons[Enemies[randomEnemy][4]];
-	}
-	else if (Enemies[randomEnemy][0] == "ANASTASIA'S CHIMERA") {
-		currentWeapon = Weapons[2];
-	}
-	
 	actionLine++;
+
+	if (specialEnemy == undefined) {
+		if (Enemies[randomEnemy][5] == 1) {
+			currentWeapon = Weapons[Enemies[randomEnemy][4]];
+		}
+		else if (Enemies[randomEnemy][0] == "ANASTASIA'S CHIMERA") {
+			currentWeapon = Weapons[2];
+		}
+	}
+	else {
+		currentWeapon = enemyDrop;
+	}
+	
+	switch (currentWeapon) {
+		default:
+			specialTimerActive = false;
+		break;
+		
+		case 3:
+			specialTimerActive = true; // If holding Hand Puppet
+		break;
+	}
+
 	document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You equipped the <strong>" + currentWeapon[0] + "</strong>.<br></span>";
     weaponEquipBtn.disabled = true;
     weaponDiscardBtn.disabled = true;
@@ -545,7 +624,6 @@ function weaponEquip() {
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
 	console.log("You should NOW have", currentWeapon[2], "ATK and", (currentWeapon[2] * 2), "on CRITs");
-	
 }
 
 function weaponDiscard() {
@@ -558,13 +636,59 @@ function weaponDiscard() {
 	
 	// PLACEHOLDER DEBUG CONSOLE LOG
 	console.log("You should STILL have", currentWeapon[2], "ATK and", (currentWeapon[2] * 2), "on CRITs");
-	
 }
 
 
 // GRANT DROP
 
 function grantDrop() {
+	if (fullInv == true) {
+		maxItems();
+		return;
+	}
+	
+	actionLine++;
+		
+	if (currentEnemyHP < 0) {
+	
+		lastEnemyHP = currentEnemyHP;
+		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyMinHP + "/" + currentEnemyMaxHP + "</strong>";
+	
+		if (specialEncounter == false) {
+			enemyDrop = Items[4];
+			
+			juicyHeal = Math.abs((currentEnemyHP)-1);
+			
+			// PLACEHOLDER DEBUG CONSOLE LOG
+			console.log(" ");
+			console.log("OVERKILL. Enemy died at", currentEnemyHP, "HP");
+			console.log("juicyHeal should be one above & always positive:", juicyHeal);
+			console.log(" ");
+		}
+		
+		if (enemyDrop[2] == itemNull) {
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
+		}
+		else if (enemyDrop[2] == itemDMG) {
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> ATTACK ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
+		}
+		else if (enemyDrop[2] == itemHeal) {
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> HEALING ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
+		}
+		
+	}
+	else {
+		if (enemyDrop[2] == itemNull) {
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
+		}
+		else if (enemyDrop[2] == itemDMG) {
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>ATTACK ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
+		}
+		else if (enemyDrop[2] == itemHeal) {
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>HEALING ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
+		}
+	}
+
 	if (itemSlot1 == Items[0]) {
 		itemSlot1 = enemyDrop;
 		document.getElementById("inventory1").innerHTML = enemyDrop[0];
@@ -581,41 +705,6 @@ function grantDrop() {
 		itemSlot3 = enemyDrop;
 		document.getElementById("inventory3").innerHTML = enemyDrop[0];
 		document.getElementById("inventory3").addEventListener("click", enemyDrop[2], { once: true });
-	}
-	
-	actionLine++;
-		
-	if (currentEnemyHP < 0) {
-		
-		juicyHeal = Math.abs((lastEnemyHP)-1);
-		
-		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log(" ");
-		console.log("OVERKILL!! Enemy died at", lastEnemyHP, "HP");
-		console.log("juicyHeal should be one above & always positive:", juicyHeal);
-		console.log(" ");
-		
-		if (enemyDrop[2] == itemNull) {
-			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
-		else if (enemyDrop[2] == itemDMG) {
-			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> ATTACK ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
-		else if (enemyDrop[2] == itemHeal) {
-			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> HEALING ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
-			
-	}
-	else {
-		if (enemyDrop[2] == itemNull) {
-			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
-		else if (enemyDrop[2] == itemDMG) {
-			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>ATTACK ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
-		else if (enemyDrop[2] == itemHeal) {
-			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>HEALING ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
 	}
 	
 	setTimeout(() => { randomizeEnemy(); }, 2500);
@@ -658,19 +747,6 @@ function grantWeapon() {
 
 function enemyDefeat() {
 	disableAll();
-
-    /*if (Enemies[randomEnemy][5] == 0) {
-        enemyDrop = Items[Enemies[randomEnemy][4]];
-    }
-
-    else if (Enemies[randomEnemy][5] == 1) {
-		if (currentWeapon != Weapons[1]) {
-			enemyDrop = Weapons[Enemies[randomEnemy][4]];
-		}
-		else {
-			enemyDrop = Items[Enemies[randomEnemy][4]];
-		}
-    }*/
 	
 	actionLine = 1;
 	deleteLine = 1;
@@ -678,50 +754,55 @@ function enemyDefeat() {
 	document.getElementById("actionLog").innerHTML = '<span id="'+actionLine+'">' + "Enemy defeated! <strong>Round won!</strong><br></span>";
 	enemyKilled = true;
 
-	// MISS OBEAST WEAPON DROP
-	/*if (Enemies[randomEnemy][5] == 1) {
-		if (currentWeapon != Weapons[1]) {
-			enemyDrop = Weapons[Enemies[randomEnemy][4]];
-			grantWeapon();
-		}
-			
-		if (anyItem == Items[0]) {
-			enemyDrop = Items[5];
-			grantDrop();
-		}
-		else {
-			maxItems();
-		}
-	}*/
-
 	// Randomize and Boss/Special enemy setup
 	switch (roundCounter) {
 		default:
 			if (Enemies[randomEnemy][5] == 0) {
-				enemyDrop = Items[Enemies[randomEnemy][4]];
-				grantDrop();
+				if (enemyName == "ANASTASIA'S CHIMERA" && currentEnemyHP < 0 && currentWeapon != Weapons[2]) {
+					enemyDrop = Weapons[2];
+					grantWeapon();
+					return;
+				}
+				else {
+					enemyDrop = Items[Enemies[randomEnemy][4]];
+					grantDrop();
+					return;
+				}
 			}
 
 			else if (Enemies[randomEnemy][5] == 1) {
-				if (Enemies[randomEnemy][0] == "MISS OBEAST") {
+				if (enemyName == "MISS OBEAST") {
 					if (currentWeapon != Weapons[1]) {
 						enemyDrop = Weapons[Enemies[randomEnemy][4]];
 						grantWeapon();
+						return;
+					}
+					else if (currentEnemyHP < 0) {
+						grantDrop();
+						return;
 					}
 					else {
+						actionLine++;
+						document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy had nothing on them...<br></span>";
 						setTimeout(() => { randomizeEnemy(); }, 2500);
+						return;
 					}
 				}
 			}
 			
-			else if (Enemies[randomEnemy][5] == 2) { 
+			else if (Enemies[randomEnemy][5] == 2) {
+				actionLine++;
+				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy had nothing on them...<br></span>";
 				setTimeout(() => { randomizeEnemy(); }, 2500);
+				return;
 			}
 		break;
 		
 		case 10:
 			enemyDrop = Items[5]; // BOSS 1 (Electric Caress, ITEM)
-			grantDrop();
+			if (anyItem == Items[0] && fullInv == false) {
+				grantDrop();
+			}
 		break;
 		
 		case 20:
@@ -731,59 +812,27 @@ function enemyDefeat() {
 		
 		case 30:
 			enemyDrop = Items[6]; // BOSS 3 (Piercing Gaze, ITEM)
-			grantDrop();
+			if (anyItem == Items[0] && fullInv == false) {
+				grantDrop();
+			}
 		break;
 		
 		case 48: // SPECIAL 1 (Nothing)
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You see the enemy fading away...<br></span>";
+			setTimeout(() => { randomizeEnemy(); }, 2500);
 		break;
 	}
-
-    // Check for Overkill
-	if (currentEnemyHP < 0) {
-		lastEnemyHP = currentEnemyHP;
-		document.getElementById("enemyHP").innerHTML = "<strong>" + 0 + "/" + currentEnemyMaxHP + "</strong>";
-		
-		enemyDrop = Items[4];
-		
-		if (Enemies[randomEnemy][0] == "ANASTASIA'S CHIMERA" && currentWeapon != Weapons[2]) {
-			enemyDrop = Weapons[2];
-			grantWeapon();
-		}
-		
-		// Overkill Bonus Item
-		if (anyItem == Items[0] && fullInv == false) {
-			enemyDrop = Items[4];
-			grantDrop();
-		}
-		else {
-			maxItems();
-		}
-		
-		return;
-	}
-	
-	// NORMAL DROP
-/*	if (Enemies[randomEnemy][5] == 0) {
-		if (anyItem == Items[0] && fullInv == false) {
-				grantDrop();
-		}
-		else {
-			maxItems();
-		}
-		
-		return;
-	}
-	
-	// NO DROP
-	if (Enemies[randomEnemy][5] == 2) {
-		setTimeout(() => { randomizeEnemy(); }, 2500);
-	}*/
 }
 
 
 // PLAYER ATTACK
 
 function Attack() {
+
+	if (specialTimerActive) {
+		specialTimer++;
+	}
 
 	disableAll();
 
@@ -802,7 +851,7 @@ function Attack() {
 		// Check if heal-attack
 		if (currentEnemyHP > currentEnemyMaxHP) {
 			currentEnemyMaxHP = currentEnemyHP;
-			actionLine++
+			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>CRITICAL HIT!!</strong> You tear into the enemy! Yet it heals them...<br></span>";
 			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 		}
@@ -819,7 +868,7 @@ function Attack() {
 		// Check if heal-attack
 		if (currentEnemyHP > currentEnemyMaxHP) {
 			currentEnemyMaxHP = currentEnemyHP;
-			actionLine++
+			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You attack the enemy! Strangely, it heals them...<br></span>";
 			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 		}
@@ -847,7 +896,28 @@ function Attack() {
 	
 	// Enemy HP minimum (visually)
 	if (currentEnemyHP < 0) {
-		document.getElementById("enemyHP").innerHTML = "<strong>" + 0 + "/" + currentEnemyMaxHP + "</strong>";
+		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyMinHP + "/" + currentEnemyMaxHP + "</strong>";
+	}
+	
+	// Hand Puppet event timer
+	if (currentWeapon == Weapons[3]) {
+		if (specialTimer < specialTimerMax) {
+			specialTimer++;
+			console.log("Special Timer:", specialTimer-1, "/", specialTimerMax);
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "Your <strong>" + currentWeapon[0] + "</strong> seems to deteriorate...<br></span>";
+		}
+		else {
+			specialTimer = 1;
+			specialTimerActive = false;
+			console.log("Special Timer over!");
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "Your <strong>Hand Puppet</strong> falls apart!<br></span>";
+			currentWeapon = Weapons[0];
+			document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Weapon: <span id="playerWPN"></span>';
+			document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+			document.getElementById("playerWPN").innerHTML = "<strong>" + currentWeapon[0] + "</strong>";
+		}
 	}
 
     setTimeout(() => {
@@ -865,6 +935,8 @@ function Attack() {
         }
 
     }, 1000);
+	
+	runFail = false;
 
 	// Actionlog Autoscroll
 
@@ -883,8 +955,14 @@ function Attack() {
 // PLAYER FLEEING
 
 function Run() {
-	var runRNG = Math.floor((Math.random() * 100) + 1);
-	var runOffLimit = 85;
+	if (currentWeapon != Weapons[3]) {
+		var runRNG = Math.floor((Math.random() * 100) + 1);
+		var runOffLimit = 85;
+	}
+	else { // If Hand Puppet equipped
+		var runRNG = Math.floor((Math.random() * 100) + 1);
+		var runOffLimit = 25;
+	}
 	
 	if (runRNG >= runOffLimit) {
 		
@@ -906,7 +984,7 @@ function Run() {
 		
 		runFail = true;
 		actionLine++;
-		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>Can't flee!</strong> The enemy has you cornered...<br></span>";
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>Failed to flee!</strong> Try to attack the enemy again...<br></span>";
 		disableAll();
 		setTimeout(() => { enemyTurn(); }, 1000);
 		
@@ -927,151 +1005,169 @@ function Run() {
 
 // ITEMS (Use & Details)
 
-function useItem1() {
-	itemUsed = itemSlot1;
-	item1Used = true;
-	fullInv = false;
+function useItem(e) {
+	console.log("Clicked on", e.target.id);
 	
-	// PLACEHOLDER DEBUG CONSOLE LOG
-	console.log("Using Item 1. fullInv is", fullInv);
-	console.log(" ");
-}
+	actionLine++;
+	
+	switch (e.target.id) {
+		case "inventory1":
+			itemUsed = itemSlot1;
+			
+			if (currentPlayerHP === maxPlayerHP && itemUsed[2] === itemHeal) {
+				currentPlayerHP = maxPlayerHP;
+				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You're already at Max HP!<br></span>";
+				itemslot1 = itemUsed;
+				clickFix = true;
+				console.log("CLICKFIX IS NOW", clickfix);
+			}
+			else {
+				if (clickFix == true) {
+					itemHeal();
+				console.log("CLICKFIX IS NOW", clickfix);
+				}
+				
+				fullInv = false;
+				itemSlot1 = Items[0];
+				document.getElementById("inventory1").innerHTML = Items[0][0];
+				inventory1.disabled = true;
+				clickFix = false;
+			}
+		break;
+		
+		case "inventory2":
+			itemUsed = itemSlot2;
+			
+			if (currentPlayerHP === maxPlayerHP && itemUsed[2] === itemHeal) {
+				currentPlayerHP = maxPlayerHP;
+				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You're already at Max HP!<br></span>";
+				itemslot2 = itemUsed;
+				clickFix = true;
+				console.log("CLICKFIX IS NOW", clickfix);
+			}
+			else {
+				if (clickFix == true) {
+					itemHeal();
+					console.log("CLICKFIX IS NOW", clickfix);
+				}
+				
+				fullInv = false;
+				itemSlot2 = Items[0];
+				document.getElementById("inventory2").innerHTML = Items[0][0];
+				inventory2.disabled = true;
+				clickFix = false;
+			}
+		break;
+		
+		case "inventory3":
+			itemUsed = itemSlot3;
+			
+			if (currentPlayerHP === maxPlayerHP && itemUsed[2] === itemHeal) {
+				currentPlayerHP = maxPlayerHP;
+				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You're already at Max HP!<br></span>";
+				itemslot3 = itemUsed;
+				clickFix = true;
+				console.log("CLICKFIX IS NOW", clickfix);
+			}
+			else {
+				if (clickFix == true) {
+					itemHeal();
+				console.log("CLICKFIX IS NOW", clickfix);
+				}
+				
+				fullInv = false;
+				itemSlot3 = Items[0];
+				document.getElementById("inventory3").innerHTML = Items[0][0];
+				inventory3.disabled = true;
+				clickFix = false;
+			}
+		break;
+	}
+	
+	console.log("clickFix is", clickFix);
+	
+	// Actionlog Autoscroll
 
-function useItem2() {
-	itemUsed = itemSlot2;
-	item2Used = true;
-	fullInv = false;
+	if (actionLine >= maxLines) {
+		const firstLine = document.getElementById(deleteLine);
+		firstLine.remove();
+		deleteLine++;
 	
-	// PLACEHOLDER DEBUG CONSOLE LOG
-	console.log("Using Item 2. fullInv is", fullInv);
-	console.log(" ");
-}
-
-function useItem3() {
-	itemUsed = itemSlot3;
-	item3Used = true;
-	fullInv = false;
-	
-	// PLACEHOLDER DEBUG CONSOLE LOG
-	console.log("Using Item 3. fullInv is", fullInv);
-	console.log(" ");
+		// PLACEHOLDER DEBUG CONSOLE LOG
+		console.log("Earliest line deleted. Onto line", deleteLine);
+	}
 }
 
 function itemHeal() {
-	if (currentPlayerHP >= maxPlayerHP) {
-		actionLine++;
-		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You're already at Max HP!<br></span>";
-	}
-	
-	if (itemUsed == Items[4]) {
-		var healedHP = Math.min(juicyHeal, (maxPlayerHP-currentPlayerHP));
-		
-		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log(" ");
-		console.log("Juicy Heal: LOWEST BETWEEN ... absolute of lastEnemyHP - 1 ... OR ... maxPlayerHP - currentPlayerHP");
-		console.log("FORMER: abs ( (", lastEnemyHP, ") - 1 ) =", Math.floor(Math.abs((lastEnemyHP)-1)));
-		console.log("LATTER:", maxPlayerHP, "-", currentPlayerHP, "=", (maxPlayerHP-currentPlayerHP));
-		console.log(" ");
-	
-		currentPlayerHP += healedHP;
-		actionLine++;
-		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong> and regained <strong>" + healedHP + "HP!</strong><br></span>";
+	if (currentPlayerHP == maxPlayerHP) {
+		return;
 	}
 	else {
-		currentPlayerHP += itemUsed[3];
+		if (itemUsed == Items[4]) {
+			var healedHP = Math.min(juicyHeal, (maxPlayerHP-currentPlayerHP));
+			
+			// PLACEHOLDER DEBUG CONSOLE LOG
+			console.log(" ");
+			console.log("Juicy Heal: LOWEST BETWEEN ... absolute of currentEnemyHP - 1 ... OR ... maxPlayerHP - currentPlayerHP");
+			console.log("FORMER: abs ( (", lastEnemyHP, ") - 1 ) =", juicyHeal);
+			console.log("LATTER:", maxPlayerHP, "-", currentPlayerHP, "=", (maxPlayerHP-currentPlayerHP));
+			console.log(" ");
 		
-		// No-heal / Un-heal items
-		if (itemUsed[3] == 0) {
-			actionLine++;
-			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong>... but it had no effect.<br><span>";
-		}
-		else if (itemUsed[3] < 0) {
-			actionLine++;
-			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong>... Ouch! You lost <strong>" + Math.abs(itemUsed[3]) + "HP!</strong><br><span>";
+			currentPlayerHP += healedHP;
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong> and regained <strong>" + healedHP + "HP!</strong><br></span>";
 		}
 		else {
-			actionLine++;
-			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong> and regained <strong>" + itemUsed[3] + "HP!</strong><br></span>";
+			currentPlayerHP += itemUsed[3];
+			
+			// No-heal / Un-heal items
+			if (itemUsed[3] == 0) {
+				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong>... but it had no effect.<br><span>";
+			}
+			else if (itemUsed[3] < 0) {
+				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong>... Ouch! You lost <strong>" + Math.abs(itemUsed[3]) + "HP!</strong><br><span>";
+			}
+			else {
+				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong> and regained <strong>" + itemUsed[3] + "HP!</strong><br></span>";
+			}
 		}
 	}
 	
 	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
-	
-	if (item1Used == true) {
-		itemSlot1 = Items[0];
-		inventory1.disabled = true;
-		document.getElementById("inventory1").innerHTML = itemSlot1[0];
-		item1Used = false;
-	}
-	
-	if (item2Used == true) {
-		itemSlot2 = Items[0];
-		inventory2.disabled = true;
-		document.getElementById("inventory2").innerHTML = itemSlot2[0];
-		item2Used = false;
-	}
-	
-	if (item3Used == true) {
-		itemSlot3 = Items[0];
-		inventory3.disabled = true;
-		document.getElementById("inventory3").innerHTML = itemSlot3[0];
-		item3Used = false;
-	}
 }
 
 function itemDMG() {
-    currentEnemyHP -= itemUsed[3];
-    document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 	
 	// No-hurt / Un-hurt items
 	if (itemUsed[3] == 0) {
-		actionLine++;
 		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong>... but it had no effect.<br><span>";
 	}
 	else if (itemUsed[3] < 0) {
-		actionLine++;
+		currentEnemyHP += Math.abs(itemUsed[3]);
+		console.log(Math.abs(itemUsed[3]));
+		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong>... Uh-oh! The enemy regained <strong>" + Math.abs(itemUsed[3]) + "HP!</strong><br><span>";
 	}
 	else {
-		actionLine++;
+		currentEnemyHP -= itemUsed[3];
+		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You used the <strong>" + itemUsed[0] + "</strong> and inflicted <strong>" + itemUsed[3] + "HP!</strong><br></span>";
-	}
-	
-	if (item1Used == true) {
-		itemSlot1 = Items[0];
-		inventory1.disabled = true;
-		document.getElementById("inventory1").innerHTML = itemSlot1[0];
-		item1Used = false;
-	}
-	
-	if (item2Used == true) {
-		itemSlot2 = Items[0];
-		inventory2.disabled = true;
-		document.getElementById("inventory2").innerHTML = itemSlot2[0];
-		item2Used = false;
-	}
-	
-	if (item3Used == true) {
-		itemSlot3 = Items[0];
-		inventory3.disabled = true;
-		document.getElementById("inventory3").innerHTML = itemSlot3[0];
-		item3Used = false;
 	}
 	
 	// Check for HP in case of Overkill/Unhurt
     if (currentEnemyHP <= 0) {
 		disableAll();
-		document.getElementById("enemyHP").innerHTML = "<strong>" + 0 + "/" + currentEnemyMaxHP + "</strong>";
+		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyMinHP + "/" + currentEnemyMaxHP + "</strong>";
         
 		setTimeout(() => { enemyDefeat(); }, 2000);
     }
-	else if (currentEnemyHP > currentEnemyMaxHP) {
+	else if (currentEnemyHP >= currentEnemyMaxHP) {
 		currentEnemyMaxHP = currentEnemyHP;
-		document.getElementById("enemyHP").innerHTML = "<strong>" + 0 + "/" + currentEnemyMaxHP + "</strong>";
+		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyMaxHP + "/" + currentEnemyMaxHP + "</strong>";
 	}
 }
 
 function itemNull() {
+	console.log("HOW DID thIS GET ACTIVATED??");
     return;
 }
 
@@ -1084,23 +1180,33 @@ if (debugmode == true) {
 	var CHOICE = undefined;
 	
 	console.log("DEBUG MODE ACTIVE - INSTRUCTIONS:");
-	console.log("Press RIGHT to edit Attack DMG. Press RIGHT TWICE to edit Enemy HP.")
+	console.log("Press RIGHT to edit Attack DMG. Press RIGHT TWICE to edit Enemy HP.");
 	console.log("Press LEFT to edit Player HP. Press LEFT TWICE to edit Max HP.");
 	console.log("Press UP to Raise Stat. Press DOWN to Lower Stat.");
 	console.log("Press R to Reroll Enemy (doesn't reset stats). Press K to Reset Run (resets stats).");
-	console.log("Press P to Pass Round (doesn't reset stats). Press H to read instructions again.");
+	console.log("Press P to Pass Round (doesn't reset stats). Press A to test Custom Alert.");
+	console.log("Press H to read instructions again.");
 	console.log("####################################################################################################");
 	
 	document.addEventListener("keyup", function(event) {
 		
-		// INSTRUCTIONS
-		if (event.keyCode == 72) {
+		// ALERT
+		if (event.keyCode == 65) {
+			alert();
 			console.log("####################################################################################################");
-			console.log("Press RIGHT to edit Attack DMG. Press RIGHT TWICE to edit Enemy HP.")
+			console.log("DEBUG MODE: Alert launched successfully.");
+			console.log("INFO: Nothing other than the blue button should be clickable.");
+		}
+		
+		// INSTRUCTIONS
+		else if (event.keyCode == 72) {
+			console.log("####################################################################################################");
+			console.log("Press RIGHT to edit Attack DMG. Press RIGHT TWICE to edit Enemy HP.");
 			console.log("Press LEFT to edit Player HP. Press LEFT TWICE to edit Max HP.");
 			console.log("Press UP to Raise Stat. Press DOWN to Lower Stat.");
 			console.log("Press R to Reroll Enemy (doesn't reset stats). Press K to Reset Run (resets stats).");
-			console.log("Press P to Pass Round (brings enemy to 0HP). Press H to read instructions again.");
+			console.log("Press P to Pass Round (brings enemy to 0HP). Press A to test Custom Alert.");
+			console.log("Press H to read instructions again.");
 			console.log("####################################################################################################");
 			return;
 		}
@@ -1108,6 +1214,7 @@ if (debugmode == true) {
 		// RESET RUN
 		else if (event.keyCode == 75) {
 			console.log("####################################################################################################");
+			actionLine = 1;
 			playerRevive();
 			console.log("DEBUG MODE: Run reset successfully.");
 			return;
@@ -1115,11 +1222,12 @@ if (debugmode == true) {
 		
 		// PASS ROUND
 		else if (event.keyCode == 80) {
-			document.getElementById("enemyHP").innerHTML = "<strong>" + 0 + "/" + currentEnemyMaxHP + "</strong>";
+			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyMinHP + "/" + currentEnemyMaxHP + "</strong>";
 			console.log("####################################################################################################");
 			enemyKilled = true;
+			actionLine = 1;
 			enemyDefeat();
-			console.log("DEBUG MODE: Enemy killed successfully.");
+			console.log("DEBUG MODE: Round passed successfully. Onto round", roundCounter+1);
 			console.log("/!\\ PLEASE WAIT UNTIL NEXT ENEMY BEFORE USING DEBUG AGAIN.");
 			return;
 		}
@@ -1127,6 +1235,7 @@ if (debugmode == true) {
 		// REROLL ENEMY
 		else if (event.keyCode == 82) {
 			console.log("####################################################################################################");
+			actionLine = 1;
 			randomizeEnemy();
 			console.log("DEBUG MODE: Enemy rerolled successfully.");
 			console.log("INFO: The enemy might look the same, but it isn't.");
@@ -1194,7 +1303,8 @@ if (debugmode == true) {
 				currentWeapon[2] = STAT;
 			}
 			else if (CHOICE === "Player HP") {
-				currentPlayerHP = STAT;
+				currentPlayerHP = STAT;	
+				maxHP = false;
 				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 				
 				if (currentPlayerHP <= 0) {
@@ -1280,9 +1390,54 @@ if (debugmode == true) {
 				return;
 			}
 			else if (CHOICE === "Enemy HP") {
-				console.log("DEBUG MODE: Nothing past " + CHOICE + ". Press LEFT to switch.")
+				console.log("DEBUG MODE: Nothing past " + CHOICE + ". Press LEFT to switch.");
 				return;
 			}
 		}
 	});
+}
+
+
+// CUSTOM ALERT (Style editable in liquid.css)
+
+if(document.getElementById) {
+	window.alert = function(txt) {
+		createCustomAlert(txt);
+	}
+}
+
+function createCustomAlert(txt) {
+	d = document;
+
+	if(d.getElementById("hideAway")) {
+		return;
+	}
+
+	mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+	mObj.id = "hideAway";
+	
+	alertObj = mObj.appendChild(d.createElement("div"));
+	alertObj.id = "alertBox";
+
+	alertObj.style.visiblity="visible";
+
+	h1 = alertObj.appendChild(d.createElement("h1"));
+	h1.appendChild(d.createTextNode(alertTitle));
+
+	msg = alertObj.appendChild(d.createElement("p"));
+	msg.innerHTML = alertMainText;
+
+	btn = alertObj.appendChild(d.createElement("a"));
+	btn.id = "closeBtn";
+	btn.appendChild(d.createTextNode(alertButtonText));
+	btn.focus();
+	
+	btn.onclick = function() { 
+		removeCustomAlert();
+		return false; 
+	}
+}
+
+function removeCustomAlert() {
+	document.getElementsByTagName("body")[0].removeChild(document.getElementById("hideAway"));
 }

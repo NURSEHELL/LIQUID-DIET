@@ -13,25 +13,31 @@
 
 		<br>
 
-		<button id="playerAttack" onclick="Attack()"> Attack </button>
-		<button id="talking" onclick="talkTo()"> Talk </button>
-		<button id="runAway" onclick="Run()"> Run </button>
+		<div class="noHighlight">
+			<button id="playerAttack" onclick="Attack()"> Attack </button>
+			<button id="talking" onclick="talkTo()"> Talk </button>
+			<button id="runAway" onclick="Run()"> Run </button>
+		</div>
 
 		<p id="playerStats">Your HP: <span id="playerHP"></span></p>
 
-		<button id="inventory1" onclick="useItem1()">Empty</button>
-		<button id="inventory2" onclick="useItem2()">Empty</button>
-		<button id="inventory3" onclick="useItem3()">Empty</button>
+		<div class="noHighlight">
+			<button id="inventory1" onclick="useItem(event)">Empty</button>
+			<button id="inventory2" onclick="useItem(event)">Empty</button>
+			<button id="inventory3" onclick="useItem(event)">Empty</button>
+		</div>
 
 		<h5> ACTION LOG </h5>
 		<div class="actionlog">
-		<p id="actionLog"></p>
+			<p id="actionLog"></p>
 		</div>
 
 		<div class="weaponmenu" id="weaponMenu">
-		<h3> Weapon Menu </h3>
-		<button id="weaponEquipBtn">Equip</button>
-		<button id="weaponDiscardBtn">Discard</button>
+			<h3> Weapon Menu </h3>
+			<span class="noHighlight">
+				<button id="weaponEquipBtn">Equip</button>
+				<button id="weaponDiscardBtn">Discard</button>
+			</span>
 		</div>
 
 		<script src="liquid.js"> </script>
