@@ -361,10 +361,11 @@ function randomizeEnemy() {
 		case 30:
 			bossTime = true;
 			randomEnemy = Enemies[2];
+			currentEnemy = randomEnemy;
 //			specialEnemy = randomEnemy;
 //			specialEncounter = true;
 			
-			lastReskin = randomEnemy;
+			lastReskin = currentEnemy;
 			
 			enemyName = "ULTIMATE CHIMERA";
 			
