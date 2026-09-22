@@ -1,48 +1,55 @@
 
-// Working on adding depths and corresponding enemies. Thanks for working so much on my silly project and caring so much. I love you. >VIVO
+// Added all my buuuuullshiiiiiiiiiiiiiiiii  which is to say fixes, touchups and systems here and there.
+// Thank YOU for being such a huge inspiration!! Enjoy your time on LD before I make you suffer through gamedev art hell when the tables turn
+// I love you more >SEOKU
 
 // =================================================================================================================================================
-// ENEMY ARRAY ["NAME", "Images/img_src", Base HP, [Attack Pattern (6 turns)], Drop, Drop Type, [Dialogues (no max limit)]]
+// ENEMY ARRAY ["NAME", "Images/img_src", Base HP, [Attack Pattern (6 turns)], [Drops (OG, Overk, Reskin)], [Drop Types (OG, Overk, Reskin)], [Dialogues]]
 // =================================================================================================================================================
 
 const Enemies = [
 
-	// Normal Enemies (0 - 3)
+// Normal Enemies (0 - 6)
 
 	// DEPTH 0 ENEMIES
 	[
-		["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 0, 1, 0, 1, 0], 1, 0, ['<i>The enemy has nothing to say... </i> <br>']],
-		["PITIFUL DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 1, 0, 1], 2, 0, ['<i>"if you decompile this game something bad will happen to you"</i> <br>', '<i>"spageti"</i> <br>', '<i>"test123"</i> <br>']],
-		["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 2, [1, 1, 0, 0, 0, 1], 3, 0, ['<i>"Run"</i> <br>', '<i>"I\'ve been falling away..."</i> <br>', '<i>"buy my crypto"</i> <br>', '<i>"lalala... oh im thinking of my bounb!!"</i> <br>', '<i>"ooooooooooooooooooooooooooooooooooooo"</i> <br>']],
-		["MISS OBEAST", "Images/Enemy_MISS_OBEAST.png", 2, [1, 2, 0, 0, 0, 1], 1, 1, ['<i>"Special Mode Unlocked! kidding"</i> <br>', '<i>"lalala... oh im thinking of my bounb!!"</i> <br>']],
+		["TRAINING DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 0, 0], [2, 2, 3], [1, 1, 2], ['<i>The enemy has nothing to say, but... </i> <br>', '<i>It keeps looking at another enemy, then back at what it\'s holding... </i> <br>']],
+		["MISS OBEAST", "Images/Enemy_MISS_OBEAST.png", 2, [1, 0, 0, 2, 0, 0], [1, 1, 5], [1, 2, 1], ['<i>"Meee- oh, my lucky charm. I\'d never give it away. You\'d have to steal it!"</i> <br>', '<i>"Maaa- oh, but if I\'m drunk, I might also, accidentally..."</i> <br>', ]],
 	],
 	// DEPTH 1 ENEMIES
 	[
-		["WILD ANGEL", "Images/PLACEHOLDER.png", 3, [1, 1, 0, 1, 1, 1], 1, 0, ['<i>"The weak-willed are not long for this world. They all play a part in a system."</i> <br>', '<i>"Predator and prey, it\'s the natural order of things."</i> <br>', '<i>"...But what would <strong> you </strong> understand about serving a higher purpose?"</i> <br>', '<i>The enemy\'s mouth is too full to speak.</i> <br>']],
+		["WILD ANGEL", "Images/PLACEHOLDER.png", 3, [1, 1, 0, 0, 1, 0], [1, 4, NaN], [1, 1, NaN], ['<i>"The weak-willed are not long for this world. They all play a part in a system."</i> <br>', '<i>"Predator and prey, it\'s the natural order of things."</i> <br>', '<i>"...But what would <strong> you </strong> understand about serving a higher purpose?"</i> <br>', '<i>The enemy\'s mouth is too full to speak.</i> <br>']],
+		["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 0], [1, 1, 3], [1, 3, 2], ['<i>"Looking for trouble? Huh?"</i> <br>', '<i>"You don\'t know what I got under there."</i> <br>', '<i>"Hahaha. Come and get it. IF YOU CAN REACH IT!"</i> <br>']],
 	],
 	// DEPTH 2 ENEMIES
 	[
-		["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 0, 1, 0, 1, 0], 1, 0, ['<i>The enemy has nothing to say... </i> <br>']],
+		["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4, NaN], [1, 1, NaN], ['<i>You cannot understand this enemy... </i> <br>']],
+		["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2, 6], [1, 2, 1], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',]],
 	],
 	// DEPTH 3 ENEMIES
 	[
-		["DEPTH 3 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 0, 1, 0, 1, 0], 1, 0, ['<i>The enemy has nothing to say... </i> <br>']],
+		["DEPTH 3 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 1, 2, 1, 1, 1], [1, 4, NaN], [1, 1, NaN], ['<i>The enemy speaks gibberish... </i> <br>']],
 	],
-	// Special Enemies (4)
+	
+	
+// Special Enemies (7)
+
+	// ROUND 48 ENEMY
 	[
-		["CHAPELLE D'OR", "Images/PLACEHOLDER.png", 48, [0, 0, 0, 0, 0, 0], 0, 2, ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>']], // Round 48
+		["CHAPELLE D'OR", "Images/PLACEHOLDER.png", 48, [0, 2, 0, 0, 2, 0], [2, 2, NaN], [3, 3, NaN], ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>']],
 	],
 ];
 
 // ATTACK TYPE: 0 = Wait / 1 = Attack / 2 = Heal self
-// DROP TYPE: 0 = Item / 1 = Equipment / 2 = Nothing
+// DROP TYPE: 0 = Nothing / 1 = Item / 2 = Weapon / 3 = Armor / NaN = No Reskin
 
-// Enemies can be Normal, Special or Reskinned.
-// Special enemies appear only on specific conditions and Reskinned enemies are not in this list.
+// Enemies can be Normal, Special or Reskinned:
+// Special enemies appear only on specific conditions.
+// Reskinned enemies are not in this list (aside from their Drop/DType).
 // Normal enemies spawn randomly on normal rounds.
 
 // Enemies should always have one line. If there are none, copy-paste this in Dialogues: ['<i>The enemy has nothing to say... </i> <br>']
-// Enemies CAN theoretically have 0 lines, but to avoid confusion, it's best to keep this one line in.
+// You can also edit that line to make it more or less ominous.
 
 
 // =======================================================================================
@@ -68,7 +75,8 @@ const Items = [
 
 ];
 
-// Items can be Positive, Negative or Useless.
+// Items can be Positive, Negative or Useless:
+// Positive Healing will heal the player. Positive Damage will hurt the enemy.
 // Negative Healing will hurt the player. Negative Damage will heal the enemy.
 // Useless items will do nothing.
 
@@ -93,9 +101,13 @@ const Weapons = [
 
 ];
 
-// Weapons can be Positive, Negative or Useless.
-// Negative Weapons will heal the enemy when attacked. Useless Weapons will do no damage.
-// Make sure to activate a Special Timer in specialTimerMoment for these two!
+// Weapons can be Positive, Negative or Useless:
+//
+// Positive Weapons will hurt the enemy when attacked.
+// Negative Weapons will heal the enemy when attacked.
+// Useless Weapons will deal no damage.
+//
+// You can activate a special timer to remove them in specialTimerMoment !
 
 
 // =======================================================================================
@@ -108,25 +120,29 @@ const Armors = [
 	["None", "Images/Armor_None.png", 0],
 
 	// Positive Armors (1)
-	["Test Pos Armor", "Images/PLACEHOLDER.png", 4],
+	["Test Pos", "Images/PLACEHOLDER.png", 1],
 
 	// Negative Armors (2)
-	["Test Neg Armor", "Images/PLACEHOLDER.png", -4],
+	["Test Neg", "Images/PLACEHOLDER.png", -1],
 
 	// Useless Armors (TBA)
 
 ];
 
-// Armors can be Positive, Negative or Useless.
-// Negative Armors will heal you when hurt. Useless Armors will act as if you have none.
-// It's not necessary, but you can activate a Special Timer in specialTimerMoment for these two!
+// Armors can be Positive, Negative or Useless:
+//
+// Positive Armors will reduce damage when attacked.
+// Negative Armors will heal you when attacked.
+// Useless Armors will act as if you have none.
+//
+// You can activate a special timer to remove them in specialTimerMoment !
 
 
 // =============================
 // SETUP
 // =============================
 
-debugmode = true;
+debugmode = false;
 
 // Juicyheal stuff
 lastEnemyHP = 0;
@@ -144,21 +160,25 @@ currentEnemyMinHP = 0;
 currentEnemyHP = 3;
 currentEnemyMaxHP = currentEnemyHP;
 enemyDrop = Items[0];
-//specialEnemy = undefined;		// Yes, these two "special" ones are different and both important
+enemyDropType = undefined;
 specialEncounter = false;
 currentEnemyLines = undefined;  // These fix an issue with dialogue for reskinned enemies.
 lastReskin = undefined;         // I realized that reskinned enemies probably won't be in the final game,
 lastReskinLines = 0;            // but at least we have them? Special random events to change dial maybe?
 bossTime = false;
+isReskin = false;
 
 // Player stuff
-maxPlayerHP = 29;
-currentPlayerHP = 5;
+minPlayerHP = ogPlayerMinHP = 0;
+maxPlayerHP = ogPlayerMaxHP = 20;
+currentPlayerHP = ogPlayerCurrentHP = 5;
 ranOff = false;
 runFail = false;
 currentWeapon = Weapons[0];
 currentArmor = Armors[0];
 equipWhat = undefined;
+knowsWeapons = false;
+knowsArmors = false;
 
 // Special Timer stuff
 specialTimer = 1;
@@ -167,7 +187,7 @@ specialTimerActive = false;
 specialTimerWhy = undefined; // Reason for activation, used to raise max in specialTimerMoment();
 
 // HTML stuff
-roundCounter = 19; // <------- CHANGED FOR TESTING, CHANGE BACK LATER >Vivo
+roundCounter = 1;
 weaponMenu.style.visibility = "hidden";
 weaponEquipBtn.disabled = true;
 weaponDiscardBtn.disabled = true;
@@ -175,7 +195,9 @@ document.getElementById("weaponEquipBtn").addEventListener("click", weaponEquip)
 document.getElementById("weaponDiscardBtn").addEventListener("click", weaponDiscard);
 
 // Depth stuff
-depthCheck()
+depthCheck();
+currentDepth = 0;
+depthName = currentDepth;
 
 // Inventory stuff
 clickFix = false; // Fixes a weird issue with negative itemHeal
@@ -191,7 +213,7 @@ alertTitle = "ALERT TEST";
 alertMainText = "Wow!<br>You just tested the cool alert.";
 alertButtonText = "AWESOME BRO";
 
-// Disable/Enable functions
+// Disable/Enable functions stuff
 function disableActs() {
 	playerAttack.disabled = true;
 	talking.disabled = true;
@@ -199,6 +221,9 @@ function disableActs() {
 }
 
 function disableInvs() {
+	knowsWeapons = false;
+	knowsArmors = false;	
+	
 	inventory1.disabled = true;
 	inventory2.disabled = true;
 	inventory3.disabled = true;
@@ -222,33 +247,48 @@ function enableActs() {
 
 function depthCheck() {
 
-	if (roundCounter >= 0 && roundCounter <= 9) {
+	const pageText = document.getElementById("playerStats");
 
-		const pageText = document.getElementById("actionlog");
+	switch (roundCounter) {
+		default:
+			document.body.style.backgroundColor = "white";
+			currentDepth = 0;
+			depthName = currentDepth;
+		break;
+		
+		
+		case (roundCounter >= 0 && roundCounter <= 9):
+			document.body.style.backgroundColor = "#d7d7d7";
+			currentDepth = 0;
+			depthName = currentDepth;
+		break;
 
-		document.body.style.backgroundColor = "#d7d7d7";
-		currentDepth = 1;
+		case (roundCounter >= 10 && roundCounter <= 19):
+			document.body.style.backgroundColor = "#999993";
+			currentDepth = 1;
+			depthName = currentDepth;
+		break;
+
+		case (roundCounter >= 20 && roundCounter <= 29):
+			document.body.style.background = "#5f70da";
+			currentDepth = 2;
+			depthName = currentDepth;
+		break;
+
+		case (roundCounter >= 30 && roundCounter <= 39):
+			document.body.style.background = "rgb(155, 38, 50)";
+			currentDepth = 3;
+			depthName = currentDepth;
+		break;
+
+		case 48:
+			document.body.style.background = "red";
+			currentDepth = 3;
+			depthName = "WRONG";
 	}
 
-	if (roundCounter >= 10 && roundCounter <= 19) {
-
-		const pageText = document.getElementById("actionlog");
-
-		document.body.style.backgroundColor = "#999993";
-		currentDepth = 1;
-	}
-
-	if (roundCounter >= 20 && roundCounter <= 29) {
-		document.body.style.background = "#5f70da";
-		currentDepth = 2;
-	}
-
-	if (roundCounter >= 30 && roundCounter <= 39) {
-		document.body.style.background = "rgb(155, 38, 50)";
-		currentDepth = 3;
-	}
-
-	console.log("Current Depth: " + currentDepth)
+	console.log("Current Depth:", currentDepth);
+	console.log("Depth Name:", depthName);
 
 	// VIVO> Unsure how to make DEPTH: WRONG unlockable.
 }
@@ -312,6 +352,14 @@ function enableAll() {
 	runFail = false;
 }
 
+function playerReset() {
+	minPlayerHP = ogPlayerMinHP;
+	maxPlayerHP = ogPlayerMaxHP;
+	currentPlayerHP = ogPlayerCurrentHP;
+	currentWeapon = Weapons[0];
+	currentArmor = Armors[0];
+}
+
 
 // =============================
 // INITIALIZE ENEMY
@@ -320,16 +368,6 @@ function enableAll() {
 function randomizeEnemy() {
 	// Separate previous enemy console logs
 	console.log(" ");
-	/*	
-	// Special Timer
-		if (!specialTimerActive) {
-			specialTimer = 1;
-		}
-	
-		if (currentWeapon == Weapons[3]) { // EVENT: Hand Puppet expiration
-			specialTimerMax = 3;		   // LASTS: 3 Player attacks
-		}								   // EDITS: Heal enemies on attack
-	*/
 	specialTimerMoment();
 
 	elapsedTurns = 0;
@@ -341,20 +379,20 @@ function randomizeEnemy() {
 	equipWhat = undefined;
 
 	// Round up if ran away
-	if (ranOff == true) {
+	if (ranOff) {
 		ranOff = false;
 		roundCounter++;
-		depthCheck()
-		document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter} Depth: ${currentDepth}</u>`;
+		depthCheck();
+		document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
 	}
 
-	if (enemyKilled == true) {
+	if (enemyKilled) {
 		enemyKilled = false;
 
 		// Up Round Counter by 1
 		roundCounter++;
-		depthCheck()
-		document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter} Depth: ${currentDepth}</u>`;
+		depthCheck();
+		document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
 	}
 
 	// Randomize and Boss/Special enemy setup
@@ -363,23 +401,14 @@ function randomizeEnemy() {
 		// BOSS 1 (RESKIN of Miss Obeast)
 		case 10:
 			bossTime = true;
-			randomEnemy = Enemies[currentDepth][3];
+			isReskin = true;
+			randomEnemy = Enemies[0][1];
 			currentEnemy = randomEnemy;
-			//			specialEncounter = true;
 
 			lastReskin = currentEnemy;
 
 			enemyName = "CHESHIRE CHILD";
 
-			//			document.getElementById("enemyName").innerHTML = enemyName;
-			//			document.getElementById("enemyImg").src = Enemies[randomEnemy][1];
-
-			//			if (currentWeapon == Weapons[3]) {
-			//				currentEnemyHP = Math.round((specialEnemy[2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2) + 3);
-			//			}
-			//			else {
-			//				currentEnemyHP = Math.round(specialEnemy[2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 2);
-			//			}
 			document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "The <strong>" + enemyName + "</strong> comes your way...!<br></span>";
 
 			var arr = currentEnemy[6];
@@ -387,24 +416,19 @@ function randomizeEnemy() {
 
 			currentEnemyLines = 4;
 			lastReskinLines = currentEnemyLines;
-			break;
+		break;
 
 		// BOSS 2 (RESKIN of Pathetic Dummy)
 		case 20:
 			bossTime = true;
-			randomEnemy = Enemies[currentDepth][0];
+			isReskin = true;
+			randomEnemy = Enemies[1][1];
 			currentEnemy = randomEnemy;
-			//			specialEncounter = true
 
 			lastReskin = currentEnemy;
 
 			enemyName = "COWARDLY DUMMY";
 
-			//			document.getElementById("enemyName").innerHTML = enemyName;
-			//			document.getElementById("enemyImg").src = specialEnemy[1];
-
-			//			currentEnemyHP = Math.floor(Enemies[randomEnemy][2] + (roundCounter * 0.05005) * 5); 
-			//			console.log("currentEnemyHP =", Enemies[randomEnemy][2] + (roundCounter * 0.05005) * 5)
 			document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "The <strong>" + enemyName + "</strong> wants to fight!<br></span>";
 
 			var arr = currentEnemy[6];
@@ -412,29 +436,19 @@ function randomizeEnemy() {
 
 			currentEnemyLines = 5;
 			lastReskinLines = currentEnemyLines;
-			break;
+		break;
 
 		// BOSS 3 (RESKIN of Anastasia's Chimera)
 		case 30:
 			bossTime = true;
-			randomEnemy = Enemies[currentDepth][2];
+			isReskin = true;
+			randomEnemy = Enemies[2][1];
 			currentEnemy = randomEnemy;
-			//			specialEnemy = randomEnemy;
-			//			specialEncounter = true;
 
 			lastReskin = currentEnemy;
 
 			enemyName = "ULTIMATE CHIMERA";
 
-			//			document.getElementById("enemyName").innerHTML = enemyName;
-			//			document.getElementById("enemyImg").src = specialEnemy[1];
-
-			//			if (currentWeapon == Weapons[3]) {
-			//				currentEnemyHP = Math.round((specialEnemy[2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 6) + 3);
-			//			}
-			//			else {
-			//				currentEnemyHP = Math.round(specialEnemy[2] + (currentWeapon[2] + (roundCounter / 10) - 1) * 6);
-			//			}
 			document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "The <strong>" + enemyName + "</strong> rushes towards you!!<br></span>";
 
 			var arr = currentEnemy[6];
@@ -442,22 +456,19 @@ function randomizeEnemy() {
 
 			currentEnemyLines = 3;
 			lastReskinLines = currentEnemyLines;
-			break;
+		break;
 
 		// SPECIAL 1 (Chapelle d'Or)
 		case 48:
-			randomEnemy = Enemies[currentDepth][4];
+			randomEnemy = Enemies[4][0];
 			currentEnemy = randomEnemy;
 			specialEncounter = true;
+			
+			enemyName = currentEnemy[0];
 
 			lastReskin = currentEnemy;
 
 			currentEnemyLines = currentEnemy[6].length;
-
-			//			enemyName = specialEnemy[0];
-			//			document.getElementById("enemyName").innerHTML = specialEnemy[0];
-			//			document.getElementById("enemyImg").src = specialEnemy[1];
-			document.getElementById("enemyImg").style.height = "8.5em";
 
 			currentEnemyHP = currentEnemy[2];
 			document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "Where do <strong>YOU</strong> think you're going?<br></span>";
@@ -467,22 +478,23 @@ function randomizeEnemy() {
 			alertMainText = "Congratulations!<br>You have reached a wonderful place.";
 			alertButtonText = "ACCEPT";
 			alert();
-			break;
+		break;
 
 		// BASIC ENEMIES
 		default:
 			bossTime = false;
 			specialEncounter = false;
+			
+			isReskin = false;
 
 			var sameEnemy = undefined;
-
-			// -x = Negative amount of Special Enemies
-			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[currentDepth].length - 1), 0));
+			
+			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[currentDepth].length), 0));
 			currentEnemy = Enemies[currentDepth][randomEnemy];
 
 			// Check if same enemy as last reskin to shift dialogue array lines
 			if (lastReskin != undefined) {
-				console.log("LASTRESKIN:", lastReskin[0], "/ CURRENTENEMY:", currentEnemy[0]);
+				console.log("LASTRESKIN (" + lastReskin[0] + ") IDENTICAL TO CURRENTENEMY");
 
 				if (currentEnemy[0] == lastReskin[0]) {
 					sameEnemy = true;
@@ -514,33 +526,42 @@ function randomizeEnemy() {
 			// Setup Enemy name & intro
 			enemyName = currentEnemy[0];
 
-			//			specialEnemy = undefined;
-
-			//			enemyName = Enemies[randomEnemy][0];
-			//			document.getElementById("enemyName").innerHTML = enemyName;
-			//			document.getElementById("enemyImg").src = Enemies[randomEnemy][1];
-
-			//			currentEnemyHP = Math.floor(Enemies[randomEnemy][2] + (roundCounter * 0.05005)); // Up by 1 every 20 rounds
-			//			console.log("currentEnemyHP =", Enemies[randomEnemy][2] + (roundCounter * 0.05005))
-
 			document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "<strong>" + enemyName + "</strong> stares at you...<br></span>";
-			break;
+		break;
+	}
+	
+	// Enemy Drop setup
+	if (!isReskin) {
+		enemyDropType = currentEnemy[5][0];
+		enemyDrop = currentEnemy[4][0];
+	}
+	else {
+		enemyDropType = currentEnemy[5][2];
+		enemyDrop = currentEnemy[4][2];
 	}
 
-	// Enemy HP setup (+1 every 20 rounds (*5 on Bosses))
+	// Enemy HP setup (+1 every Depth (*2 on Bosses))
 	if (bossTime == true && specialEncounter == false) {
-		currentEnemyHP = Math.floor(currentEnemy[2] + (roundCounter * 0.05005) * 5);
-		console.log("Current Enemy's true HP:", currentEnemy[2] + (roundCounter * 0.05005), "* 5 =", currentEnemy[2] + (roundCounter * 0.05005) * 5, "(BOSSFIGHT)");
-		console.log("Therefore, currentEnemyHP =", Math.floor(currentEnemy[2] + (roundCounter * 0.05005)), "* 5 =", currentEnemyHP, "(BOSSFIGHT)");
+		currentEnemyHP = Math.floor((currentEnemy[2] + currentDepth) * 2);
+		console.log("Current Enemy's true HP:", currentEnemy[2] + currentDepth, "* 2 =", (currentEnemy[2] + currentDepth) * 2, "(BOSSFIGHT)");
+		console.log("Therefore, currentEnemyHP =", Math.floor(currentEnemy[2] + currentDepth), "* 2 =", currentEnemyHP, "(BOSSFIGHT)");
 	}
 	else if (specialEncounter == false) {
-		currentEnemyHP = Math.floor(currentEnemy[2] + (roundCounter * 0.05005));
-		console.log("Current Enemy's true HP:", currentEnemy[2] + (roundCounter * 0.05005));
+		currentEnemyHP = Math.floor(currentEnemy[2] + currentDepth);
+		console.log("Current Enemy's true HP:", (currentEnemy[2] + currentDepth));
 		console.log("Therefore, currentEnemyHP =", currentEnemyHP);
 	}
 
 	document.getElementById("enemyName").innerHTML = enemyName;
 	document.getElementById("enemyImg").src = currentEnemy[1];
+	
+	// Scale down massive Placeholder pic
+	if (document.getElementById("enemyImg").getAttribute('src') == "Images/PLACEHOLDER.png") {
+		document.getElementById("enemyImg").style.height = "8.5em";
+	}
+	else {
+		document.getElementById("enemyImg").style.height = "auto";
+	}
 
 	if (itemSlot1 != Items[0] && itemSlot2 != Items[0] && itemSlot3 != Items[0]) {
 		fullInv = true;
@@ -566,7 +587,7 @@ function randomizeEnemy() {
 window.onload = function () {
 	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 	disableInvs();
-	document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter} Depth: ${currentDepth}</u>`;
+	document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
 	randomizeEnemy();
 };
 
@@ -583,12 +604,7 @@ function talkTo() {
 	// PLACEHOLDER DEBUG CONSOLE LOG
 	console.log("Dialogue", (line + 1), "/", currentEnemyLines);
 
-	//	if (specialEnemy == undefined) {
 	document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + currentEnemy[6][line] + '</span>';
-	//	}
-	//	else {
-	//		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + specialEnemy[6][line] + '</span>';
-	//	}
 
 	if (line >= currentEnemyLines) {
 		talking.disabled = true;
@@ -602,7 +618,7 @@ function talkTo() {
 		switch (specialTimerWhy) {
 			default:
 				console.log("Current Special Timer not set for Player Talking.");
-				break;
+			break;
 		}
 	}
 
@@ -624,7 +640,6 @@ function talkTo() {
 
 function enemyTurn() {
 
-	//	if (specialEnemy == undefined) {
 	// IF enemy waits (0)
 	if (currentEnemy[3][elapsedTurns] == 0) {
 
@@ -636,20 +651,26 @@ function enemyTurn() {
 	if (currentEnemy[3][elapsedTurns] == 1) {
 
 		actionLine++;
-
-		// Raised by 1 every 20 turns. Lowered by current armor's protection
-		var enemyDmg = Math.floor(1 + (roundCounter * 0.05005) - currentArmor[2]);
-		var playerHurt = Math.max(0, enemyDmg);
-
+		
 		if (currentArmor[2] >= 0) {
 			var negDamage = false;
 		}
 		else if (currentArmor[2] <= -1) {
 			var negDamage = true;
 		}
-
+		
+		// Raised by 1 every 2 Depths. Lowered/Inverted by current armor's protection
+		if (!negDamage) {
+			var enemyDmg = Math.floor(1 + (currentDepth / 2) - currentArmor[2]);
+			var playerHurt = Math.max(0, enemyDmg);
+		}
+		else {
+			var enemyDmg = Math.floor(1 + (currentDepth / 2) - (currentArmor[2]+2));
+			var playerHurt = Math.max(0, enemyDmg);
+		}
+		
 		if (!negDamage && playerHurt != 0) {
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "The enemy attacks! <br></span>";
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy attacks! <br></span>";
 			currentPlayerHP -= playerHurt;
 		}
 		else if (negDamage && playerHurt != 0) {
@@ -672,7 +693,7 @@ function enemyTurn() {
 			currentPlayerHP = currentPlayerHP;
 		}
 
-		console.log("Player hurt by", playerHurt);
+		console.log("Player Hurt/Healed by", playerHurt);
 	}
 
 	// IF enemy heals (2)
@@ -688,60 +709,26 @@ function enemyTurn() {
 			currentEnemyHP = currentEnemyMaxHP;
 		}
 		else {
-			enemyHeal = Math.floor(2 + (roundCounter * 0.05005)); // Raised by 1 every 20 turns
+			// Raised by 1 every 2 depths
+			enemyHeal = Math.floor(2 + (currentDepth / 2));
 
-			console.log("Enemy healed by", 2 + (roundCounter * 0.05005));
-			console.log("Therefore, enemyHeal =", enemyHeal);
-
+			console.log("Enemy Healed by", 2 + (currentDepth / 2), ", rounded to", enemyHeal);
+			
 			actionLine++;
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "The enemy heals itself! <br></span>";
-
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy heals itself! <br></span>";
+			
 			currentEnemyHP += enemyHeal;
-
+			
 			if (currentEnemyHP > currentEnemyMaxHP) {
-				console.log("... but that would be too much, so Enemy Healed By", currentEnemyHP - currentEnemyMaxHP);
+				console.log("... but that would be too much, so Enemy Healed By", currentEnemyHP-currentEnemyMaxHP);
 				currentEnemyHP = currentEnemyMaxHP;
 			}
 		}
-
+		
+		console.log("Therefore, currentEnemyHP =", currentEnemyHP);
 		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 	}
-	//	}
-	/*	else {
-			// IF enemy waits (0)
-			if (specialEnemy[3][elapsedTurns] == 0) {
-				actionLine++;
-				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy is waiting... <br></span>";
-			}
 	
-			// IF enemy attacks (1)
-			if (specialEnemy[3][elapsedTurns] == 1) {
-				actionLine++;
-				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy attacks! <br></span>";
-				playerHurt = Math.floor(1 + (roundCounter * 0.05005)); // Up by 1 every 20 turns (we can change this for per-area damage calc later)
-				currentPlayerHP -= playerHurt;
-				
-				console.log("Player hurt by", playerHurt);
-			}
-	
-			// IF enemy heals (2)
-			if (specialEnemy[3][elapsedTurns] == 2) {
-				actionLine++;
-				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy heals itself! <br></span>";
-				enemyHeal = Math.floor(2 + (roundCounter * 0.05005)); // Up by 1 every 20 turns (we can change this for per-area healing calc later)
-				console.log("Enemy self-healed by", enemyHeal-currentEnemyHP);
-				currentEnemyHP += enemyHeal;
-				
-				// Check to avoid overhealing
-				if (currentEnemyHP > currentEnemyMaxHP) {
-					currentEnemyHP = currentEnemyMaxHP;
-					actionLine++;
-				}
-				
-				document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
-			}
-		}
-	*/
 	if (line >= currentEnemyLines) {
 		talking.disabled = true;
 	}
@@ -754,8 +741,12 @@ function enemyTurn() {
 		elapsedTurns = 0;
 	}
 
-	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
-	playerAttack.disabled = false;
+	if (currentPlayerHP < minPlayerHP) {
+		currentPlayerHP = minPlayerHP;
+	}
+	
+    document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+    playerAttack.disabled = false;
 
 	enableInvs();
 
@@ -797,9 +788,9 @@ function playerDefeat() {
 	deleteLine = 1;
 
 	document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "You have died. <strong>The end.</strong><br>";
-	document.getElementById("actionLog").innerHTML += '<h2 style="cursor: pointer;" id="retryBtn"><u>Try again?</u></h2></span>';
-
-	document.getElementById("retryBtn").addEventListener("click", playerRevive);
+	
+	document.getElementById("actionLog").innerHTML += '<br><button id="retryBtn" style="cursor: pointer;font-size: 1.75em;background: none;border: none;" id="retryBtn"><strong><u>Try again?</u></strong></button>';
+    document.getElementById("retryBtn").addEventListener("click", playerRevive);
 }
 
 
@@ -808,40 +799,77 @@ function playerDefeat() {
 // =============================
 
 function playerRevive() {
-	line = 0;
+	
+	document.getElementById("actionLog").innerHTML = "And so, you feel yourself rise again...";
+	
+	setTimeout(() => {
+		line = 0;
+		
+		playerReset();
+		
+		equipmentUpdate();
 
-	maxPlayerHP = 20;
-	currentPlayerHP = 5;
+		fullInv = false;
+		currentDepth = 0;
+		depthName = currentDepth;
+		document.body.style.backgroundColor = "#d7d7d7";
+		itemSlot1 = Items[0];
+		itemSlot2 = Items[0];
+		itemSlot3 = Items[0];
+		document.getElementById("inventory1").innerHTML = itemSlot1[0];
+		document.getElementById("inventory2").innerHTML = itemSlot2[0];
+		document.getElementById("inventory3").innerHTML = itemSlot3[0];
 
-	document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span>';
-	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+		disableInvs();
+		currentWeapon = Weapons[0];
+		currentArmor = Armors[0];
 
-	fullInv = false;
-	currentDepth = 0;
-	document.body.style.backgroundColor = "#d7d7d7";
-	enemyDrop = Items[0];
-	itemSlot1 = Items[0];
-	itemSlot2 = Items[0];
-	itemSlot3 = Items[0];
-	document.getElementById("inventory1").innerHTML = itemSlot1[0];
-	document.getElementById("inventory2").innerHTML = itemSlot2[0];
-	document.getElementById("inventory3").innerHTML = itemSlot3[0];
+		roundCounter = 1;
+		document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
 
-	disableInvs();
-	currentWeapon = Weapons[0];
-	currentArmor = Armors[0];
-
-	roundCounter = 1;
-	document.getElementById("roundNum").innerHTML = "<u>Round: " + roundCounter + "</u>";
-
-	randomizeEnemy();
-	enableActs();
+		randomizeEnemy();
+		enableActs();
+	}, 2500);
 }
 
 
 // =============================
 // EQUIPMENT MENU
 // =============================
+
+function equipmentUpdate() {
+	
+// No Weapon + No Armor
+	if (!knowsWeapons && !knowsArmors) {
+		document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span>';
+		document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+	}
+
+// Weapon + No Armor
+	else if (knowsWeapons && !knowsArmors) {
+		knowsWeapons = true;
+		document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Weapon: <span id="playerWPN"></span>';
+		document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+		document.getElementById("playerWPN").innerHTML = "<strong>" + currentWeapon[0] + "</strong>";
+	}
+	
+// No Weapon + Armor
+	else if (!knowsWeapons && knowsArmors) {
+		knowsArmors = true;
+		document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Armor: <span id="playerARM"></span>';
+		document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+		document.getElementById("playerARM").innerHTML = "<strong>" + currentArmor[0] + "</strong>";
+	}
+	
+// Weapon + Armor
+	else if (knowsWeapons && knowsArmors) {
+		document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Weapon: <span id="playerWPN"></span> | Your Armor: <span id="playerARM"></span>';
+		document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+		document.getElementById("playerWPN").innerHTML = "<strong>" + currentWeapon[0] + "</strong>";
+		document.getElementById("playerARM").innerHTML = "<strong>" + currentArmor[0] + "</strong>";
+	}
+}
+
 
 function weaponEquip() {
 
@@ -851,73 +879,32 @@ function weaponEquip() {
 
 		// Equipping Weapon
 		case "Weapon":
-			if (specialEncounter == false && bossTime == false) {
-				if (currentEnemy[5] == 1) {
-					currentWeapon = Weapons[currentEnemy[4]];
-				}
-				else if (currentEnemy[0] == "ANASTASIA'S CHIMERA") {
-					currentWeapon = Weapons[2];
-				}
-			}
-			else if (specialEncounter == true || bossTime == true) {
-				currentWeapon = enemyDrop;
-			}
-
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You equipped the <strong>" + currentWeapon[0] + "</strong>.<br></span>";
+			currentWeapon = Weapons[enemyDrop];
+			
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You equipped the <strong>" + currentWeapon[0] + "</strong>.<br></span>";
 			weaponEquipBtn.disabled = true;
 			weaponDiscardBtn.disabled = true;
 			weaponMenu.style.visibility = "hidden";
-
-			//			document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Weapon: <span id="playerWPN"></span>';
-			//			document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
-			//			document.getElementById("playerWPN").innerHTML = "<strong>" + currentWeapon[0] + "</strong>";
-
+			
 			// PLACEHOLDER DEBUG CONSOLE LOG
 			console.log("You should NOW have", currentWeapon[2], "ATK and", (currentWeapon[2] * 2), "on CRITs");
-			break;
-
+		break;
+		
 		// Equipping Armor
 		case "Armor":
-			//	if (specialEnemy == undefined) {
-			if (currentEnemy[5] == 1) {
-				currentArmor = Armors[currentEnemy[4]];
-			}
-			//			else if (currentEnemy[0] == "ANASTASIA'S CHIMERA") {
-			//				currentWeapon = Weapons[2];
-			//			}
-			//	}
-			//	else {
-			//		currentWeapon = enemyDrop;
-			//	}
-
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You equipped the <strong>" + currentArmor[0] + "</strong>.<br></span>";
+			currentArmor = Armors[enemyDrop];
+			
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You equipped the <strong>" + currentArmor[0] + "</strong>.<br></span>";
 			weaponEquipBtn.disabled = true;
 			weaponDiscardBtn.disabled = true;
 			weaponMenu.style.visibility = "hidden";
-
+			
 			// PLACEHOLDER DEBUG CONSOLE LOG
 			console.log("You should NOW have", currentArmor[2], "DEF");
-			break;
+		break;
 	}
-
-	if (currentWeapon == Weapons[0] && currentArmor == Armors[0]) {
-		document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span>';
-	}
-	else if (currentWeapon != Weapons[0] && currentArmor == Armors[0]) {
-		document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Weapon: <span id="playerWPN"></span>';
-		document.getElementById("playerWPN").innerHTML = "<strong>" + currentWeapon[0] + "</strong>";
-	}
-	else if (currentWeapon == Weapons[0] && currentArmor != Armors[0]) {
-		document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Armor: <span id="playerARM"></span>';
-		document.getElementById("playerARM").innerHTML = "<strong>" + currentArmor[0] + "</strong>";
-	}
-	else if (currentWeapon != Weapons[0] && currentArmor != Armors[0]) {
-		document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Weapon: <span id="playerWPN"></span> | Your Armor:  <span id="playerARM"></span>';
-		document.getElementById("playerWPN").innerHTML = "<strong>" + currentWeapon[0] + "</strong>";
-		document.getElementById("playerARM").innerHTML = "<strong>" + currentArmor[0] + "</strong>";
-	}
-
-	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+	
+	equipmentUpdate();
 
 	// Finish Round
 	setTimeout(() => { randomizeEnemy(); }, 2500);
@@ -929,15 +916,11 @@ function weaponDiscard() {
 	switch (equipWhat) {
 		case "Weapon":
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You discarded the equipment...<br></span>";
-			break;
+		break;
 
 		case "Armor":
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You discarded the equipment...<br></span>";
-			break;
-
-		case undefined:
-			console.log("this shouldn't be happening");
-			break;
+		break;
 	}
 
 	weaponEquipBtn.disabled = true;
@@ -946,6 +929,9 @@ function weaponDiscard() {
 
 	// PLACEHOLDER DEBUG CONSOLE LOG
 	console.log("You should STILL have", currentWeapon[2], "ATK and", (currentWeapon[2] * 2), "on CRITs");
+	console.log("You should STILL have", currentArmor[2], "DEF");
+	
+	equipmentUpdate();
 
 	// Finish Round
 	setTimeout(() => { randomizeEnemy(); }, 2500);
@@ -953,145 +939,190 @@ function weaponDiscard() {
 
 
 // =============================
-// ITEM DROPS
+// DROP SYSTEMS
 // =============================
 
-function grantDrop() {
+// ITEM DROPS
+
+function grantDrop() { console.log("Item drop:", Items[enemyDrop][0]);
 
 	// Check for Full Inventory
-	if (fullInv == true) {
+	if (fullInv) {
 		maxItems();
+		return;
+	}
+
+	// Check for Overk
+	if (currentEnemyHP < 0) {
+		grantOverk();
 		return;
 	}
 
 	actionLine++;
 
-	// OVERKILL Drops
-	if (currentEnemyHP < 0) {
-		lastEnemyHP = currentEnemyHP;
-		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyMinHP + "/" + currentEnemyMaxHP + "</strong>";
+	switch (Items[enemyDrop][2]) {
+		case itemNull:
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
+		break;
+		
+		case itemDMG:
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>ATTACK ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
+		break;
+		
+		case itemHeal:
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>HEALING ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
+		break;
+	}
+	
+	setupItem();
+	
+	// Finish Round
+	setTimeout(() => { randomizeEnemy(); }, 2500);
+}
 
-		// JUICYNECTAR Drop
-		if (specialEncounter == false) {
-			enemyDrop = Items[4];
-
-			juicyHeal = Math.abs((currentEnemyHP) - 1);
-
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("OVERKILL. Enemy died at", currentEnemyHP, "HP. juicyHeal should be one above & always positive:", juicyHeal);
-		}
-
-		// Null Drop
-		if (enemyDrop[2] == itemNull) {
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong><u>OVERKILL!!</u> ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
-
-		// Atk Drop
-		else if (enemyDrop[2] == itemDMG) {
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong><u>OVERKILL!!</u> ATTACK ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
-
-		// Heal Drop
-		else if (enemyDrop[2] == itemHeal) {
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong><u>OVERKILL!!</u> HEALING ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
-
+function grantOverk() { console.log("... actually, it's an Overkill");
+	
+	// Juicy Drop
+	if (enemyDrop == 4) {
+		juicyHeal = Math.abs((currentEnemyHP)-1);
+	}
+	
+	switch (Items[enemyDrop][2]) {
+		case itemNull:
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
+		break;
+		
+		case itemDMG:
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> ATTACK ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
+		break;
+		
+		case itemHeal:
+			document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> HEALING ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
+		break;
 	}
 
-	// NORMAL Drops
-	else {
+	setupItem();
 
-		// Null Drop
-		if (enemyDrop[2] == itemNull) {
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
+	// PLACEHOLDER DEBUG CONSOLE LOG
+	console.log("Enemy died at", currentEnemyHP, "HP. juicyHeal should be one above & always positive:", juicyHeal);
+	
+// Finish Round
+	setTimeout(() => { randomizeEnemy(); }, 2500);
+}
 
-		// Atk Drop
-		else if (enemyDrop[2] == itemDMG) {
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>ATTACK ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
-
-		// Heal Drop
-		else if (enemyDrop[2] == itemHeal) {
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>HEALING ITEM GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
-		}
-	}
-
-	// Check which slot to give item
+function setupItem() {
+	
 	if (itemSlot1 == Items[0]) {
-		itemSlot1 = enemyDrop;
-		document.getElementById("inventory1").innerHTML = enemyDrop[0];
+		itemSlot1 = Items[enemyDrop];
+		document.getElementById("inventory1").innerHTML = Items[enemyDrop][0];
 		document.getElementById("inventory1").addEventListener("click", enemyDrop[2], { once: true });
 	}
-
+		
 	else if (itemSlot1 != Items[0] && itemSlot2 == Items[0]) {
-		itemSlot2 = enemyDrop;
-		document.getElementById("inventory2").innerHTML = enemyDrop[0];
+		itemSlot2 = Items[enemyDrop];
+		document.getElementById("inventory2").innerHTML = Items[enemyDrop][0];
 		document.getElementById("inventory2").addEventListener("click", enemyDrop[2], { once: true });
 	}
-
+	
 	else if (itemSlot1 != Items[0] && itemSlot2 != Items[0] && itemSlot3 == Items[0]) {
-		itemSlot3 = enemyDrop;
-		document.getElementById("inventory3").innerHTML = enemyDrop[0];
+		itemSlot3 = Items[enemyDrop];
+		document.getElementById("inventory3").innerHTML = Items[enemyDrop][0];
 		document.getElementById("inventory3").addEventListener("click", enemyDrop[2], { once: true });
 	}
-
-	// Finish Round
-	setTimeout(() => { randomizeEnemy(); }, 2500);
-	//	return;
-}
-
-function maxItems() {
-	actionLine++;
-
-	if (currentEnemyHP < 0) {
-		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong><u>OVERKILL!!</u></strong> Your bag is full...<br></span>";
-	}
-	else {
-		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your bag is full...<br></span>";
-	}
-
-	// Finish Round
-	setTimeout(() => { randomizeEnemy(); }, 2500);
-	//	return;
 }
 
 
-// =============================
 // EQUIPMENT DROPS
-// =============================
 
-function grantWeapon() {
+function grantWeapon() { console.log("Weapon drop:", Weapons[enemyDrop][0]);
+	
+	if (currentWeapon == Weapons[enemyDrop]) {
+		console.log("... but said weapon is already equipped, so...");
+		alrEquipped();
+		return;
+	}
+	
 	equipWhat = "Weapon";
 
 	actionLine++;
 	if (currentEnemyHP < 0) {
-		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong><u>OVERKILL!!</u> WEAPON GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> WEAPON GOT!</strong> (" + Weapons[enemyDrop][0] + ")<br></span>";
 	}
 	else {
-		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>WEAPON GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
+		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>WEAPON GOT!</strong> (" + Weapons[enemyDrop][0] + ")<br></span>";
 	}
+	
 	weaponMenu.style.visibility = "visible";
 	weaponDiscardBtn.disabled = false;
 	weaponEquipBtn.disabled = false;
-	//	return;
 }
 
-function grantArmor() {
-
+function grantArmor() { console.log("Armor drop:", Armors[enemyDrop][0]);
+	
+	if (currentArmor == Armors[enemyDrop]) {
+		console.log("... but said armor is already equipped, so...");
+		alrEquipped();
+		return;
+	}
+	
 	equipWhat = "Armor";
 
 	actionLine++;
 	if (currentEnemyHP < 0) {
-		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong><u>OVERKILL!!</u> ARMOR GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u> ARMOR GOT!</strong> (" + Armors[enemyDrop][0] + ")<br></span>";
 	}
 	else {
-		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>ARMOR GOT!</strong> (" + enemyDrop[0] + ")<br></span>";
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong>ARMOR GOT!</strong> (" + Armors[enemyDrop][0] + ")<br></span>";
 	}
+	
 	weaponMenu.style.visibility = "visible";
 	weaponDiscardBtn.disabled = false;
 	weaponEquipBtn.disabled = false;
-	//	return;
+}
+
+
+// MAXIMUM ITEMS, NO DROPS & ALREADY EQUIPPED
+
+function maxItems() { console.log("... but the bag is full");
+	actionLine++;
+	
+	if (currentEnemyHP < 0) {
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u></strong> Your bag is full...<br></span>";
+	}
+	else {
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "Your bag is full...<br></span>";
+	}
+	
+// Finish Round
+	setTimeout(() => { randomizeEnemy(); }, 2500);
+}
+
+function noDrops() { console.log("No drop for you");
+	actionLine++;
+	
+	if (currentEnemyHP < 0) {
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u></strong> The enemy had nothing of value...<br></span>";
+	}
+	else {
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "The enemy had nothing of value...<br></span>";
+	}
+	
+// Finish Round
+	setTimeout(() => { randomizeEnemy(); }, 2500);
+}
+
+function alrEquipped() { console.log("No equipment for you");
+	actionLine++;
+	
+	if (currentEnemyHP < 0) {
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "<strong><u>OVERKILL!!</u></strong> You already had the enemy's equipment...<br></span>";
+	}
+	else {
+		document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "You already had the enemy's equipment...<br></span>";
+	}
+	
+// Finish Round
+	setTimeout(() => { randomizeEnemy(); }, 2500);
 }
 
 
@@ -1109,89 +1140,40 @@ function enemyDefeat() {
 	document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "Enemy defeated! <strong>Round won!</strong><br></span>";
 	enemyKilled = true;
 
-	// Normal, Reskin and Special enemies drop setup
-	switch (roundCounter) {
-		default:
+	var normalOverk = !isReskin && !bossTime && enemyDropType != 2 && enemyDropType != 3;
 
-			// Drop Type 0
-			if (currentEnemy[5] == 0) {
+// Check if overk
+	if (currentEnemyHP < 0) {
+		
+	// Check if Not reskin + Not boss + Not wpndrop + Not armdrop. If so, set overk drop
+		if (normalOverk) {
+			enemyDropType = currentEnemy[5][1];
+			enemyDrop = currentEnemy[4][1];
+		}
+		
+	// Juicyheal HP setup
+		lastEnemyHP = currentEnemyHP;
+	}
 
-				// Chimera Drop (if WPN!=2 & HP<0: WPN, else: ITEM)
-				if (enemyName == "ANASTASIA'S CHIMERA" && currentEnemyHP < 0 && currentWeapon != Weapons[2]) {
-					enemyDrop = Weapons[2];
-					grantWeapon();
-					return;
-				}
-				else {
-					enemyDrop = Items[currentEnemy[4]];
-					grantDrop();
-					return;
-				}
-			}
-
-			// Drop Type 1
-			else if (currentEnemy[5] == 1) {
-
-				// Obeast Drop (if WPN!=1: WPN, else if WPN!=1 & HP<0: ITEM, else NONE)
-				if (enemyName == "MISS OBEAST") {
-					if (currentWeapon != Weapons[1]) {
-						enemyDrop = Weapons[currentEnemy[4]];
-						grantWeapon();
-						return;
-					}
-					else if (currentEnemyHP < 0) {
-						grantDrop();
-						return;
-					}
-					else {
-						actionLine++;
-						document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "The enemy had nothing on it...<br></span>";
-						setTimeout(() => { randomizeEnemy(); }, 2500);
-						return;
-					}
-				}
-			}
-
-			// Drop Type 2
-			else if (currentEnemy[5] == 2) {
-				actionLine++;
-				document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "The enemy had nothing on it...<br></span>";
-				setTimeout(() => { randomizeEnemy(); }, 2500);
-				return;
-			}
-			break;
-
-		// BOSS 1 (ElectricCaress, ITEM)	
-		case 10:
-			enemyDrop = Items[5];
-			if (anyItem == Items[0]) {
-				grantDrop();
-				return;
-			}
-			break;
-
-		// BOSS 2 (HandPuppet, WPN)
-		case 20:
-			enemyDrop = Weapons[3];
+// Check enemy drop type	
+	switch (enemyDropType) {
+		case 0:
+			noDrops();
+		break;
+		
+		case 1:
+			grantDrop();
+		break;
+		
+		case 2:
+			knowsWeapons = true;
 			grantWeapon();
-			return;
-			break;
-
-		// BOSS 3 (PiercingGaze, ITEM)
-		case 30:
-			enemyDrop = Items[6];
-			if (anyItem == Items[0]) {
-				grantDrop();
-				return;
-			}
-			break;
-
-		// SPECIAL 1 (NONE + Special Outro)
-		case 48:
-			actionLine++;
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You see the enemy fading away...<br></span>";
-			setTimeout(() => { randomizeEnemy(); }, 2500);
-			break;
+		break;
+		
+		case 3:
+			knowsArmors = true;
+			grantArmor();
+		break;
 	}
 
 	// Check if Special Timer should be boosted
@@ -1199,7 +1181,7 @@ function enemyDefeat() {
 		switch (specialTimerWhy) {
 			default:
 				console.log("Current Special Timer not set for Enemy Defeat.");
-				break;
+			break;
 		}
 	}
 }
@@ -1264,7 +1246,7 @@ function Attack() {
 	}
 
 	// Player HP min/max
-	if (currentPlayerHP < 0) {
+    if (currentPlayerHP < minPlayerHP) {
 		currentPlayerHP = 0;
 		document.getElementById("playerHP").innerHTML = "<strong>" + 0 + "/" + maxPlayerHP + "</strong>";
 	}
@@ -1283,7 +1265,7 @@ function Attack() {
 		switch (specialTimerWhy) {
 			default:
 				console.log("Current Special Timer not set for Player Attack.");
-				break;
+			break;
 
 			case "Hand Puppet Event":
 				specialTimer++;
@@ -1293,7 +1275,7 @@ function Attack() {
 					console.log("Special Timer:", specialTimer - 1, "/", specialTimerMax);
 
 					actionLine++;
-					document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your <strong>" + currentWeapon[0] + "</strong> seems to deteriorate...<br></span>";
+					document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "(The <strong>" + currentWeapon[0] + "</strong> seems to deteriorate...)<br></span>";
 				}
 				else {
 					specialTimerWhy = undefined;
@@ -1303,43 +1285,24 @@ function Attack() {
 					console.log("Special Timer over!");
 
 					actionLine++;
-					document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your <strong>" + currentWeapon[0] + "</strong> falls apart!<br></span>";
+					document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "(The <strong>" + currentWeapon[0] + "</strong> fell apart!)<br></span>";
 
 					currentWeapon = Weapons[0];
-					document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Weapon: <span id="playerWPN"></span>';
-					document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
-					document.getElementById("playerWPN").innerHTML = "<strong>" + currentWeapon[0] + "</strong>";
+					equipmentUpdate();
 				}
-				break;
+			break;
 		}
 	}
-	/*
-	// Hand Puppet event timer
-		if (currentWeapon == Weapons[3]) {
-			if (specialTimer < specialTimerMax) {
-				specialTimer++;
-				
-				console.log("Special Timer:", specialTimer-1, "/", specialTimerMax);
-				
-				actionLine++;
-				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "Your <strong>" + currentWeapon[0] + "</strong> seems to deteriorate...<br></span>";
-			}
-			else {
-				specialTimerActive = false;
-				specialTimer = 1;
-				
-				console.log("Special Timer over!");
-				
-				actionLine++;
-				document.getElementById("actionLog").innerHTML += '<span id="'+actionLine+'">' + "Your <strong>" + currentWeapon[0] + "</strong> falls apart!<br></span>";
-				
-				currentWeapon = Weapons[0];
-				document.getElementById("playerStats").innerHTML = 'Your HP: <span id="playerHP"></span> | Your Weapon: <span id="playerWPN"></span>';
-				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
-				document.getElementById("playerWPN").innerHTML = "<strong>" + currentWeapon[0] + "</strong>";
-			}
-		}
-	*/
+	
+	if (currentWeapon != Weapons[0]) {
+		knowsWeapons = true;
+		equipmentUpdate();
+	}
+	if (currentArmor != Armors[0]) {
+		knowsArmors = true;
+		equipmentUpdate();
+	}
+	
 	// Finish turn
 	setTimeout(() => {
 		if (currentEnemyHP >= 1) {
@@ -1350,7 +1313,7 @@ function Attack() {
 			setTimeout(() => { enemyDefeat(); }, 1000);
 		}
 
-		if (currentPlayerHP <= 0) {
+		if (currentPlayerHP <= minPlayerHP) {
 			playerDefeat();
 		}
 	}, 1000);
@@ -1395,12 +1358,12 @@ function Run() {
 			switch (specialTimerWhy) {
 				default:
 					console.log("Current Special Timer not set for Player Fleeing.");
-					break;
+				break;
 			}
 		}
 
 		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log("runRNG =", runRNG, "(Should be enough)");
+		console.log("runRNG =", runRNG, "| Should be enough");
 
 		ranOff = true;
 		disableAll();
@@ -1413,7 +1376,7 @@ function Run() {
 	else {
 
 		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log("runRNG =", runRNG, "( Off by", (runOffLimit - runRNG), ")");
+		console.log("runRNG =", runRNG, "| Off by", (runOffLimit-runRNG));
 
 		runFail = true;
 		actionLine++;
@@ -1454,7 +1417,6 @@ function useItem(e) {
 			if (currentPlayerHP === maxPlayerHP && itemUsed[2] === itemHeal) {
 				currentPlayerHP = maxPlayerHP;
 				document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You're already at Max HP!<br></span>";
-				itemslot1 = itemUsed;
 				clickFix = true;
 			}
 
@@ -1470,7 +1432,7 @@ function useItem(e) {
 				inventory1.disabled = true;
 				clickFix = false;
 			}
-			break;
+		break;
 
 		// Item slot 2 used
 		case "inventory2":
@@ -1480,7 +1442,6 @@ function useItem(e) {
 			if (currentPlayerHP === maxPlayerHP && itemUsed[2] === itemHeal) {
 				currentPlayerHP = maxPlayerHP;
 				document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You're already at Max HP!<br></span>";
-				itemslot2 = itemUsed;
 				clickFix = true;
 			}
 
@@ -1496,7 +1457,7 @@ function useItem(e) {
 				inventory2.disabled = true;
 				clickFix = false;
 			}
-			break;
+		break;
 
 		// Item slot 3 used
 		case "inventory3":
@@ -1506,7 +1467,6 @@ function useItem(e) {
 			if (currentPlayerHP === maxPlayerHP && itemUsed[2] === itemHeal) {
 				currentPlayerHP = maxPlayerHP;
 				document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You're already at Max HP!<br></span>";
-				itemslot3 = itemUsed;
 				clickFix = true;
 			}
 
@@ -1522,15 +1482,29 @@ function useItem(e) {
 				inventory3.disabled = true;
 				clickFix = false;
 			}
-			break;
+		break;
 	}
-
+	
+	switch (itemUsed[2]) {
+		case itemNull:
+			itemNull();
+		break;
+		
+		case itemHeal:
+			itemHeal();
+		break;
+		
+		case itemDMG:
+			itemDMG();
+		break;
+	}
+	
 	// Check if Special Timer should be boosted
 	if (specialTimerActive) {
 		switch (specialTimerWhy) {
 			default:
 				console.log("Current Special Timer not set for Item Use.");
-				break;
+			break;
 		}
 	}
 
