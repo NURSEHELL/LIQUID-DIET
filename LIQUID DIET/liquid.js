@@ -195,9 +195,9 @@ document.getElementById("weaponEquipBtn").addEventListener("click", weaponEquip)
 document.getElementById("weaponDiscardBtn").addEventListener("click", weaponDiscard);
 
 // Depth stuff
-depthCheck();
 currentDepth = 0;
 depthName = currentDepth;
+depthCheck();
 
 // Inventory stuff
 clickFix = false; // Fixes a weird issue with negative itemHeal
@@ -249,43 +249,36 @@ function depthCheck() {
 
 	const pageText = document.getElementById("playerStats");
 
-	switch (roundCounter) {
-		default:
-			document.body.style.backgroundColor = "white";
-			currentDepth = 0;
-			depthName = currentDepth;
-		break;
-		
-		
-		case (roundCounter >= 0 && roundCounter <= 9):
-			document.body.style.backgroundColor = "#d7d7d7";
-			currentDepth = 0;
-			depthName = currentDepth;
-		break;
-
-		case (roundCounter >= 10 && roundCounter <= 19):
-			document.body.style.backgroundColor = "#999993";
-			currentDepth = 1;
-			depthName = currentDepth;
-		break;
-
-		case (roundCounter >= 20 && roundCounter <= 29):
-			document.body.style.background = "#5f70da";
-			currentDepth = 2;
-			depthName = currentDepth;
-		break;
-
-		case (roundCounter >= 30 && roundCounter <= 39):
-			document.body.style.background = "rgb(155, 38, 50)";
-			currentDepth = 3;
-			depthName = currentDepth;
-		break;
-
-		case 48:
-			document.body.style.background = "red";
-			currentDepth = 3;
-			depthName = "WRONG";
+	if (roundCounter >= 0 && roundCounter <= 9) {
+		document.body.style.backgroundColor = "#d7d7d7";
+		currentDepth = 0;
+		depthName = currentDepth;
 	}
+
+	if (roundCounter >= 10 && roundCounter <= 19) {
+		document.body.style.backgroundColor = "#999993";
+		currentDepth = 1;
+		depthName = currentDepth;
+	}
+
+	if (roundCounter >= 20 && roundCounter <= 29) {
+		document.body.style.background = "#5f70da";
+		currentDepth = 2;
+		depthName = currentDepth;
+	}
+
+	if (roundCounter >= 30 && roundCounter <= 39) {
+		document.body.style.background = "rgb(155, 38, 50)";
+		currentDepth = 3;
+		depthName = currentDepth;
+	}
+
+	if (roundCounter == 48) {
+		document.body.style.background = "red";
+		currentDepth = 3;
+		depthName = "WRONG";
+	}
+
 
 	console.log("Current Depth:", currentDepth);
 	console.log("Depth Name:", depthName);
