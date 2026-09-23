@@ -1,10 +1,5 @@
-
-// Added all my buuuuullshiiiiiiiiiiiiiiiii  which is to say fixes, touchups and systems here and there.
-// Thank YOU for being such a huge inspiration!! Enjoy your time on LD before I make you suffer through gamedev art hell when the tables turn
-// I love you more >SEOKU
-
 // =================================================================================================================================================
-// ENEMY ARRAY ["NAME", "Images/img_src", Base HP, [Attack Pattern (6 turns)], [Drops (OG, Overk, Reskin)], [Drop Types (OG, Overk, Reskin)], [Dialogues]]
+// ENEMY ARRAY ["NAME", "Images/img_src", Base HP, [Attack Pattern (6 turns)], [Drops (OG, Overk)], [Drop Types (OG, Overk)], [Dialogues]]
 // =================================================================================================================================================
 
 const Enemies = [
@@ -13,56 +8,57 @@ const Enemies = [
 	[
 		// DEPTH 0 ENEMIES
 		[
-			["TRAINING DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 0, 0], [2, 2, 3], [1, 1, 2], ['<i>The enemy has nothing to say, but... </i> <br>', '<i>It keeps looking at another enemy, then back at what it\'s holding... </i> <br>']],
-			["MISS OBEAST", "Images/Enemy_MISS_OBEAST.png", 2, [1, 0, 0, 2, 0, 0], [1, 1, 5], [1, 2, 1], ['<i>"Meee- oh, my lucky charm. I\'d never give it away. You\'d have to steal it!"</i> <br>', '<i>"Maaa- oh, but if I\'m drunk, I might also, accidentally..."</i> <br>',]],
+			["TRAINING DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 0, 0], [2, 2], [1, 1], ['<i>The enemy has nothing to say, but... </i> <br>', '<i>It keeps looking at another enemy, then back at what it\'s holding... </i> <br>']],
+			["MISS OBEAST", "Images/Enemy_MISS_OBEAST.png", 2, [1, 0, 0, 2, 0, 0], [1, 1], [1, 2], ['<i>"Meee- oh, my lucky charm. I\'d never give it away. You\'d have to steal it!"</i> <br>', '<i>"Maaa- oh, but if I\'m drunk, I might also, accidentally..."</i> <br>',]],
 		],
 		// Depth 0 Bosses
 
 
 		// DEPTH 1 ENEMIES
 		[
-			["WILD ANGEL", "Images/PLACEHOLDER.png", 3, [1, 1, 0, 0, 1, 0], [1, 4, NaN], [1, 1, NaN], ['<i>"The weak-willed are not long for this world. They all play a part in a system."</i> <br>', '<i>"Predator and prey, it\'s the natural order of things."</i> <br>', '<i>"...But what would <strong> you </strong> understand about serving a higher purpose?"</i> <br>', '<i>The enemy\'s mouth is too full to speak.</i> <br>']],
-			["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 0], [1, 1, 3], [1, 3, 2], ['<i>"Looking for trouble? Huh?"</i> <br>', '<i>"You don\'t know what I got under there."</i> <br>', '<i>"Hahaha. Come and get it. IF YOU CAN REACH IT!"</i> <br>']],
+			["WILD ANGEL", "Images/PLACEHOLDER.png", 3, [1, 1, 0, 0, 1, 0], [1, 4], [1, 1], ['<i>"The weak-willed are not long for this world. They all play a part in a system."</i> <br>', '<i>"Predator and prey, it\'s the natural order of things."</i> <br>', '<i>"...But what would <strong> you </strong> understand about serving a higher purpose?"</i> <br>', '<i>The enemy\'s mouth is too full to speak.</i> <br>']],
+			["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 0], [1, 1], [1, 3], ['<i>"Looking for trouble? Huh?"</i> <br>', '<i>"You don\'t know what I got under there."</i> <br>', '<i>"Hahaha. Come and get it. IF YOU CAN REACH IT!"</i> <br>']],
 		],
 		// DEPTH 2 ENEMIES
 		[
-			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4, NaN], [1, 1, NaN], ['<i>You cannot understand this enemy... </i> <br>']],
-			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2, 6], [1, 2, 1], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',]],
+			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>']],
+			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2], [1, 2], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',]],
 		],
 		// DEPTH 3 ENEMIES
 		[
-			["DEPTH 3 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 1, 2, 1, 1, 1], [1, 4, NaN], [1, 1, NaN], ['<i>The enemy speaks gibberish... </i> <br>']],
+			["DEPTH 3 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 1, 2, 1, 1, 1], [1, 4], [1, 1], ['<i>The enemy speaks gibberish... </i> <br>']],
 		],
 	],
 
-	// Special Enemies (7)
+	// Special Enemies
 	[
-		// ROUND 80 ENEMY
+		// ROUND 81 SCARE
 		[
-			["CHAPELLE D'OR", "Images/PLACEHOLDER.png", 48, [0, 2, 0, 0, 2, 0], [2, 2, NaN], [3, 3, NaN], ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>']],
+			["CHAPELLE D'OR", "Images/PLACEHOLDER.png", NaN, [0, 0, 0, 0, 0, 0], [0, 0], [0, 0], ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>']],
 		],
 	],
+	
 	// Bosses
 	[
 		// DEPTH 0 BOSSES
 		[
-			["AREA 0 BOSS", "Images/PLACEHOLDER.PNG", 10, [0, 1, 1, 0, 2, 1], [2, 2, 3], [1, 1, 2], "<i>helo i am a test</i> <br>"],
-			["OTHER AREA 0 BOSS", "Images/PLACEHOLDER.PNG", 10, [0, 1, 1, 0, 2, 1], [2, 2, 3], [1, 1, 2], "<i>helo i am a test</i> <br>"],
+			["AREA 0 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 0 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		],
 		// DEPTH 1 BOSSES
 		[
-			["AREA 1 BOSS", "Images/PLACEHOLDER.PNG", 10, [0, 1, 1, 0, 2, 1], [2, 2, 3], [1, 1, 2], "<i>helo i am a test</i> <br>"],
-			["OTHER AREA 1 BOSS", "Images/PLACEHOLDER.PNG", 10, [0, 1, 1, 0, 2, 1], [2, 2, 3], [1, 1, 2], "<i>helo i am a test</i> <br>"],
+			["AREA 1 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 1 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		],
 		// DEPTH 2 BOSSES
 		[
-			["AREA 2 BOSS", "Images/PLACEHOLDER.PNG", 10, [0, 1, 1, 0, 2, 1], [2, 2, 3], [1, 1, 2], "<i>helo i am a test</i> <br>"],
-			["OTHER AREA 2 BOSS", "Images/PLACEHOLDER.PNG", 10, [0, 1, 1, 0, 2, 1], [2, 2, 3], [1, 1, 2], "<i>helo i am a test</i> <br>"],
+			["AREA 2 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 2 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		],
 		// DEPTH 3 BOSSES
 		[
-			["AREA 3 BOSS", "Images/PLACEHOLDER.PNG", 10, [0, 1, 1, 0, 2, 1], [2, 2, 3], [1, 1, 2], "<i>helo i am a test</i> <br>"],
-			["OTHER AREA 3 BOSS", "Images/PLACEHOLDER.PNG", 10, [0, 1, 1, 0, 2, 1], [2, 2, 3], [1, 1, 2], "<i>helo i am a test</i> <br>"],
+			["AREA 3 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 3 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		]
 
 	],
@@ -70,12 +66,12 @@ const Enemies = [
 ];
 
 // ATTACK TYPE: 0 = Wait / 1 = Attack / 2 = Heal self
-// DROP TYPE: 0 = Nothing / 1 = Item / 2 = Weapon / 3 = Armor / NaN = No Reskin
+// DROP TYPE: 0 = Nothing / 1 = Item / 2 = Weapon / 3 = Armor
 
-// Enemies can be Normal, Special or Reskinned:
+// Enemies can be Normal, Special or Bosses:
 // Special enemies appear only on specific conditions.
-// Reskinned enemies are not in this list (aside from their Drop/DType).
-// Normal enemies spawn randomly on normal rounds.
+// Boss enemies appear randomly on specific rounds.
+// Normal enemies appear randomly on normal rounds.
 
 // Enemies should always have one line. If there are none, copy-paste this in Dialogues: ['<i>The enemy has nothing to say... </i> <br>']
 // You can also edit that line to make it more or less ominous.
@@ -100,8 +96,10 @@ const Items = [
 	["Electric Caress", "Images/Item_ObeastFur.png", itemHeal, -1], // Round 10
 	["Piercing Gaze", "Imaes/Item_ChimEye.png", itemDMG, -1], // Round 30
 
-	// Useless items (TBA)
-
+	// Useless items (7 - 8)
+	["Test UslHeal", "Images/PLACEHOLDER.png", itemHeal, 0],
+	["Test UslDMG", "Images/PLACEHOLDER.png", itemDMG, 0],
+	
 ];
 
 // Items can be Positive, Negative or Useless:
@@ -126,15 +124,17 @@ const Weapons = [
 	// Negative Weapons (3)
 	["Hand Puppet", "Images/Weapon_Dummy.png", -2, 1000], // Round 20
 
-	// Useless Weapons (TBA)
-
+	// Useless Weapons (4 - 5)
+	["Test UslDMG", "Images/PLACEHOLDER.png", 0, 1000],
+	["Test UslACC", "Images/PLACEHOLDER.png", 10, -1],
+	
 ];
 
 // Weapons can be Positive, Negative or Useless:
 //
 // Positive Weapons will hurt the enemy when attacked.
 // Negative Weapons will heal the enemy when attacked.
-// Useless Weapons will deal no damage.
+// Useless Weapons will either deal no damage or constantly miss.
 //
 // You can activate a special timer to remove them in specialTimerMoment !
 
@@ -154,7 +154,8 @@ const Armors = [
 	// Negative Armors (2)
 	["Test Neg", "Images/PLACEHOLDER.png", -1],
 
-	// Useless Armors (TBA)
+	// Useless Armors (3)
+	["Test Usl", "Images/PLACEHOLDER.png", 0],
 
 ];
 
@@ -165,6 +166,38 @@ const Armors = [
 // Useless Armors will act as if you have none.
 //
 // You can activate a special timer to remove them in specialTimerMoment !
+
+
+// =======================================================================================
+// INTROTEXT ARRAY ["Text<br></span>"]
+// =======================================================================================
+
+const IntroText = [
+
+	// Normal Enemies
+	[
+		["stares at you...<br></span>"],
+		["wanders around...<br></span>"],
+		["accidentally bumps into you...<br></span>"],
+		["tries to get your attention...<br></span>"],
+		["tests the IntroText array...<br></span>"],
+	],
+	
+	// Bosses
+	[
+		["rushes at you!<br></span>"],
+		["wants to fight!<br></span>"],
+		["bumps into you!<br></span>"],
+		["causes a scene!<br></span>"],
+		["forcefully tests the IntroText array!<br></span>"],
+	],
+	
+	// Special Encounters
+	[
+		["Where do you think you're going?<br></span>"] // Round 80
+	]
+	
+];
 
 
 // =============================
@@ -185,6 +218,7 @@ deleteLine = 1;
 maxLines = 11; 	// Amount of lines readable in the actionlog (+1), can be changed
 
 // Enemy stuff
+currentEnemyLines = 0;
 currentEnemyMinHP = 0;
 currentEnemyHP = 3;
 currentEnemyMaxHP = currentEnemyHP;
@@ -292,7 +326,7 @@ function depthCheck() {
 		depthName = currentDepth;
 	}
 
-	if (roundCounter >= 61 && roundCounter <= 80) {
+	if (roundCounter >= 61 && roundCounter < 80) {
 		document.body.style.background = "rgb(155, 38, 50)";
 		currentDepth = 3;
 		depthName = currentDepth;
@@ -303,7 +337,8 @@ function depthCheck() {
 		currentDepth = 3;
 		depthName = "WRONG";
 	}
-
+	
+	document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
 
 	console.log("Current Depth:", currentDepth);
 	console.log("Depth Name:", depthName);
@@ -378,7 +413,6 @@ function playerReset() {
 	currentArmor = Armors[0];
 }
 
-
 // =============================
 // INITIALIZE ENEMY
 // =============================
@@ -401,7 +435,6 @@ function randomizeEnemy() {
 		ranOff = false;
 		roundCounter++;
 		depthCheck();
-		document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
 	}
 
 	if (enemyKilled) {
@@ -410,7 +443,6 @@ function randomizeEnemy() {
 		// Up Round Counter by 1
 		roundCounter++;
 		depthCheck();
-		document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
 	}
 
 	// Randomize and Boss/Special enemy setup
@@ -418,30 +450,46 @@ function randomizeEnemy() {
 
 		// Area 0 Boss
 		case 20:
+			bossTime = true;
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][0].length), 0));
 			currentEnemy = Enemies[2][0][randomEnemy];
-			enemyName = currentEnemy[0]
-			break;
+		break;
 
 		// Area 1 Boss
 		case 40:
+			bossTime = true;
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][1].length), 0));
 			currentEnemy = Enemies[2][1][randomEnemy];
-			enemyName = currentEnemy[0]
 			break;
 
 		// Area 2 Boss
 		case 60:
+			bossTime = true;
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][2].length), 0));
 			currentEnemy = Enemies[2][2][randomEnemy];
-			enemyName = currentEnemy[0]
 			break;
 
 		// Area 3 Boss
 		case 80:
+			bossTime = true;
+			specialEncounter = true;
+			
+			document.getElementById("actionLog").innerHTML = IntroText[2][0];
+			
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][3].length), 0));
 			currentEnemy = Enemies[2][3][randomEnemy];
-			enemyName = currentEnemy[0]
+			break;
+			
+		// Back to Menu (playtest) [UNFINISHED]
+		case 81:
+			randomEnemy = 0;
+			currentEnemy = Enemies[1][0][randomEnemy];
+		
+			alertTitle = "LIQUID DIET";
+			alertMainText = "Congratulations!<br>You have beaten the playtest!<br><br>Fancy a NG+?";
+			alertButtonText = "HELL YEAH";
+			alert();
+			
 			break;
 
 		// BASIC ENEMIES
@@ -449,18 +497,8 @@ function randomizeEnemy() {
 			bossTime = false;
 			specialEncounter = false;
 
-
-			var sameEnemy = undefined;
-
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[0][currentDepth].length), 0));
 			currentEnemy = Enemies[0][currentDepth][randomEnemy];
-
-			currentEnemyLines = currentEnemy[6].length;
-
-			// Setup Enemy name & intro
-			enemyName = currentEnemy[0];
-
-			document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "<strong>" + enemyName + "</strong> stares at you...<br></span>";
 			break;
 	}
 
@@ -469,17 +507,19 @@ function randomizeEnemy() {
 	enemyDrop = currentEnemy[4][0];
 
 	// Enemy HP setup (+1 every Depth (*2 on Bosses))
-	if (bossTime == true && specialEncounter == false) {
+	if (bossTime) {
 		currentEnemyHP = Math.floor((currentEnemy[2] + currentDepth) * 2);
 		console.log("Current Enemy's true HP:", currentEnemy[2] + currentDepth, "* 2 =", (currentEnemy[2] + currentDepth) * 2, "(BOSSFIGHT)");
 		console.log("Therefore, currentEnemyHP =", Math.floor(currentEnemy[2] + currentDepth), "* 2 =", currentEnemyHP, "(BOSSFIGHT)");
 	}
-	else if (specialEncounter == false) {
+	else if (!specialEncounter) {
 		currentEnemyHP = Math.floor(currentEnemy[2] + currentDepth);
 		console.log("Current Enemy's true HP:", (currentEnemy[2] + currentDepth));
 		console.log("Therefore, currentEnemyHP =", currentEnemyHP);
 	}
 
+	enemyName = currentEnemy[0];
+	currentEnemyLines = currentEnemy[6].length;
 	document.getElementById("enemyName").innerHTML = enemyName;
 	document.getElementById("enemyImg").src = currentEnemy[1];
 
@@ -501,6 +541,16 @@ function randomizeEnemy() {
 	// Set enemy HP
 	currentEnemyMaxHP = currentEnemyHP;
 	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+	
+	// Set intro text
+	if (!bossTime && !specialEncounter) {
+		console.log("notboss");
+		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'><strong>" + enemyName + "</strong> " + IntroText[0][Math.floor(Math.random() * IntroText[0].length)];
+	}
+	else if (bossTime) {
+		console.log("boss");
+		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>The <strong>" + enemyName + "</strong> " + IntroText[1][Math.floor(Math.random() * IntroText[1].length)];
+	}
 
 	enableAll();
 
@@ -515,7 +565,7 @@ function randomizeEnemy() {
 window.onload = function () {
 	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 	disableInvs();
-	document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
+	depthCheck();
 	randomizeEnemy();
 };
 
@@ -740,6 +790,7 @@ function playerRevive() {
 		fullInv = false;
 		currentDepth = 0;
 		depthName = currentDepth;
+		depthCheck();
 		document.body.style.backgroundColor = "#d7d7d7";
 		itemSlot1 = Items[0];
 		itemSlot2 = Items[0];
@@ -753,7 +804,6 @@ function playerRevive() {
 		currentArmor = Armors[0];
 
 		roundCounter = 1;
-		document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
 
 		randomizeEnemy();
 		enableActs();
@@ -1820,4 +1870,12 @@ function createCustomAlert(txt) {
 
 function removeCustomAlert() {
 	document.getElementsByTagName("body")[0].removeChild(document.getElementById("hideAway"));
+	
+	if (roundCounter > 80) {
+		roundCounter = 0;
+		depthCheck();
+		randomizeEnemy();
+		
+//		toMenu();         // This is for later >SEOKU
+	}
 }
