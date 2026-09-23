@@ -8,15 +8,15 @@ TO-DO:
 
 - Priority -
 Losing (DONE)
-Item inventory slots
+Item inventory slots (DONE)
 Item usage (DONE)
 Item drops (DONE)
 Accuracy (DONE)
 Sequential enemies (DONE)
 Different Weapons (DONE)
-Enemy tiers
-Enemy dialogue
+Enemy dialogue (DONE)
 High Score
+Different "depths" (DONE)
 
 - Other -
 Original Sprites
@@ -24,7 +24,6 @@ UI
 
 IDEAS:
 
-Different "depths" (Difficulty ramp)
 Unexpected events?
 Psychopomp-esque portrait indicating player HP
-Underlying story? Reocurring motifs?
+Underlying story? Reocurring motifs? (WORKIN ON IT!)
