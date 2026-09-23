@@ -1,14 +1,9 @@
-img, noHighlight, #alertBox {
+img, button, noHighlight, .noHighlight, .score, #alertBox {
 	user-select: none;
 }
 
 .weaponmenu {
     visibility: hidden;
-}
-
-/* No highlight between buttons */
-.noHighlight {
-	user-select: none;
 }
 
 
@@ -66,7 +61,7 @@ img, noHighlight, #alertBox {
 }
 
 /* Alert Button */
-#alertBox #closeBtn {
+#alertBox a {
 	display: block;
 	position: relative;
 	margin: 5px auto;
@@ -84,6 +79,6 @@ img, noHighlight, #alertBox {
 	cursor: pointer;
 }
 
-#alertBox #closeBtn:hover {
+#alertBox a:hover {
 	background-color: #1F4C7D;
 }

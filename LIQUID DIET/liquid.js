@@ -8,7 +8,7 @@ const Enemies = [
 	[
 		// DEPTH 0 ENEMIES
 		[
-			["TRAINING DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 0, 0], [2, 2], [1, 1], ['<i>The enemy has nothing to say, but... </i> <br>', '<i>It keeps looking at another enemy, then back at what it\'s holding... </i> <br>']],
+			["TRAINING DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 0, 0], [2, 4], [1, 1], ['<i>The enemy has nothing to say, but... </i> <br>', '<i>It keeps looking at another enemy, then back at what it\'s holding... </i> <br>']],
 			["MISS OBEAST", "Images/Enemy_MISS_OBEAST.png", 2, [1, 0, 0, 2, 0, 0], [1, 1], [1, 2], ['<i>"Meee- oh, my lucky charm. I\'d never give it away. You\'d have to steal it!"</i> <br>', '<i>"Maaa- oh, but if I\'m drunk, I might also, accidentally..."</i> <br>',]],
 		],
 		// Depth 0 Bosses
@@ -16,7 +16,7 @@ const Enemies = [
 
 		// DEPTH 1 ENEMIES
 		[
-			["WILD ANGEL", "Images/PLACEHOLDER.png", 3, [1, 1, 0, 0, 1, 0], [1, 4], [1, 1], ['<i>"The weak-willed are not long for this world. They all play a part in a system."</i> <br>', '<i>"Predator and prey, it\'s the natural order of things."</i> <br>', '<i>"...But what would <strong> you </strong> understand about serving a higher purpose?"</i> <br>', '<i>The enemy\'s mouth is too full to speak.</i> <br>']],
+			["WILD ANGEL", "Images/PLACEHOLDER.png", 3, [1, 1, 0, 0, 1, 0], [1, 2], [1, 1], ['<i>"The weak-willed are not long for this world. They all play a part in a system."</i> <br>', '<i>"Predator and prey, it\'s the natural order of things."</i> <br>', '<i>"...But what would <strong> you </strong> understand about serving a higher purpose?"</i> <br>', '<i>The enemy\'s mouth is too full to speak.</i> <br>']],
 			["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 0], [1, 1], [1, 3], ['<i>"Looking for trouble? Huh?"</i> <br>', '<i>"You don\'t know what I got under there."</i> <br>', '<i>"Hahaha. Come and get it. IF YOU CAN REACH IT!"</i> <br>']],
 		],
 		// DEPTH 2 ENEMIES
@@ -42,23 +42,23 @@ const Enemies = [
 	[
 		// DEPTH 0 BOSSES
 		[
-			["AREA 0 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
-			["OTHER AREA 0 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
+			["AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		],
 		// DEPTH 1 BOSSES
 		[
-			["AREA 1 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
-			["OTHER AREA 1 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
+			["AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		],
 		// DEPTH 2 BOSSES
 		[
-			["AREA 2 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
-			["OTHER AREA 2 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
+			["AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		],
 		// DEPTH 3 BOSSES
 		[
-			["AREA 3 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
-			["OTHER AREA 3 BOSS", "Images/PLACEHOLDER.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
+			["AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		]
 
 	],
@@ -84,21 +84,21 @@ const Enemies = [
 const Items = [
 
 	// Empty (0)
-	["Empty", "Images/Item_Empty.png", itemNull, 0],
+	["Empty", "Images/Item_Empty.png", "Null", 0],
 
 	// Positive Items (1 - 4)
-	["Energy Drink", "Images/Item_Energy.png", itemHeal, 1],
-	["Sludge", "Images/Item_Sludge.png", itemDMG, 2],
-	["Chimera Fetus", "Images/Item_Fetus.png", itemDMG, 1],
-	["Juicy Nectar", "Images/Item_Blood.png", itemHeal, 2], // True heal in itemHeal();
+	["Energy Drink", "Images/Item_Energy.png", "Heal", 1],
+	["Sludge", "Images/Item_Sludge.png", "DMG", 2],
+	["Chimera Fetus", "Images/Item_Fetus.png", "DMG", 1],
+	["Juicy Nectar", "Images/Item_Blood.png", "Heal", 2], // True heal in itemHeal();
 
 	// Negative Items (5 - 6)
-	["Electric Caress", "Images/Item_ObeastFur.png", itemHeal, -1], // Round 10
-	["Piercing Gaze", "Imaes/Item_ChimEye.png", itemDMG, -1], // Round 30
+	["Electric Caress", "Images/Item_ObeastFur.png", "Heal", -1],
+	["Piercing Gaze", "Imaes/Item_ChimEye.png", "DMG", -1],
 
 	// Useless items (7 - 8)
-	["Test UslHeal", "Images/PLACEHOLDER.png", itemHeal, 0],
-	["Test UslDMG", "Images/PLACEHOLDER.png", itemDMG, 0],
+	["Test UslHeal", "Images/PLACEHOLDER.png", "Heal", 0],
+	["Test UslDMG", "Images/PLACEHOLDER.png", "DMG", 0],
 	
 ];
 
@@ -122,7 +122,7 @@ const Weapons = [
 	["Spiky Tails", "Images/Weapon_Tail.png", 3, 750],
 
 	// Negative Weapons (3)
-	["Hand Puppet", "Images/Weapon_Dummy.png", -2, 1000], // Round 20
+	["Hand Puppet", "Images/Weapon_Dummy.png", -2, 1000],
 
 	// Useless Weapons (4 - 5)
 	["Test UslDMG", "Images/PLACEHOLDER.png", 0, 1000],
@@ -204,73 +204,179 @@ const IntroText = [
 // SETUP
 // =============================
 
-debugmode = false;
+gameLoad = false;
+gameOn = false;
+saveExists = JSON.parse(localStorage.getItem("hasSaved"));
+playedOnce = JSON.parse(localStorage.getItem("hasPlayed"));
 
-// Juicyheal stuff
-lastEnemyHP = 0;
-juicyHeal = 2;
-enemyKilled = false;
+if (playedOnce) {
+	highScore = JSON.parse(localStorage.getItem("topScore"));
+}
+else {
+	highScore = 0;
+}
 
-// Actionlog stuff
-line = 0; 		// The dialogue line of an enemy
-actionLine = 1;
-deleteLine = 1;
-maxLines = 11; 	// Amount of lines readable in the actionlog (+1), can be changed
 
-// Enemy stuff
-currentEnemyLines = 0;
-currentEnemyMinHP = 0;
-currentEnemyHP = 3;
-currentEnemyMaxHP = currentEnemyHP;
-enemyDrop = Items[0];
-enemyDropType = undefined;
-specialEncounter = false;
-bossTime = false;
+// =============================
+// MAIN PAGE
+// =============================
 
-// Player stuff
-minPlayerHP = ogPlayerMinHP = 0;
-maxPlayerHP = ogPlayerMaxHP = 20;
-currentPlayerHP = ogPlayerCurrentHP = 5;
-ranOff = false;
-runFail = false;
-currentWeapon = Weapons[0];
-currentArmor = Armors[0];
-equipWhat = undefined;
-knowsWeapons = false;
-knowsArmors = false;
+function startGame() {
+	if (!gameLoad) {
+		resetData();
+	}
+	
+	document.body.innerHTML = '<h1 style="margin-bottom: 0">LIQUID DIET</h1>\
+		<h2 id="roundNum" style="margin-top: 0"></h2>\
+\
+		<h3 id="enemyName"></h3>\
+		<p>Enemy HP: <span id="enemyHP"> </span></p>\
+		<img id="enemyImg" src="Images/PLACEHOLDER.png" alt="Enemy">\
+\
+		<br>\
+\
+		<div class="noHighlight">\
+			<button id="playerAttack" onclick="Attack()"> Attack </button>\
+			<button id="talking" onclick="talkTo()"> Talk </button>\
+			<button id="runAway" onclick="Run()"> Run </button>\
+		</div>\
+\
+		<p id="playerStats">Your HP: <span id="playerHP"></span></p>\
+\
+		<div class="noHighlight">\
+			<button id="inventory1" onclick="useItem(event)">Empty</button>\
+			<button id="inventory2" onclick="useItem(event)">Empty</button>\
+			<button id="inventory3" onclick="useItem(event)">Empty</button>\
+		</div>\
+\
+		<h5> ACTION LOG </h5>\
+		<div class="actionlog">\
+			<p id="actionLog"></p>\
+		</div>\
+\
+		<div class="weaponmenu" id="weaponMenu">\
+			<h3> Equipment Menu </h3>\
+			<span class="noHighlight">\
+				<button id="weaponEquipBtn">Equip</button>\
+				<button id="weaponDiscardBtn">Discard</button>\
+			</span>\
+		</div>\
+\
+		<script src="liquid.js"> </script>';
+	
+	debugmode = false;
 
-// Special Timer stuff
-specialTimer = 1;
-specialTimerMax = 1;
-specialTimerActive = false;
-specialTimerWhy = undefined; // Reason for activation, used to raise max in specialTimerMoment();
+	// Juicyheal stuff
+	lastEnemyHP = 0;
+	juicyHeal = 2;
+	enemyKilled = false;
 
-// HTML stuff
-roundCounter = 0;
-weaponMenu.style.visibility = "hidden";
-weaponEquipBtn.disabled = true;
-weaponDiscardBtn.disabled = true;
-document.getElementById("weaponEquipBtn").addEventListener("click", weaponEquip);
-document.getElementById("weaponDiscardBtn").addEventListener("click", weaponDiscard);
+	// Actionlog stuff
+	line = 0; 		// The dialogue line of an enemy
+	actionLine = 1;
+	deleteLine = 1;
+	maxLines = 11; 	// Amount of lines readable in the actionlog (+1), can be changed
 
-// Depth stuff
-currentDepth = 0;
-depthName = currentDepth;
-depthCheck();
+	// Enemy stuff
+	currentEnemyLines = 0;
+	currentEnemyMinHP = 0;
+	currentEnemyHP = 3;
+	currentEnemyMaxHP = currentEnemyHP;
+	enemyDrop = Items[0];
+	enemyDropType = undefined;
+	specialEncounter = false;
+	bossTime = false;
 
-// Inventory stuff
-clickFix = false; // Fixes a weird issue with negative itemHeal
-itemSlot1 = Items[0];
-itemSlot2 = Items[0];
-itemSlot3 = Items[0];
-anyItem = itemSlot1 || itemSlot2 || itemSlot3;
-fullInv = false;
-itemUsed = undefined;
+	// Player stuff
+	minPlayerHP = ogPlayerMinHP = 0;
+	maxPlayerHP = ogPlayerMaxHP = 20;
+	currentPlayerHP = ogPlayerCurrentHP = 5;
+	ranOff = false;
+	runFail = false;
+	currentWeapon = Weapons[0];
+	currentArmor = Armors[0];
+	equipWhat = undefined;
+	knowsWeapons = false;
+	knowsArmors = false;
 
-// Alert stuff
-alertTitle = "ALERT TEST";
-alertMainText = "Wow!<br>You just tested the cool alert.";
-alertButtonText = "AWESOME BRO";
+	// Special Timer stuff
+	specialTimer = 1;
+	specialTimerMax = 1;
+	specialTimerActive = false;
+	specialTimerWhy = undefined; // Reason for activation, used to raise max in specialTimerMoment();
+
+	// HTML stuff
+	roundCounter = 0;
+	weaponMenu.style.visibility = "hidden";
+	weaponEquipBtn.disabled = true;
+	weaponDiscardBtn.disabled = true;
+	document.getElementById("weaponEquipBtn").addEventListener("click", weaponEquip);
+	document.getElementById("weaponDiscardBtn").addEventListener("click", weaponDiscard);
+
+	// Depth stuff
+	currentDepth = 0;
+	depthName = currentDepth;
+
+	// Inventory stuff
+	clickFix = false; // Fixes a weird issue with negative itemHeal
+	itemSlot1 = Items[0];
+	itemSlot2 = Items[0];
+	itemSlot3 = Items[0];
+	itemSlot1[0] = "Empty";
+	itemSlot1[2] = "Null";
+	itemSlot2[0] = "Empty";
+	itemSlot2[0] = "Null";
+	itemSlot3[0] = "Empty";
+	itemSlot3[2] = "Null";
+	anyItem = itemSlot1 || itemSlot2 || itemSlot3;
+	fullInv = false;
+	itemUsed = undefined;
+	item1taken = false;
+	item2taken = false;
+	item3taken = false;
+
+	// Alert stuff
+	alertTitle = "ALERT TEST";
+	alertMainText = "Wow!<br>You just tested the cool alert.";
+	alertButtonText = "AWESOME BRO";
+	
+	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+	disableInvs();
+	depthCheck();
+	
+	if (!gameLoad) {
+		randomizeEnemy();
+	}
+	else {
+		gameLoad = false;
+	}
+	
+	if (document.getElementById("enemyImg").getAttribute('src') == "Images/PLACEHOLDER.png") {
+		document.getElementById("enemyImg").style.height = "8.5em";
+	}
+	else {
+		document.getElementById("enemyImg").style.height = "auto";
+	}
+	
+	gameOn = true;
+	playedOnce = true;
+	localStorage.setItem("hasPlayed", JSON.stringify(playedOnce));
+}
+
+// Load saved game
+function loadGame() {
+	gameLoad = true;
+	
+	startGame();
+	loadData();
+	
+	if (itemSlot1[2] != "Null" && itemSlot2[2] != "Null" && itemSlot3[2] != "Null") {
+		fullInv = true;
+
+		// PLACEHOLDER DEBUG CONSOLE LOG
+		console.log("All item slots taken. fullInv is", fullInv);
+	}
+}
 
 // Disable/Enable functions stuff
 function disableActs() {
@@ -304,6 +410,67 @@ function enableActs() {
 	runFail = false;
 }
 
+function enableInvs() {
+	if (itemSlot1[2] == "Null" || itemSlot1 == Items[0]) {
+		inventory1.disabled = true;
+	}
+	else {
+		inventory1.disabled = false;
+		item1taken = true;
+	}
+
+	if (itemSlot2[2] == "Null" || itemSlot2 == Items[0]) {
+		inventory2.disabled = true;
+	}
+	else {
+		inventory2.disabled = false;
+	}
+
+	if (itemSlot3[2] == "Null" || itemSlot3 == Items[0]) {
+		inventory3.disabled = true;
+	}
+	else {
+		inventory3.disabled = false;
+	}
+}
+
+function enableAll() {
+	playerAttack.disabled = false;
+
+	if (line >= currentEnemyLines) {
+		talking.disabled = true;
+	}
+	else {
+		talking.disabled = false;
+	}
+
+	runAway.disabled = false;
+
+	if (itemSlot1[2] == "Null") {
+		inventory1.disabled = true;
+	}
+	else {
+		inventory1.disabled = false;
+	}
+
+	if (itemSlot2[2] == "Null") {
+		inventory2.disabled = true;
+	}
+	else {
+		inventory2.disabled = false;
+	}
+
+	if (itemSlot3[2] == "Null") {
+		inventory3.disabled = true;
+	}
+	else {
+		inventory3.disabled = false;
+	}
+
+	runFail = false;
+}
+
+
 function depthCheck() {
 
 	const pageText = document.getElementById("playerStats");
@@ -326,13 +493,13 @@ function depthCheck() {
 		depthName = currentDepth;
 	}
 
-	if (roundCounter >= 61 && roundCounter < 80) {
+	if (roundCounter >= 61 && roundCounter <= 80) {
 		document.body.style.background = "rgb(155, 38, 50)";
 		currentDepth = 3;
 		depthName = currentDepth;
 	}
 
-	if (roundCounter == 80) {
+	if (roundCounter == 81) {
 		document.body.style.background = "red";
 		currentDepth = 3;
 		depthName = "WRONG";
@@ -340,69 +507,7 @@ function depthCheck() {
 	
 	document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
 
-	console.log("Current Depth:", currentDepth);
-	console.log("Depth Name:", depthName);
-
 	// VIVO> Unsure how to make DEPTH: WRONG unlockable.
-}
-
-function enableInvs() {
-	if (itemSlot1 == Items[0]) {
-		inventory1.disabled = true;
-	}
-	else {
-		inventory1.disabled = false;
-	}
-
-	if (itemSlot2 == Items[0]) {
-		inventory2.disabled = true;
-	}
-	else {
-		inventory2.disabled = false;
-	}
-
-	if (itemSlot3 == Items[0]) {
-		inventory3.disabled = true;
-	}
-	else {
-		inventory3.disabled = false;
-	}
-}
-
-function enableAll() {
-	playerAttack.disabled = false;
-
-	if (line >= currentEnemyLines) {
-		talking.disabled = true;
-	}
-	else {
-		talking.disabled = false;
-	}
-
-	runAway.disabled = false;
-
-	if (itemSlot1 == Items[0]) {
-		inventory1.disabled = true;
-	}
-	else {
-		inventory1.disabled = false;
-	}
-
-	if (itemSlot2 == Items[0]) {
-		inventory2.disabled = true;
-	}
-	else {
-		inventory2.disabled = false;
-	}
-
-	if (itemSlot3 == Items[0]) {
-		inventory3.disabled = true;
-	}
-	else {
-		inventory3.disabled = false;
-	}
-
-	runFail = false;
 }
 
 function playerReset() {
@@ -412,6 +517,213 @@ function playerReset() {
 	currentWeapon = Weapons[0];
 	currentArmor = Armors[0];
 }
+
+
+// Save data stuff
+function newGamePlus() {
+	line = 0;
+
+	equipmentUpdate();
+	
+	roundCounter = 0;
+	currentDepth = 0;
+	depthName = currentDepth;
+	depthCheck();
+
+	randomizeEnemy();
+	enableAll();
+}
+
+function resetData() {
+	
+	playedOnce = false;
+	localStorage.setItem("hasPlayed", JSON.stringify(playedOnce));
+	
+	// Round & Depth info
+	highScore = 0;
+	localStorage.setItem("roundNow", 0);
+	localStorage.setItem("depthNow", 0);
+	localStorage.setItem("depthNowName", 0);
+	localStorage.setItem("topScore", JSON.stringify(highScore));
+	document.getElementById("score").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + highScore;
+	
+	saveExists = false;
+	localStorage.setItem("hasSaved", JSON.stringify(saveExists));
+	document.getElementById("contGame").disabled = true;
+	document.getElementById("gameDatawipe").disabled = true;
+
+	localStorage.clear();
+	console.log("Data erased!", localStorage);
+}
+
+function saveData() {
+	
+	// Round & Depth info
+	localStorage.setItem("roundNow", JSON.stringify(roundCounter));
+	localStorage.setItem("depthNow", JSON.stringify(currentDepth));
+	localStorage.setItem("depthNowName", depthName); 
+	localStorage.setItem("topScore", JSON.stringify(highScore));
+	
+	// Player info
+	localStorage.setItem("plyMaxHealth", JSON.stringify(maxPlayerHP));
+	localStorage.setItem("plyMinHealth", JSON.stringify(minPlayerHP));
+	localStorage.setItem("plyHealth", JSON.stringify(currentPlayerHP));
+	localStorage.setItem("plyWeapon", JSON.stringify(currentWeapon));
+	localStorage.setItem("plyArmor", JSON.stringify(currentArmor));
+	localStorage.setItem("plyKnowsW", JSON.stringify(knowsWeapons));
+	localStorage.setItem("plyKnowsA", JSON.stringify(knowsArmors));
+
+	// Item & Inventory info
+	localStorage.setItem("1stItem", JSON.stringify(itemSlot1));
+	localStorage.setItem("1stItemType", itemSlot1[2]);
+	localStorage.setItem("1stInv", document.getElementById("inventory1").innerHTML);
+	localStorage.setItem("2ndItem", JSON.stringify(itemSlot2));
+	localStorage.setItem("2ndItemType", itemSlot2[2]);
+	localStorage.setItem("2ndInv", document.getElementById("inventory2").innerHTML);
+	localStorage.setItem("3rdItem", JSON.stringify(itemSlot3));
+	localStorage.setItem("3rdItemType", itemSlot3[2]);
+	localStorage.setItem("3rdInv", document.getElementById("inventory3").innerHTML);
+	localStorage.getItem("InvFull", JSON.stringify(fullInv));
+
+	// Enemy info
+	localStorage.setItem("enemyNow", JSON.stringify(currentEnemy));
+	localStorage.setItem("enemyNom", currentEnemy[0]);
+	localStorage.setItem("enemyPic", document.getElementById("enemyImg").src);
+	localStorage.setItem("enemyHealth", currentEnemyHP);
+	localStorage.setItem("enemyMaxHealth", currentEnemyMaxHP);
+	localStorage.setItem("enemyDT", JSON.stringify(enemyDropType));
+	localStorage.setItem("enemyD", JSON.stringify(enemyDrop));
+	localStorage.setItem("enemyBla", JSON.stringify(currentEnemyLines));
+	localStorage.setItem("isBoss", JSON.stringify(bossTime));
+	localStorage.setItem("isSpec", JSON.stringify(specialEncounter));
+	
+	console.log("Data saved!", localStorage);
+}
+
+function loadData() {
+	
+	elapsedTurns = 0;
+	line = 0;
+	playedOnce = true;
+	
+	// Round & Depth info
+	roundCounter = JSON.parse(localStorage.getItem("roundNow"));
+	currentDepth = JSON.parse(localStorage.getItem("depthNow"));
+	depthName = localStorage.getItem("depthNowName"); 
+	highScore = JSON.parse(localStorage.getItem("topScore"));
+	
+	// Player info
+	maxPlayerHP = JSON.parse(localStorage.getItem("plyMaxHealth"));
+	minPlayerHP = JSON.parse(localStorage.getItem("plyMinHealth"));
+	currentPlayerHP = JSON.parse(localStorage.getItem("plyHealth"));
+	currentWeapon = JSON.parse(localStorage.getItem("plyWeapon"));
+	currentArmor = JSON.parse(localStorage.getItem("plyArmor"));
+	knowsWeapons = JSON.parse(localStorage.getItem("plyKnowsW"));
+	knowsArmors = JSON.parse(localStorage.getItem("plyKnowsA"));
+
+	// Item & Inventory info
+	itemSlot1[2] = localStorage.getItem("1stItemType");
+	document.getElementById("inventory1").innerHTML = localStorage.getItem("1stInv");
+	itemSlot1 = JSON.parse(localStorage.getItem("1stItem"));
+	itemSlot2[2] = localStorage.getItem("2ndItemType");
+	document.getElementById("inventory2").innerHTML = localStorage.getItem("2ndInv");
+	itemSlot2 = JSON.parse(localStorage.getItem("2ndItem"));
+	itemSlot3[2] = localStorage.getItem("3rdItemType");
+	document.getElementById("inventory3").innerHTML = localStorage.getItem("3rdInv");
+	itemSlot3 = JSON.parse(localStorage.getItem("3rdItem"));
+	fullInv = JSON.parse(localStorage.getItem("InvFull"));
+
+	// Enemy info
+	currentEnemy = JSON.parse(localStorage.getItem("enemyNow"));
+	document.getElementById("enemyName").innerHTML = localStorage.getItem("enemyNom");
+	document.getElementById("enemyImg").src = localStorage.getItem("enemyPic");
+	currentEnemyHP = localStorage.getItem("enemyHealth");
+	currentEnemyMaxHP = localStorage.getItem("enemyMaxHealth");
+	enemyDropType = JSON.parse(localStorage.getItem("enemyDT"));
+	enemyDrop = JSON.parse(localStorage.getItem("enemyD"));
+	currentEnemyLines = JSON.parse(localStorage.getItem("enemyBla"));
+	bossTime = JSON.parse(localStorage.getItem("isBoss"));
+	specialEncounter = JSON.parse(localStorage.getItem("isSpec"));
+	
+	depthCheck();
+	enemyIntro();
+	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+	
+	enableInvs();
+	equipmentUpdate();
+
+	console.log("Data loaded!", localStorage);
+}
+
+
+// =============================
+// ON PAGE LOAD/RELOAD
+// =============================
+
+window.onbeforeunload = (event) => {
+	if (gameOn) {
+		saveData();
+	}
+}
+
+window.onload = (event) => {
+	highScore = JSON.parse(localStorage.getItem("topScore"));
+	if (highScore > 0) {
+		saveExists = true;
+	}
+	else {
+		highScore = 0;
+		saveExists = false;
+	}
+	setTimeout(() => { toMenu() }, 10);
+};
+
+
+// =============================
+// MAIN MENU
+// =============================
+
+function toMenu() {
+	gameOn = false;
+	
+	score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + highScore;
+	
+	document.body.innerHTML = '<h1 style="margin-bottom: 0">LIQUID DIET</h1>\
+		<h2 style="margin-top: 0"><u>by NURSEHELL</u></h2>\
+		<h3 id="score" style="margin-top: 0; display:inline-block;margin-bottom: 5px;">' + score + '</h3>&nbsp;&nbsp;&nbsp;<button id="gameDatawipe" onclick="resetData()"> RESET DATA </button>\
+\
+		<br>\
+\
+		<img src="Images/PLACEHOLDER.png" alt="Logo or something">\
+\
+		<br>\
+\
+		<div class="noHighlight" style="display: inline-flex;column-gap: 10px;flex-flow: row wrap;justify-content: center;left: -3em;position: absolute;margin-top: 1em;">\
+			<button id="play" onclick="startGame()" style="margin-bottom: 10px;margin-left: -0.75px;"> NEW GAME </button>\
+			<button id="contGame" onclick="loadGame()" style="margin-bottom: 10px;"> CONTINUE </button>\
+		<span class="break" style="flex-basis: 100%"></span>\
+			<button id="options" onclick="toOptions()"> OPTIONS (tba?) </button>\
+			<button id="menuBeast" onclick="toBestiary()"> BESTIARY (tba) </button>\
+		</div>\
+\
+		<script src="liquid.js"> </script>';
+	
+	if (!saveExists) {
+		document.getElementById("contGame").disabled = true;
+		document.getElementById("gameDatawipe").disabled = true;
+	}
+	else {
+		document.getElementById("contGame").disabled = false;
+		document.getElementById("gameDatawipe").disabled = false;
+	}
+	
+	document.getElementById("options").disabled = true;
+	document.getElementById("menuBeast").disabled = true; // SEOKU> These two are set to true for any other player to not be confused lol there's no code for them
+		
+	document.body.style.backgroundColor = "#d7d7d7";
+}
+
 
 // =============================
 // INITIALIZE ENEMY
@@ -434,6 +746,10 @@ function randomizeEnemy() {
 	if (ranOff) {
 		ranOff = false;
 		roundCounter++;
+		if (highScore < roundCounter) {
+			highScore = roundCounter;
+			localStorage.setItem("topScore", JSON.stringify(highScore));
+		}
 		depthCheck();
 	}
 
@@ -442,8 +758,14 @@ function randomizeEnemy() {
 
 		// Up Round Counter by 1
 		roundCounter++;
+		if (highScore < roundCounter) {
+			highScore = roundCounter;
+			localStorage.setItem("topScore", JSON.stringify(highScore));
+		}
 		depthCheck();
 	}
+	
+	console.log("Round:", roundCounter, "| Depth:", currentDepth, "| Depth Name:", depthName, "| Highscore:", highScore);
 
 	// Randomize and Boss/Special enemy setup
 	switch (roundCounter) {
@@ -486,10 +808,25 @@ function randomizeEnemy() {
 			currentEnemy = Enemies[1][0][randomEnemy];
 		
 			alertTitle = "LIQUID DIET";
-			alertMainText = "Congratulations!<br>You have beaten the playtest!<br><br>Fancy a NG+?";
-			alertButtonText = "HELL YEAH";
-			alert();
+			alertMainText = "Congratulations!<br>You have beaten the playtest!<br>Fancy a NG+?";
+			alertButton1Text = "YES";
+			alertButton2Text = "NO";
 			
+			customAlertChoice();
+			
+			btn1.id = "retryBtn";
+			btn2.id = "menuBtn";
+
+			btn1.onclick = function () {
+				newGamePlus();
+				removeCustomAlert();
+				return false;
+			}
+
+			btn2.onclick = function () {
+				toMenu();
+				return false;
+			}
 			break;
 
 		// BASIC ENEMIES
@@ -509,13 +846,11 @@ function randomizeEnemy() {
 	// Enemy HP setup (+1 every Depth (*2 on Bosses))
 	if (bossTime) {
 		currentEnemyHP = Math.floor((currentEnemy[2] + currentDepth) * 2);
-		console.log("Current Enemy's true HP:", currentEnemy[2] + currentDepth, "* 2 =", (currentEnemy[2] + currentDepth) * 2, "(BOSSFIGHT)");
-		console.log("Therefore, currentEnemyHP =", Math.floor(currentEnemy[2] + currentDepth), "* 2 =", currentEnemyHP, "(BOSSFIGHT)");
+		console.log("Current Enemy's true HP: (BaseHP + CurrentDepth) * 2 (", currentEnemy[2] + currentDepth, "* 2 =", (currentEnemy[2] + currentDepth) * 2, ") (BOSSFIGHT)");
 	}
 	else if (!specialEncounter) {
 		currentEnemyHP = Math.floor(currentEnemy[2] + currentDepth);
-		console.log("Current Enemy's true HP:", (currentEnemy[2] + currentDepth));
-		console.log("Therefore, currentEnemyHP =", currentEnemyHP);
+		console.log("Current Enemy's true HP: BaseHP + CurrentDepth (", currentEnemy[2], "+", currentDepth, "=", (currentEnemy[2] + currentDepth), ")");
 	}
 
 	enemyName = currentEnemy[0];
@@ -531,7 +866,7 @@ function randomizeEnemy() {
 		document.getElementById("enemyImg").style.height = "auto";
 	}
 
-	if (itemSlot1 != Items[0] && itemSlot2 != Items[0] && itemSlot3 != Items[0]) {
+	if (itemSlot1[2] != "Null" && itemSlot2[2] != "Null" && itemSlot3[2] != "Null") {
 		fullInv = true;
 
 		// PLACEHOLDER DEBUG CONSOLE LOG
@@ -542,32 +877,37 @@ function randomizeEnemy() {
 	currentEnemyMaxHP = currentEnemyHP;
 	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 	
+	enemyIntro();
+
+	enableAll();
+
+	saveExists = true;
+	localStorage.setItem("hasSaved", JSON.stringify(saveExists));
+	saveData();
+
+	return;
+}
+
+
+function enemyIntro() {
+	
+	enemyName = currentEnemy[0];
+	
 	// Set intro text
 	if (!bossTime && !specialEncounter) {
-		console.log("notboss");
+		console.log("notboss & notspecial");
 		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'><strong>" + enemyName + "</strong> " + IntroText[0][Math.floor(Math.random() * IntroText[0].length)];
 	}
 	else if (bossTime) {
 		console.log("boss");
 		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>The <strong>" + enemyName + "</strong> " + IntroText[1][Math.floor(Math.random() * IntroText[1].length)];
 	}
-
-	enableAll();
-
-	return;
+	else if (specialEncounter) {
+		console.log("special");
+		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>" + IntroText[2][Math.floor(Math.random() * IntroText[2].length)];
+	}
+	
 }
-
-
-// =============================
-// ON PAGE LOAD
-// =============================
-
-window.onload = function () {
-	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
-	disableInvs();
-	depthCheck();
-	randomizeEnemy();
-};
 
 
 // =============================
@@ -600,15 +940,7 @@ function talkTo() {
 		}
 	}
 
-	// Actionlog Autoscroll
-	if (actionLine >= maxLines) {
-		const firstLine = document.getElementById(deleteLine);
-		firstLine.remove();
-		deleteLine++;
-
-		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log("Earliest line deleted. Onto line", deleteLine);
-	}
+	autoScroll();
 }
 
 
@@ -744,15 +1076,7 @@ function enemyTurn() {
 		}
 	}
 
-	// Actionlog Autoscroll
-	if (actionLine >= maxLines) {
-		const firstLine = document.getElementById(deleteLine);
-		firstLine.remove();
-		deleteLine++;
-
-		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log("Earliest line deleted. Onto line", deleteLine);
-	}
+	autoScroll();
 }
 
 
@@ -765,10 +1089,14 @@ function playerDefeat() {
 	actionLine = 1;
 	deleteLine = 1;
 
-	document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "You have died. <strong>The end.</strong><br>";
+	document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "You have succumbed. <strong>The end.</strong><br>";
 
-	document.getElementById("actionLog").innerHTML += '<br><button id="retryBtn" style="cursor: pointer;font-size: 1.75em;background: none;border: none;" id="retryBtn"><strong><u>Try again?</u></strong></button>';
+	document.getElementById("actionLog").innerHTML += '<p style="font-size: 1.75em;margin-bottom:0.5em;"><strong><u>Try again?</u></strong></p>';
+
+	document.getElementById("actionLog").innerHTML += '<button id="retryBtn"> START ANEW </button> <button id="menuBtn"> BACK TO MENU </button>';
+	
 	document.getElementById("retryBtn").addEventListener("click", playerRevive);
+	document.getElementById("menuBtn").addEventListener("click", toMenu);
 }
 
 
@@ -785,25 +1113,24 @@ function playerRevive() {
 
 		playerReset();
 
-		equipmentUpdate();
-
 		fullInv = false;
+		disableInvs();
+		equipmentUpdate();
+		
+		roundCounter = 0;
 		currentDepth = 0;
 		depthName = currentDepth;
 		depthCheck();
-		document.body.style.backgroundColor = "#d7d7d7";
-		itemSlot1 = Items[0];
-		itemSlot2 = Items[0];
-		itemSlot3 = Items[0];
+		
+		itemSlot1[0] = "Empty";
+		itemSlot1[2] = "Null";
+		itemSlot2[0] = "Empty";
+		itemSlot2[2] = "Null";
+		itemSlot3[0] = "Empty";
+		itemSlot3[2] = "Null";
 		document.getElementById("inventory1").innerHTML = itemSlot1[0];
 		document.getElementById("inventory2").innerHTML = itemSlot2[0];
 		document.getElementById("inventory3").innerHTML = itemSlot3[0];
-
-		disableInvs();
-		currentWeapon = Weapons[0];
-		currentArmor = Armors[0];
-
-		roundCounter = 1;
 
 		randomizeEnemy();
 		enableActs();
@@ -940,15 +1267,15 @@ function grantDrop() {
 	actionLine++;
 
 	switch (Items[enemyDrop][2]) {
-		case itemNull:
+		case "Null":
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
 			break;
 
-		case itemDMG:
+		case "DMG":
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>ATTACK ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
 			break;
 
-		case itemHeal:
+		case "Heal":
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>HEALING ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
 			break;
 	}
@@ -968,15 +1295,15 @@ function grantOverk() {
 	}
 
 	switch (Items[enemyDrop][2]) {
-		case itemNull:
+		case "Null":
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong><u>OVERKILL!!</u> ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
 			break;
 
-		case itemDMG:
+		case "DMG":
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong><u>OVERKILL!!</u> ATTACK ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
 			break;
 
-		case itemHeal:
+		case "Heal":
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong><u>OVERKILL!!</u> HEALING ITEM GOT!</strong> (" + Items[enemyDrop][0] + ")<br></span>";
 			break;
 	}
@@ -992,19 +1319,19 @@ function grantOverk() {
 
 function setupItem() {
 
-	if (itemSlot1 == Items[0]) {
+	if (itemSlot1[2] == "Null") {
 		itemSlot1 = Items[enemyDrop];
 		document.getElementById("inventory1").innerHTML = Items[enemyDrop][0];
 		document.getElementById("inventory1").addEventListener("click", enemyDrop[2], { once: true });
 	}
 
-	else if (itemSlot1 != Items[0] && itemSlot2 == Items[0]) {
+	else if (itemSlot1[2] != "Null" && itemSlot2[2] == "Null") {
 		itemSlot2 = Items[enemyDrop];
 		document.getElementById("inventory2").innerHTML = Items[enemyDrop][0];
 		document.getElementById("inventory2").addEventListener("click", enemyDrop[2], { once: true });
 	}
 
-	else if (itemSlot1 != Items[0] && itemSlot2 != Items[0] && itemSlot3 == Items[0]) {
+	else if (itemSlot1[2] != "Null" && itemSlot2[2] != "Null" && itemSlot3[2]== "Null") {
 		itemSlot3 = Items[enemyDrop];
 		document.getElementById("inventory3").innerHTML = Items[enemyDrop][0];
 		document.getElementById("inventory3").addEventListener("click", enemyDrop[2], { once: true });
@@ -1279,15 +1606,6 @@ function Attack() {
 		}
 	}
 
-	if (currentWeapon != Weapons[0]) {
-		knowsWeapons = true;
-		equipmentUpdate();
-	}
-	if (currentArmor != Armors[0]) {
-		knowsArmors = true;
-		equipmentUpdate();
-	}
-
 	// Finish turn
 	setTimeout(() => {
 		if (currentEnemyHP >= 1) {
@@ -1305,16 +1623,7 @@ function Attack() {
 
 	runFail = false;
 
-	// Actionlog Autoscroll
-	if (actionLine >= maxLines) {
-		const firstLine = document.getElementById(deleteLine);
-		firstLine.remove();
-		deleteLine++;
-
-		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log("Earliest line deleted. Onto line", deleteLine);
-	}
-
+	autoScroll();
 }
 
 
@@ -1369,15 +1678,7 @@ function Run() {
 		disableAll();
 		setTimeout(() => { enemyTurn(); }, 1000);
 
-		// Actionlog Autoscroll
-		if (actionLine >= maxLines) {
-			const firstLine = document.getElementById(deleteLine);
-			firstLine.remove();
-			deleteLine++;
-
-			// PLACEHOLDER DEBUG CONSOLE LOG
-			console.log("Earliest line deleted. Onto line", deleteLine);
-		}
+		autoScroll();
 	}
 }
 
@@ -1399,23 +1700,19 @@ function useItem(e) {
 			itemUsed = itemSlot1;
 
 			// Healing at MaxHP
-			if (currentPlayerHP === maxPlayerHP && itemUsed[2] === itemHeal) {
+			if (currentPlayerHP === maxPlayerHP && itemUsed[2] == "Heal") {
 				currentPlayerHP = maxPlayerHP;
 				document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You're already at Max HP!<br></span>";
-				clickFix = true;
+				autoScroll();
+				return;
 			}
 
 			// Nomal item use
 			else {
-				if (clickFix == true) {
-					itemHeal();
-				}
-
 				fullInv = false;
 				itemSlot1 = Items[0];
 				document.getElementById("inventory1").innerHTML = Items[0][0];
 				inventory1.disabled = true;
-				clickFix = false;
 			}
 			break;
 
@@ -1424,23 +1721,19 @@ function useItem(e) {
 			itemUsed = itemSlot2;
 
 			// Healing at MaxHP
-			if (currentPlayerHP === maxPlayerHP && itemUsed[2] === itemHeal) {
+			if (currentPlayerHP === maxPlayerHP && itemUsed[2] == "Heal") {
 				currentPlayerHP = maxPlayerHP;
 				document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You're already at Max HP!<br></span>";
-				clickFix = true;
+				autoScroll();
+				return;
 			}
 
 			// Normal item use
 			else {
-				if (clickFix == true) {
-					itemHeal();
-				}
-
 				fullInv = false;
 				itemSlot2 = Items[0];
 				document.getElementById("inventory2").innerHTML = Items[0][0];
 				inventory2.disabled = true;
-				clickFix = false;
 			}
 			break;
 
@@ -1449,37 +1742,33 @@ function useItem(e) {
 			itemUsed = itemSlot3;
 
 			// Healing at MaxHP
-			if (currentPlayerHP === maxPlayerHP && itemUsed[2] === itemHeal) {
+			if (currentPlayerHP === maxPlayerHP && itemUsed[2] == "Heal") {
 				currentPlayerHP = maxPlayerHP;
 				document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You're already at Max HP!<br></span>";
-				clickFix = true;
+				autoScroll();
+				return;
 			}
 
 			// Normal item used
 			else {
-				if (clickFix == true) {
-					itemHeal();
-				}
-
 				fullInv = false;
 				itemSlot3 = Items[0];
 				document.getElementById("inventory3").innerHTML = Items[0][0];
 				inventory3.disabled = true;
-				clickFix = false;
 			}
 			break;
 	}
 
 	switch (itemUsed[2]) {
-		case itemNull:
+		case "Null":
 			itemNull();
 			break;
 
-		case itemHeal:
+		case "Heal":
 			itemHeal();
 			break;
 
-		case itemDMG:
+		case "DMG":
 			itemDMG();
 			break;
 	}
@@ -1493,15 +1782,7 @@ function useItem(e) {
 		}
 	}
 
-	// Actionlog Autoscroll
-	if (actionLine >= maxLines) {
-		const firstLine = document.getElementById(deleteLine);
-		firstLine.remove();
-		deleteLine++;
-
-		// PLACEHOLDER DEBUG CONSOLE LOG
-		console.log("Earliest line deleted. Onto line", deleteLine);
-	}
+	autoScroll();
 }
 
 function itemHeal() {
@@ -1509,7 +1790,7 @@ function itemHeal() {
 		return;
 	}
 	else {
-		if (itemUsed == Items[4]) {
+		if (itemUsed[0] == "Juicy Nectar") {
 			var healedHP = Math.min(juicyHeal, (maxPlayerHP - currentPlayerHP));
 
 			// PLACEHOLDER DEBUG CONSOLE LOG
@@ -1594,235 +1875,253 @@ function specialTimerMoment() {
 		specialTimerActive = false;
 		specialTimer = 1;
 
-		console.log("Special Timer deactivated");
+		console.log("Special Timer not active");
 	}
 }
 
 
 // =============================
+// ACTIONLOG AUTOSCROLL
+// =============================
+
+function autoScroll() {
+	if (actionLine >= maxLines) {
+		const firstLine = document.getElementById(deleteLine);
+		firstLine.remove();
+		deleteLine++;
+
+		// PLACEHOLDER DEBUG CONSOLE LOG
+		console.log("Earliest line deleted. Onto line", deleteLine);
+	}
+}
+
+// =============================
 // DEBUG MODE
 // =============================
 
-if (debugmode == true) {
+if (gameOn) {
+	
+	if (debugmode) {
 
-	var STAT = 0;
-	var CHOICE = undefined;
+		var STAT = 0;
+		var CHOICE = undefined;
 
-	console.log("DEBUG MODE ACTIVE - INSTRUCTIONS:");
-	console.log("Press RIGHT to edit Attack DMG. Press RIGHT TWICE to edit Enemy HP.");
-	console.log("Press LEFT to edit Player HP. Press LEFT TWICE to edit Max HP.");
-	console.log("Press UP to Raise Stat. Press DOWN to Lower Stat.");
-	console.log("Press R to Reroll Enemy (doesn't reset stats). Press K to Reset Run (resets stats).");
-	console.log("Press P to Pass Round (doesn't reset stats). Press A to test Custom Alert.");
-	console.log("Press H to read instructions again.");
-	console.log("####################################################################################################");
+		console.log("DEBUG MODE ACTIVE - INSTRUCTIONS:");
+		console.log("Press RIGHT to edit Attack DMG. Press RIGHT TWICE to edit Enemy HP.");
+		console.log("Press LEFT to edit Player HP. Press LEFT TWICE to edit Max HP.");
+		console.log("Press UP to Raise Stat. Press DOWN to Lower Stat.");
+		console.log("Press R to Reroll Enemy (doesn't reset stats). Press K to Reset Run (resets stats).");
+		console.log("Press P to Pass Round (doesn't reset stats). Press A to test Custom Alert.");
+		console.log("Press H to read instructions again.");
+		console.log("####################################################################################################");
 
-	document.addEventListener("keyup", function (event) {
+		document.addEventListener("keyup", function (event) {
 
-		// Debug - Alert Test
-		if (event.keyCode == 65) {
-			alert();
-			console.log("####################################################################################################");
-			console.log("DEBUG MODE: Alert launched successfully.");
-			console.log("INFO: Nothing other than the blue button should be clickable.");
-		}
+			// Debug - Alert Test
+			if (event.keyCode == 65) {
+				alert();
+				console.log("####################################################################################################");
+				console.log("DEBUG MODE: Alert launched successfully.");
+				console.log("INFO: Nothing other than the blue button should be clickable.");
+			}
 
-		// Debug - Help
-		else if (event.keyCode == 72) {
-			console.log("####################################################################################################");
-			console.log("Press RIGHT to edit Attack DMG. Press RIGHT TWICE to edit Enemy HP.");
-			console.log("Press LEFT to edit Player HP. Press LEFT TWICE to edit Max HP.");
-			console.log("Press UP to Raise Stat. Press DOWN to Lower Stat.");
-			console.log("Press R to Reroll Enemy (doesn't reset stats). Press K to Reset Run (resets stats).");
-			console.log("Press P to Pass Round (brings enemy to 0HP). Press A to test Custom Alert.");
-			console.log("Press H to read instructions again.");
-			console.log("####################################################################################################");
-			return;
-		}
-
-		// Debug - Reset Run
-		else if (event.keyCode == 75) {
-			console.log("####################################################################################################");
-			actionLine = 1;
-			playerRevive();
-			console.log("DEBUG MODE: Run reset successfully.");
-			return;
-		}
-
-		// Debug - Pass Round
-		else if (event.keyCode == 80) {
-			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyMinHP + "/" + currentEnemyMaxHP + "</strong>";
-			console.log("####################################################################################################");
-			enemyKilled = true;
-			actionLine = 1;
-			enemyDefeat();
-			console.log("DEBUG MODE: Round passed successfully. Onto round", roundCounter + 1);
-			console.log("/!\\ PLEASE WAIT UNTIL NEXT ENEMY BEFORE USING DEBUG AGAIN.");
-			return;
-		}
-
-		// Debug - Reroll Enemy
-		else if (event.keyCode == 82) {
-			console.log("####################################################################################################");
-			actionLine = 1;
-			randomizeEnemy();
-			console.log("DEBUG MODE: Enemy rerolled successfully.");
-			console.log("INFO: The enemy might look the same, but it isn't.");
-			return;
-		}
-
-		// Debug - Raise Stats
-		else if (event.key == "ArrowUp") {
-
-			if (CHOICE === undefined) {
-				console.log("DEBUG MODE: Nothing is selected! Press H (or read above) for instructions!");
+			// Debug - Help
+			else if (event.keyCode == 72) {
+				console.log("####################################################################################################");
+				console.log("Press RIGHT to edit Attack DMG. Press RIGHT TWICE to edit Enemy HP.");
+				console.log("Press LEFT to edit Player HP. Press LEFT TWICE to edit Max HP.");
+				console.log("Press UP to Raise Stat. Press DOWN to Lower Stat.");
+				console.log("Press R to Reroll Enemy (doesn't reset stats). Press K to Reset Run (resets stats).");
+				console.log("Press P to Pass Round (brings enemy to 0HP). Press A to test Custom Alert.");
+				console.log("Press H to read instructions again.");
+				console.log("####################################################################################################");
 				return;
 			}
 
-			STAT++;
+			// Debug - Reset Run
+			else if (event.keyCode == 75) {
+				console.log("####################################################################################################");
+				actionLine = 1;
+				playerRevive();
+				console.log("DEBUG MODE: Run reset successfully.");
+				return;
+			}
 
-			if (CHOICE === "Enemy HP") {
-				currentEnemyHP = STAT;
-				currentEnemyMaxHP = STAT;
-				document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+			// Debug - Pass Round
+			else if (event.keyCode == 80) {
+				document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyMinHP + "/" + currentEnemyMaxHP + "</strong>";
+				console.log("####################################################################################################");
+				enemyKilled = true;
+				actionLine = 1;
+				enemyDefeat();
+				console.log("DEBUG MODE: Round passed successfully. Onto round", roundCounter + 1);
+				console.log("/!\\ PLEASE WAIT UNTIL NEXT ENEMY BEFORE USING DEBUG AGAIN.");
+				return;
+			}
+
+			// Debug - Reroll Enemy
+			else if (event.keyCode == 82) {
+				console.log("####################################################################################################");
+				actionLine = 1;
+				randomizeEnemy();
+				console.log("DEBUG MODE: Enemy rerolled successfully.");
+				console.log("INFO: The enemy might look the same, but it isn't.");
+				return;
+			}
+
+			// Debug - Raise Stats
+			else if (event.key == "ArrowUp") {
+
+				if (CHOICE === undefined) {
+					console.log("DEBUG MODE: Nothing is selected! Press H (or read above) for instructions!");
+					return;
+				}
+
+				STAT++;
+
+				if (CHOICE === "Enemy HP") {
+					currentEnemyHP = STAT;
+					currentEnemyMaxHP = STAT;
+					document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+					console.log(CHOICE, "raised to", STAT);
+					return;
+				}
+				else if (CHOICE === "Attack DMG") {
+					currentWeapon[2] = STAT;
+				}
+				else if (CHOICE === "Player HP") {
+					currentPlayerHP = STAT;
+
+					if (currentPlayerHP > maxPlayerHP) {
+						maxPlayerHP = currentPlayerHP;
+					}
+
+					document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+				}
+				else if (CHOICE === "Max HP") {
+					maxPlayerHP = STAT;
+					document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+				}
+
 				console.log(CHOICE, "raised to", STAT);
-				return;
 			}
-			else if (CHOICE === "Attack DMG") {
-				currentWeapon[2] = STAT;
-			}
-			else if (CHOICE === "Player HP") {
-				currentPlayerHP = STAT;
 
-				if (currentPlayerHP > maxPlayerHP) {
-					maxPlayerHP = currentPlayerHP;
+			// Debug - Lower Stats
+			else if (event.key == "ArrowDown") {
+
+				if (CHOICE === undefined) {
+					console.log("DEBUG MODE: Nothing is selected! Press H (or read above) for instructions!");
+					return;
 				}
 
-				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+				STAT--;
+
+				if (CHOICE === "Enemy HP") {
+					currentEnemyHP = STAT;
+					document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+
+					if (currentEnemyHP <= 0) {
+						enemyDefeat();
+						console.log("/!\\ PLEASE WAIT UNTIL NEXT ENEMY BEFORE USING DEBUG AGAIN.");
+						return;
+					}
+				}
+				else if (CHOICE === "Attack DMG") {
+					currentWeapon[2] = STAT;
+				}
+				else if (CHOICE === "Player HP") {
+					currentPlayerHP = STAT;
+					document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+
+					if (currentPlayerHP <= 0) {
+						playerDefeat();
+						console.log("/!\\ PLEASE RESET RUN BEFORE USING DEBUG AGAIN.");
+						return;
+					}
+				}
+				else if (CHOICE === "Max HP") {
+					maxPlayerHP = STAT;
+
+					if (maxPlayerHP < currentPlayerHP) {
+						currentPlayerHP = maxPlayerHP;
+					}
+
+					document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+
+					if (currentPlayerHP <= 0) {
+						playerDefeat();
+						console.log("/!\\ PLEASE RESET RUN BEFORE USING DEBUG AGAIN.");
+						return;
+					}
+				}
+
+				console.log(CHOICE, "lowered to", STAT);
 			}
-			else if (CHOICE === "Max HP") {
-				maxPlayerHP = STAT;
-				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
-			}
 
-			console.log(CHOICE, "raised to", STAT);
-		}
-
-		// Debug - Lower Stats
-		else if (event.key == "ArrowDown") {
-
-			if (CHOICE === undefined) {
-				console.log("DEBUG MODE: Nothing is selected! Press H (or read above) for instructions!");
-				return;
-			}
-
-			STAT--;
-
-			if (CHOICE === "Enemy HP") {
-				currentEnemyHP = STAT;
-				document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
-
-				if (currentEnemyHP <= 0) {
-					enemyDefeat();
-					console.log("/!\\ PLEASE WAIT UNTIL NEXT ENEMY BEFORE USING DEBUG AGAIN.");
+			// Debug - Switch left (Enemy HP -> Attack DMG -> Player HP -> Max HP)
+			else if (event.key == "ArrowLeft") {
+				if (CHOICE === "Enemy HP") {
+					CHOICE = "Attack DMG";
+					STAT = currentWeapon[2];
+					console.log("####################################################################################################");
+					console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentWeapon[2]);
+					console.log("INFO: Enemy HP scales with your Attack DMG.");
+					return;
+				}
+				if (CHOICE === "Attack DMG" || CHOICE === undefined) {
+					CHOICE = "Player HP";
+					STAT = currentPlayerHP;
+					console.log("####################################################################################################");
+					console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentPlayerHP);
+					console.log("INFO: Raising past Max HP will ALSO raise Max HP. Lowering to 0 will kill you.");
+					return;
+				}
+				else if (CHOICE === "Player HP") {
+					CHOICE = "Max HP";
+					STAT = maxPlayerHP;
+					console.log("####################################################################################################");
+					console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", maxPlayerHP);
+					console.log("INFO: Lowering below Player HP will ALSO lower Player HP.");
+				}
+				else if (CHOICE === "Max HP") {
+					console.log("DEBUG MODE: Nothing past " + CHOICE + ". Press RIGHT to switch.");
 					return;
 				}
 			}
-			else if (CHOICE === "Attack DMG") {
-				currentWeapon[2] = STAT;
-			}
-			else if (CHOICE === "Player HP") {
-				currentPlayerHP = STAT;
-				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 
-				if (currentPlayerHP <= 0) {
-					playerDefeat();
-					console.log("/!\\ PLEASE RESET RUN BEFORE USING DEBUG AGAIN.");
+			// Debug - Switch right (Max HP -> Player HP -> Attack DMG -> Enemy HP)
+			else if (event.key == "ArrowRight") {
+				if (CHOICE === "Max HP") {
+					CHOICE = "Player HP";
+					STAT = currentPlayerHP;
+					console.log("####################################################################################################");
+					console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentPlayerHP);
+					console.log("INFO: Raising past Max HP will ALSO raise Max HP. Lowering to 0 will kill you.");
+					return;
+				}
+				else if (CHOICE === "Player HP" || CHOICE === undefined) {
+					CHOICE = "Attack DMG";
+					STAT = currentWeapon[2];
+					console.log("####################################################################################################");
+					console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentWeapon[2]);
+					console.log("INFO: Enemy HP scales with your Attack DMG.");
+					return;
+				}
+				else if (CHOICE === "Attack DMG") {
+					CHOICE = "Enemy HP";
+					STAT = currentEnemyHP;
+					console.log("####################################################################################################");
+					console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentEnemyHP);
+					console.log("INFO: Raising will ALSO raise the enemy's Max HP. Lowering to 0 will kill it.");
+					return;
+				}
+				else if (CHOICE === "Enemy HP") {
+					console.log("DEBUG MODE: Nothing past " + CHOICE + ". Press LEFT to switch.");
 					return;
 				}
 			}
-			else if (CHOICE === "Max HP") {
-				maxPlayerHP = STAT;
-
-				if (maxPlayerHP < currentPlayerHP) {
-					currentPlayerHP = maxPlayerHP;
-				}
-
-				document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
-
-				if (currentPlayerHP <= 0) {
-					playerDefeat();
-					console.log("/!\\ PLEASE RESET RUN BEFORE USING DEBUG AGAIN.");
-					return;
-				}
-			}
-
-			console.log(CHOICE, "lowered to", STAT);
-		}
-
-		// Debug - Switch left (Enemy HP -> Attack DMG -> Player HP -> Max HP)
-		else if (event.key == "ArrowLeft") {
-			if (CHOICE === "Enemy HP") {
-				CHOICE = "Attack DMG";
-				STAT = currentWeapon[2];
-				console.log("####################################################################################################");
-				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentWeapon[2]);
-				console.log("INFO: Enemy HP scales with your Attack DMG.");
-				return;
-			}
-			if (CHOICE === "Attack DMG" || CHOICE === undefined) {
-				CHOICE = "Player HP";
-				STAT = currentPlayerHP;
-				console.log("####################################################################################################");
-				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentPlayerHP);
-				console.log("INFO: Raising past Max HP will ALSO raise Max HP. Lowering to 0 will kill you.");
-				return;
-			}
-			else if (CHOICE === "Player HP") {
-				CHOICE = "Max HP";
-				STAT = maxPlayerHP;
-				console.log("####################################################################################################");
-				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", maxPlayerHP);
-				console.log("INFO: Lowering below Player HP will ALSO lower Player HP.");
-			}
-			else if (CHOICE === "Max HP") {
-				console.log("DEBUG MODE: Nothing past " + CHOICE + ". Press RIGHT to switch.");
-				return;
-			}
-		}
-
-		// Debug - Switch right (Max HP -> Player HP -> Attack DMG -> Enemy HP)
-		else if (event.key == "ArrowRight") {
-			if (CHOICE === "Max HP") {
-				CHOICE = "Player HP";
-				STAT = currentPlayerHP;
-				console.log("####################################################################################################");
-				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentPlayerHP);
-				console.log("INFO: Raising past Max HP will ALSO raise Max HP. Lowering to 0 will kill you.");
-				return;
-			}
-			else if (CHOICE === "Player HP" || CHOICE === undefined) {
-				CHOICE = "Attack DMG";
-				STAT = currentWeapon[2];
-				console.log("####################################################################################################");
-				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentWeapon[2]);
-				console.log("INFO: Enemy HP scales with your Attack DMG.");
-				return;
-			}
-			else if (CHOICE === "Attack DMG") {
-				CHOICE = "Enemy HP";
-				STAT = currentEnemyHP;
-				console.log("####################################################################################################");
-				console.log("DEBUG MODE: Now editing", CHOICE, "// Currently at", currentEnemyHP);
-				console.log("INFO: Raising will ALSO raise the enemy's Max HP. Lowering to 0 will kill it.");
-				return;
-			}
-			else if (CHOICE === "Enemy HP") {
-				console.log("DEBUG MODE: Nothing past " + CHOICE + ". Press LEFT to switch.");
-				return;
-			}
-		}
-	});
+		});
+	}
 }
 
 
@@ -1830,13 +2129,7 @@ if (debugmode == true) {
 // CUSTOM ALERT (Style in CSS)
 // =============================
 
-if (document.getElementById) {
-	window.alert = function (txt) {
-		createCustomAlert(txt);
-	}
-}
-
-function createCustomAlert(txt) {
+function customAlert(txt) {
 	d = document;
 
 	if (d.getElementById("hideAway")) {
@@ -1857,7 +2150,12 @@ function createCustomAlert(txt) {
 	msg = alertObj.appendChild(d.createElement("p"));
 	msg.innerHTML = alertMainText;
 
-	btn = alertObj.appendChild(d.createElement("a"));
+	oneBtn = alertObj.appendChild(d.createElement("div"));
+	oneBtn.id = "oneBtn";
+	oneBtn.style.display = "flex";
+	oneBtn.style.marginBottom = "0.35em";
+
+	btn = d.getElementById("oneBtn").appendChild(d.createElement("a"));
 	btn.id = "closeBtn";
 	btn.appendChild(d.createTextNode(alertButtonText));
 	btn.focus();
@@ -1868,14 +2166,47 @@ function createCustomAlert(txt) {
 	}
 }
 
+function customAlertChoice(txt) {
+	d = document;
+
+	if (d.getElementById("hideAway")) {
+		return;
+	}
+
+	mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+	mObj.id = "hideAway";
+
+	alertObj = mObj.appendChild(d.createElement("div"));
+	alertObj.id = "alertBox";
+
+	alertObj.style.visiblity = "visible";
+
+	h1 = alertObj.appendChild(d.createElement("h1"));
+	h1.appendChild(d.createTextNode(alertTitle));
+
+	msg = alertObj.appendChild(d.createElement("p"));
+	msg.innerHTML = alertMainText;
+
+	twoBtns = alertObj.appendChild(d.createElement("div"));
+	twoBtns.id = "twoBtns";
+	twoBtns.style.display = "flex";
+	twoBtns.style.marginLeft = "2em";
+	twoBtns.style.marginRight = "2em";
+	twoBtns.style.marginBottom = "0.35em";
+	
+	btn1 = d.getElementById("twoBtns").appendChild(d.createElement("a"));
+	// Set btn1.id in randomizeEnemy();
+	btn1.appendChild(d.createTextNode(alertButton1Text));
+	btn1.focus();
+	
+	btn2 = d.getElementById("twoBtns").appendChild(d.createElement("a"));
+	// Set btn2.id in randomizeEnemy();
+	btn2.appendChild(d.createTextNode(alertButton2Text));
+	btn2.focus();
+
+	// Set btn1.onclick and btn2.onclick functions in randomizeEnemy();
+}
+
 function removeCustomAlert() {
 	document.getElementsByTagName("body")[0].removeChild(document.getElementById("hideAway"));
-	
-	if (roundCounter > 80) {
-		roundCounter = 0;
-		depthCheck();
-		randomizeEnemy();
-		
-//		toMenu();         // This is for later >SEOKU
-	}
 }

@@ -2,4 +2,4 @@
 A browser game inspired by NO-SKIN by NoEye-Soft.  
 Javascript coding exercise for NURSEHELL, with help from SEOKU!
 
-Currently on Pre-Alpha 1.4.2
+Currently on Pre-Alpha 1.5

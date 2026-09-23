@@ -15,7 +15,7 @@ Accuracy (DONE)
 Sequential enemies (DONE)
 Different Weapons (DONE)
 Enemy dialogue (DONE)
-High Score
+High Score (DONE)
 Different "depths" (DONE)
 
 - Other -
@@ -24,6 +24,6 @@ UI
 
 IDEAS:
 
-Unexpected events?
+Unexpected events? (SEOKU> Systems for them are in place at least)
 Psychopomp-esque portrait indicating player HP
-Underlying story? Reocurring motifs? (WORKIN ON IT!)
+Underlying story? Reocurring motifs? (VIVO> WORKIN ON IT!)
