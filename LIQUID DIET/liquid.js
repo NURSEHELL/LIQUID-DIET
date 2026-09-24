@@ -204,15 +204,23 @@ const IntroText = [
 // SETUP
 // =============================
 
+quickerTest = 1; // Set this number to 100 in console to speed up transitions
 gameLoad = false;
 gameOn = false;
+
+if (JSON.parse(localStorage.getItem("hasDied")) == null) {
+	hasDied = false;
+	localStorage.setItem("hasDied", JSON.stringify(hasDied));
+}
+
 saveExists = JSON.parse(localStorage.getItem("hasSaved"));
+
 playedOnce = JSON.parse(localStorage.getItem("hasPlayed"));
 
 if (playedOnce) {
-	highScore = JSON.parse(localStorage.getItem("topScore"));
+	menuScore = JSON.parse(localStorage.getItem("topScore"));
 }
-else {
+else if (!playedOnce || playedOnce == null) {
 	highScore = 0;
 }
 
@@ -225,6 +233,8 @@ function startGame() {
 	if (!gameLoad) {
 		resetData();
 	}
+	
+	hasDied = false;
 	
 	document.body.innerHTML = '<h1 style="margin-bottom: 0">LIQUID DIET</h1>\
 		<h2 id="roundNum" style="margin-top: 0"></h2>\
@@ -359,8 +369,6 @@ function startGame() {
 	}
 	
 	gameOn = true;
-	playedOnce = true;
-	localStorage.setItem("hasPlayed", JSON.stringify(playedOnce));
 }
 
 // Load saved game
@@ -375,6 +383,13 @@ function loadGame() {
 
 		// PLACEHOLDER DEBUG CONSOLE LOG
 		console.log("All item slots taken. fullInv is", fullInv);
+	}
+	
+	if (document.getElementById("enemyImg").getAttribute('src') == "Images/PLACEHOLDER.png") {
+		document.getElementById("enemyImg").style.height = "8.5em";
+	}
+	else {
+		document.getElementById("enemyImg").style.height = "auto";
 	}
 }
 
@@ -536,16 +551,13 @@ function newGamePlus() {
 
 function resetData() {
 	
-	playedOnce = false;
-	localStorage.setItem("hasPlayed", JSON.stringify(playedOnce));
-	
 	// Round & Depth info
 	highScore = 0;
 	localStorage.setItem("roundNow", 0);
 	localStorage.setItem("depthNow", 0);
 	localStorage.setItem("depthNowName", 0);
-	localStorage.setItem("topScore", JSON.stringify(highScore));
-	document.getElementById("score").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + highScore;
+	localStorage.setItem("topScore", JSON.stringify(menuScore));
+	document.getElementById("score").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + menuScore;
 	
 	saveExists = false;
 	localStorage.setItem("hasSaved", JSON.stringify(saveExists));
@@ -561,8 +573,7 @@ function saveData() {
 	// Round & Depth info
 	localStorage.setItem("roundNow", JSON.stringify(roundCounter));
 	localStorage.setItem("depthNow", JSON.stringify(currentDepth));
-	localStorage.setItem("depthNowName", depthName); 
-	localStorage.setItem("topScore", JSON.stringify(highScore));
+	localStorage.setItem("depthNowName", depthName);
 	
 	// Player info
 	localStorage.setItem("plyMaxHealth", JSON.stringify(maxPlayerHP));
@@ -572,6 +583,7 @@ function saveData() {
 	localStorage.setItem("plyArmor", JSON.stringify(currentArmor));
 	localStorage.setItem("plyKnowsW", JSON.stringify(knowsWeapons));
 	localStorage.setItem("plyKnowsA", JSON.stringify(knowsArmors));
+	localStorage.setItem("hasDied", JSON.stringify(deathMenu));
 
 	// Item & Inventory info
 	localStorage.setItem("1stItem", JSON.stringify(itemSlot1));
@@ -597,6 +609,15 @@ function saveData() {
 	localStorage.setItem("isBoss", JSON.stringify(bossTime));
 	localStorage.setItem("isSpec", JSON.stringify(specialEncounter));
 	
+	if (!playedOnce) {
+		playedOnce = true;
+		localStorage.setItem("hasPlayed", JSON.stringify(playedOnce));
+	}
+	
+	localStorage.setItem("oldScore", JSON.stringify(highScore));
+	localStorage.setItem("topScore", JSON.stringify(menuScore));
+	
+	console.log("current highscore", highScore, "menu highscore", JSON.parse(localStorage.getItem("topScore")));
 	console.log("Data saved!", localStorage);
 }
 
@@ -609,8 +630,10 @@ function loadData() {
 	// Round & Depth info
 	roundCounter = JSON.parse(localStorage.getItem("roundNow"));
 	currentDepth = JSON.parse(localStorage.getItem("depthNow"));
-	depthName = localStorage.getItem("depthNowName"); 
-	highScore = JSON.parse(localStorage.getItem("topScore"));
+	depthName = localStorage.getItem("depthNowName");
+	
+	menuScore = JSON.parse(localStorage.getItem("topScore"));
+	highScore = JSON.parse(localStorage.getItem("oldScore"));
 	
 	// Player info
 	maxPlayerHP = JSON.parse(localStorage.getItem("plyMaxHealth"));
@@ -664,12 +687,18 @@ function loadData() {
 window.onbeforeunload = (event) => {
 	if (gameOn) {
 		saveData();
+		localStorage.setItem("hasDied", JSON.stringify(hasDied));
 	}
 }
 
 window.onload = (event) => {
-	highScore = JSON.parse(localStorage.getItem("topScore"));
-	if (highScore > 0) {
+	
+	menuScore = JSON.parse(localStorage.getItem("topScore"));
+	deathMenu = JSON.parse(localStorage.getItem("hasDied"));
+	console.log("deathmenu", deathMenu, "menuscore", menuScore);
+	console.log("playedOnce =", playedOnce);
+	
+	if (menuScore > 0) {
 		saveExists = true;
 	}
 	else {
@@ -687,7 +716,10 @@ window.onload = (event) => {
 function toMenu() {
 	gameOn = false;
 	
-	score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + highScore;
+	deathMenu = JSON.parse(localStorage.getItem("hasDied"));
+	console.log("hasDied =", deathMenu);
+	
+	score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + menuScore;
 	
 	document.body.innerHTML = '<h1 style="margin-bottom: 0">LIQUID DIET</h1>\
 		<h2 style="margin-top: 0"><u>by NURSEHELL</u></h2>\
@@ -709,19 +741,34 @@ function toMenu() {
 \
 		<script src="liquid.js"> </script>';
 	
-	if (!saveExists) {
-		document.getElementById("contGame").disabled = true;
-		document.getElementById("gameDatawipe").disabled = true;
-	}
-	else {
-		document.getElementById("contGame").disabled = false;
-		document.getElementById("gameDatawipe").disabled = false;
-	}
+	document.getElementById("gameDatawipe").addEventListener("click", (e) => {
+		menuScore = 0;
+		localStorage.setItem("topScore", JSON.stringify(menuScore));
+		toMenu();
+	});
 	
 	document.getElementById("options").disabled = true;
 	document.getElementById("menuBeast").disabled = true; // SEOKU> These two are set to true for any other player to not be confused lol there's no code for them
 		
 	document.body.style.backgroundColor = "#d7d7d7";
+	
+	if (!saveExists) {
+		document.getElementById("gameDatawipe").disabled = true;
+	}
+	else {
+		document.getElementById("gameDatawipe").disabled = false;
+	}
+	
+	if (!deathMenu) {
+		if (!saveExists) {
+			document.getElementById("contGame").disabled = true;
+			return;
+		}
+		document.getElementById("contGame").disabled = false;
+	}
+	else if (deathMenu) {
+		document.getElementById("contGame").disabled = true;
+	}
 }
 
 
@@ -748,7 +795,11 @@ function randomizeEnemy() {
 		roundCounter++;
 		if (highScore < roundCounter) {
 			highScore = roundCounter;
-			localStorage.setItem("topScore", JSON.stringify(highScore));
+			if (menuScore < roundCounter) {
+				menuScore = roundCounter;
+				console.log("surpassed highscore");
+				localStorage.setItem("topScore", JSON.stringify(menuScore));
+			}
 		}
 		depthCheck();
 	}
@@ -760,7 +811,11 @@ function randomizeEnemy() {
 		roundCounter++;
 		if (highScore < roundCounter) {
 			highScore = roundCounter;
-			localStorage.setItem("topScore", JSON.stringify(highScore));
+			if (menuScore < roundCounter) {
+				menuScore = roundCounter;
+				console.log("surpassed highscore");
+				localStorage.setItem("topScore", JSON.stringify(menuScore));
+			}
 		}
 		depthCheck();
 	}
@@ -969,13 +1024,13 @@ function enemyTurn() {
 			var negDamage = true;
 		}
 
-		// Raised by 1 every 2 Depths. Lowered/Inverted by current armor's protection
+		// Raised by 1 every 3 Depths. Lowered/Inverted by current armor's protection
 		if (!negDamage) {
-			var enemyDmg = Math.floor(1 + (currentDepth / 2) - currentArmor[2]);
+			var enemyDmg = Math.floor(1 + (currentDepth / 3) - currentArmor[2]);
 			var playerHurt = Math.max(0, enemyDmg);
 		}
 		else {
-			var enemyDmg = Math.floor(1 + (currentDepth / 2) - (currentArmor[2] + 2));
+			var enemyDmg = Math.floor(1 + (currentDepth / 3) - (currentArmor[2] + 2));
 			var playerHurt = Math.max(0, enemyDmg);
 		}
 
@@ -1019,8 +1074,8 @@ function enemyTurn() {
 			currentEnemyHP = currentEnemyMaxHP;
 		}
 		else {
-			// Raised by 1 every 2 depths
-			enemyHeal = Math.floor(2 + (currentDepth / 2));
+			// Raised by 1 every 3 depths
+			enemyHeal = Math.floor(2 + (currentDepth / 3));
 
 			console.log("Enemy Healed by", 2 + (currentDepth / 2), ", rounded to", enemyHeal);
 
@@ -1051,8 +1106,9 @@ function enemyTurn() {
 		elapsedTurns = 0;
 	}
 
-	if (currentPlayerHP < minPlayerHP) {
+	if (currentPlayerHP <= minPlayerHP) {
 		currentPlayerHP = minPlayerHP;
+		playerDefeat();
 	}
 
 	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
@@ -1088,6 +1144,10 @@ function playerDefeat() {
 	disableAll();
 	actionLine = 1;
 	deleteLine = 1;
+	
+	hasDied = true;
+	deathMenu = hasDied;
+	localStorage.setItem("hasDied", JSON.stringify(deathMenu));
 
 	document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "You have succumbed. <strong>The end.</strong><br>";
 
@@ -1133,8 +1193,13 @@ function playerRevive() {
 		document.getElementById("inventory3").innerHTML = itemSlot3[0];
 
 		randomizeEnemy();
+		
+		hasDied = false;
+		deathMenu = hasDied;
+		localStorage.setItem("hasDied", JSON.stringify(deathMenu));
+		
 		enableActs();
-	}, 2500);
+	}, 2500 / quickerTest);
 }
 
 
@@ -1212,7 +1277,7 @@ function weaponEquip() {
 	equipmentUpdate();
 
 	// Finish Round
-	setTimeout(() => { randomizeEnemy(); }, 2500);
+	setTimeout(() => { randomizeEnemy(); }, 2500 / quickerTest);
 }
 
 function weaponDiscard() {
@@ -1239,7 +1304,7 @@ function weaponDiscard() {
 	equipmentUpdate();
 
 	// Finish Round
-	setTimeout(() => { randomizeEnemy(); }, 2500);
+	setTimeout(() => { randomizeEnemy(); }, 2500 / quickerTest);
 }
 
 
@@ -1283,7 +1348,7 @@ function grantDrop() {
 	setupItem();
 
 	// Finish Round
-	setTimeout(() => { randomizeEnemy(); }, 2500);
+	setTimeout(() => { randomizeEnemy(); }, 2500 / quickerTest);
 }
 
 function grantOverk() {
@@ -1314,7 +1379,7 @@ function grantOverk() {
 	console.log("Enemy died at", currentEnemyHP, "HP. juicyHeal should be one above & always positive:", juicyHeal);
 
 	// Finish Round
-	setTimeout(() => { randomizeEnemy(); }, 2500);
+	setTimeout(() => { randomizeEnemy(); }, 2500 / quickerTest);
 }
 
 function setupItem() {
@@ -1404,7 +1469,7 @@ function maxItems() {
 	}
 
 	// Finish Round
-	setTimeout(() => { randomizeEnemy(); }, 2500);
+	setTimeout(() => { randomizeEnemy(); }, 2500 / quickerTest);
 }
 
 function noDrops() {
@@ -1419,7 +1484,7 @@ function noDrops() {
 	}
 
 	// Finish Round
-	setTimeout(() => { randomizeEnemy(); }, 2500);
+	setTimeout(() => { randomizeEnemy(); }, 2500 / quickerTest);
 }
 
 function alrEquipped() {
@@ -1434,7 +1499,7 @@ function alrEquipped() {
 	}
 
 	// Finish Round
-	setTimeout(() => { randomizeEnemy(); }, 2500);
+	setTimeout(() => { randomizeEnemy(); }, 2500 / quickerTest);
 }
 
 
@@ -1508,7 +1573,7 @@ function Attack() {
 
 	critNum = currentWeapon[2] * 2;
 	hitRate = currentWeapon[3];
-	critRate = Math.floor((Math.PI / currentWeapon[3]) * 10000);
+	critRate = Math.floor((Math.PI / currentWeapon[3]) * 7500);
 
 	var hitRNG = Math.floor((Math.random() * 1000) + 1);
 
@@ -1613,13 +1678,13 @@ function Attack() {
 		}
 
 		else {
-			setTimeout(() => { enemyDefeat(); }, 1000);
+			setTimeout(() => { enemyDefeat(); }, 1000 / quickerTest);
 		}
 
 		if (currentPlayerHP <= minPlayerHP) {
 			playerDefeat();
 		}
-	}, 1000);
+	}, 1000 / quickerTest);
 
 	runFail = false;
 
@@ -1665,7 +1730,7 @@ function Run() {
 		deleteLine = 1;
 
 		document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "You managed to escape... <br></span>";
-		setTimeout(() => { randomizeEnemy(); }, 2500);
+		setTimeout(() => { randomizeEnemy(); }, 2500 / quickerTest);
 	}
 	else {
 
@@ -1676,7 +1741,7 @@ function Run() {
 		actionLine++;
 		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>Failed to flee!</strong> Try to attack the enemy again...<br></span>";
 		disableAll();
-		setTimeout(() => { enemyTurn(); }, 1000);
+		setTimeout(() => { enemyTurn(); }, 1000 / quickerTest);
 
 		autoScroll();
 	}
@@ -1841,7 +1906,7 @@ function itemDMG() {
 		disableAll();
 		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyMinHP + "/" + currentEnemyMaxHP + "</strong>";
 
-		setTimeout(() => { enemyDefeat(); }, 2000);
+		setTimeout(() => { enemyDefeat(); }, 2000 / quickerTest);
 	}
 	else if (currentEnemyHP >= currentEnemyMaxHP) {
 		currentEnemyMaxHP = currentEnemyHP;
