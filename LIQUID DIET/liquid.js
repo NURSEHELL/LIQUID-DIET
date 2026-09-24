@@ -361,13 +361,6 @@ function startGame() {
 		gameLoad = false;
 	}
 	
-	if (document.getElementById("enemyImg").getAttribute('src') == "Images/PLACEHOLDER.png") {
-		document.getElementById("enemyImg").style.height = "8.5em";
-	}
-	else {
-		document.getElementById("enemyImg").style.height = "auto";
-	}
-	
 	gameOn = true;
 }
 
@@ -385,7 +378,7 @@ function loadGame() {
 		console.log("All item slots taken. fullInv is", fullInv);
 	}
 	
-	if (document.getElementById("enemyImg").getAttribute('src') == "Images/PLACEHOLDER.png") {
+	if (currentEnemy[1] == "Images/PLACEHOLDER.png") {
 		document.getElementById("enemyImg").style.height = "8.5em";
 	}
 	else {
@@ -600,7 +593,7 @@ function saveData() {
 	// Enemy info
 	localStorage.setItem("enemyNow", JSON.stringify(currentEnemy));
 	localStorage.setItem("enemyNom", currentEnemy[0]);
-	localStorage.setItem("enemyPic", document.getElementById("enemyImg").src);
+	localStorage.setItem("enemyPic", currentEnemy[1]);
 	localStorage.setItem("enemyHealth", currentEnemyHP);
 	localStorage.setItem("enemyMaxHealth", currentEnemyMaxHP);
 	localStorage.setItem("enemyDT", JSON.stringify(enemyDropType));
@@ -914,7 +907,7 @@ function randomizeEnemy() {
 	document.getElementById("enemyImg").src = currentEnemy[1];
 
 	// Scale down massive Placeholder pic
-	if (document.getElementById("enemyImg").getAttribute('src') == "Images/PLACEHOLDER.png") {
+	if (currentEnemy[1] == "Images/PLACEHOLDER.png") {
 		document.getElementById("enemyImg").style.height = "8.5em";
 	}
 	else {
@@ -1579,22 +1572,73 @@ function Attack() {
 
 	// PLACEHOLDER DEBUG CONSOLE LOG
 	console.log("(MISS AREA) " + hitRate + " |", hitRNG, "| " + critRate + " (CRIT AREA)");
+	
+	// MEGAMISS Hit check
+	if (hitRNG === 1000) {
+		currentPlayerHP -= currentWeapon[2];
 
-	// CRIT Hit check
-	if (hitRNG <= critRate) {
-		currentEnemyHP -= critNum;
-
-		// Check if heal-attack
-		if (currentEnemyHP > currentEnemyMaxHP) {
-			currentEnemyMaxHP = currentEnemyHP;
+		// Negative weapon check
+		if (currentWeapon[2] < 0) {
 			actionLine++;
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>CRITICAL HIT!!</strong> You tear into the enemy! Yet it heals them...<br></span>";
-			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>CRITICAL MISS...</strong> You hit yourself... wait, that's good!<br></span>";
 		}
+
+		// Positive weapon check
+		else if (currentWeapon[2] > 0) {
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>CRITICAL MISS...</strong> You end up hurting yourself...<br></span>";
+		}
+
+		// Useless weapon check
 		else {
 			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>CRITICAL MISS...</strong> Thankfully, nothing changes...<br></span>";
+		}
+	}
+
+	// MEGACRIT Hit check
+	else if (hitRNG === 1) {
+		currentEnemy -= critNum * 2;
+
+		// Negative weapon check
+		if (currentWeapon[2] < 0) {
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>MASSIVE CRIT!!!</strong> You tear the enemy apart!! Yet it gets healed...<br></span>";
+		}
+
+		// Positive weapon check
+		else if (currentWeapon[2] > 0) {
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>MASSIVE CRIT!!!</strong> You tear the enemy apart!!<br></span>";
+		}
+
+		// Useless weapon check
+		else {
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>MASSIVE CRIT!!!</strong> You tear the enemy apart!! Yet nothing changes...<br></span>";
+		}
+	}
+
+	// CRIT Hit check
+	else if (hitRNG <= critRate) {
+		currentEnemyHP -= critNum;
+
+		// Negative weapon check
+		if (currentWeapon[2] < 0) {
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>CRITICAL HIT!!</strong> You tear into the enemy! Yet it gets healed...<br></span>";
+		}
+
+		// Positive weapon check
+		else if (currentWeapon[2] > 0) {
+			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>CRITICAL HIT!!</strong> You tear into the enemy!<br></span>";
-			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+		}
+
+		// Useless weapon check
+		else {
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>CRITICAL HIT!!</strong> You tear into the enemy! Yet nothing changes...<br></span>";
 		}
 	}
 
@@ -1602,17 +1646,22 @@ function Attack() {
 	else if (hitRNG <= hitRate) {
 		currentEnemyHP -= currentWeapon[2];
 
-		// Check if heal-attack
-		if (currentEnemyHP > currentEnemyMaxHP) {
-			currentEnemyMaxHP = currentEnemyHP;
+		// Negative weapon check
+		if (currentWeapon[2] < 0) {
 			actionLine++;
-			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You attack the enemy! Strangely, it heals them...<br></span>";
-			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You attack the enemy! Strangely, it gets healed...<br></span>";
 		}
-		else {
+
+		// Positive weapon check
+		else if (currentWeapon[2] > 0) {
 			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You attack the enemy!<br></span>";
-			document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+		}
+
+		// Useless weapon check
+		else {
+			actionLine++;
+			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You attack the enemy! Strangely, nothing changes...<br></span>";
 		}
 	}
 
@@ -1624,16 +1673,23 @@ function Attack() {
 
 	// Player HP min/max
 	if (currentPlayerHP < minPlayerHP) {
-		currentPlayerHP = 0;
-		document.getElementById("playerHP").innerHTML = "<strong>" + 0 + "/" + maxPlayerHP + "</strong>";
+		currentPlayerHP = minPlayerHP;
 	}
 	if (currentPlayerHP > maxPlayerHP) {
 		currentPlayerHP = maxPlayerHP;
-		document.getElementById("playerHP").innerHTML = "<strong>" + maxPlayerHP + "/" + maxPlayerHP + "</strong>";
+	}
+	
+	// Enemy HP max (min used for juicyHeal calc, do not add)
+	if (currentEnemyHP > currentEnemyMaxHP) {
+		currentEnemyMaxHP = currentEnemyHP;
 	}
 
-	// Enemy HP minimum (visually)
-	if (currentEnemyHP < 0) {
+	// Enemy & Player HP visual
+	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
+
+	// Enemy HP min (visually)
+	if (currentEnemyHP < currentEnemyMinHP) {
 		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyMinHP + "/" + currentEnemyMaxHP + "</strong>";
 	}
 
