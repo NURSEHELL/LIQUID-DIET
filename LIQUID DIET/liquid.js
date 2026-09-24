@@ -1077,7 +1077,7 @@ function enemyTurn() {
 			// Raised by 1 every 3 depths
 			enemyHeal = Math.floor(2 + (currentDepth / 3));
 
-			console.log("Enemy Healed by", 2 + (currentDepth / 2), ", rounded to", enemyHeal);
+			console.log("Enemy Healed by", 2 + (currentDepth / 3), ", rounded to", enemyHeal);
 
 			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "The enemy heals itself! <br></span>";
