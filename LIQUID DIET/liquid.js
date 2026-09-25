@@ -920,7 +920,7 @@ function randomizeEnemy() {
 		document.getElementById("enemyImg").style.height = "auto";
 	}
 
-	if (itemSlot1[0] == "Empty" && itemSlot2[0] == "Empty" && itemSlot3[0] == "Empty") {
+	if (itemSlot1[0] != "Empty" && itemSlot2[0] != "Empty" && itemSlot3[0] != "Empty") {
 		fullInv = true;
 
 		// PLACEHOLDER DEBUG CONSOLE LOG
