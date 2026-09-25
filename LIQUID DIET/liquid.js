@@ -371,7 +371,7 @@ function loadGame() {
 	startGame();
 	loadData();
 	
-	if (itemSlot1[2] != "Null" && itemSlot2[2] != "Null" && itemSlot3[2] != "Null") {
+	if (itemSlot1[0] != "Empty" && itemSlot2[2] != "Empty" && itemSlot3[2] != "Empty") {
 		fullInv = true;
 
 		// PLACEHOLDER DEBUG CONSOLE LOG
@@ -419,7 +419,7 @@ function enableActs() {
 }
 
 function enableInvs() {
-	if (itemSlot1[2] == "Null" || itemSlot1 == Items[0]) {
+	if (itemSlot1[0] == "Empty" || itemSlot1 == Items[0]) {
 		inventory1.disabled = true;
 	}
 	else {
@@ -427,14 +427,14 @@ function enableInvs() {
 		item1taken = true;
 	}
 
-	if (itemSlot2[2] == "Null" || itemSlot2 == Items[0]) {
+	if (itemSlot2[0] == "Empty" || itemSlot2 == Items[0]) {
 		inventory2.disabled = true;
 	}
 	else {
 		inventory2.disabled = false;
 	}
 
-	if (itemSlot3[2] == "Null" || itemSlot3 == Items[0]) {
+	if (itemSlot3[0] == "Empty" || itemSlot3 == Items[0]) {
 		inventory3.disabled = true;
 	}
 	else {
@@ -454,21 +454,21 @@ function enableAll() {
 
 	runAway.disabled = false;
 
-	if (itemSlot1[2] == "Null") {
+	if (itemSlot1[0] == "Empty") {
 		inventory1.disabled = true;
 	}
 	else {
 		inventory1.disabled = false;
 	}
 
-	if (itemSlot2[2] == "Null") {
+	if (itemSlot2[0] == "Empty") {
 		inventory2.disabled = true;
 	}
 	else {
 		inventory2.disabled = false;
 	}
 
-	if (itemSlot3[2] == "Null") {
+	if (itemSlot3[0] == "Empty") {
 		inventory3.disabled = true;
 	}
 	else {
@@ -580,12 +580,15 @@ function saveData() {
 
 	// Item & Inventory info
 	localStorage.setItem("1stItem", JSON.stringify(itemSlot1));
+	localStorage.setItem("1stItemName", itemSlot1[0]);
 	localStorage.setItem("1stItemType", itemSlot1[2]);
 	localStorage.setItem("1stInv", document.getElementById("inventory1").innerHTML);
 	localStorage.setItem("2ndItem", JSON.stringify(itemSlot2));
+	localStorage.setItem("2ndItemName", itemSlot2[0]);
 	localStorage.setItem("2ndItemType", itemSlot2[2]);
 	localStorage.setItem("2ndInv", document.getElementById("inventory2").innerHTML);
 	localStorage.setItem("3rdItem", JSON.stringify(itemSlot3));
+	localStorage.setItem("3rdItemName", itemSlot3[0]);
 	localStorage.setItem("3rdItemType", itemSlot3[2]);
 	localStorage.setItem("3rdInv", document.getElementById("inventory3").innerHTML);
 	localStorage.getItem("InvFull", JSON.stringify(fullInv));
@@ -638,12 +641,15 @@ function loadData() {
 	knowsArmors = JSON.parse(localStorage.getItem("plyKnowsA"));
 
 	// Item & Inventory info
+	itemSlot1[0] = localStorage.getItem("1stItemName");
 	itemSlot1[2] = localStorage.getItem("1stItemType");
 	document.getElementById("inventory1").innerHTML = localStorage.getItem("1stInv");
 	itemSlot1 = JSON.parse(localStorage.getItem("1stItem"));
+	itemSlot2[0] = localStorage.getItem("2ndItemName");
 	itemSlot2[2] = localStorage.getItem("2ndItemType");
 	document.getElementById("inventory2").innerHTML = localStorage.getItem("2ndInv");
 	itemSlot2 = JSON.parse(localStorage.getItem("2ndItem"));
+	itemSlot3[0] = localStorage.getItem("3rdItemName");
 	itemSlot3[2] = localStorage.getItem("3rdItemType");
 	document.getElementById("inventory3").innerHTML = localStorage.getItem("3rdInv");
 	itemSlot3 = JSON.parse(localStorage.getItem("3rdItem"));
@@ -914,7 +920,7 @@ function randomizeEnemy() {
 		document.getElementById("enemyImg").style.height = "auto";
 	}
 
-	if (itemSlot1[2] != "Null" && itemSlot2[2] != "Null" && itemSlot3[2] != "Null") {
+	if (itemSlot1[0] == "Empty" && itemSlot2[0] == "Empty" && itemSlot3[0] == "Empty") {
 		fullInv = true;
 
 		// PLACEHOLDER DEBUG CONSOLE LOG
@@ -1377,19 +1383,19 @@ function grantOverk() {
 
 function setupItem() {
 
-	if (itemSlot1[2] == "Null") {
+	if (itemSlot1[0] == "Empty") {
 		itemSlot1 = Items[enemyDrop];
 		document.getElementById("inventory1").innerHTML = Items[enemyDrop][0];
 		document.getElementById("inventory1").addEventListener("click", enemyDrop[2], { once: true });
 	}
 
-	else if (itemSlot1[2] != "Null" && itemSlot2[2] == "Null") {
+	else if (itemSlot1[0] != "Empty" && itemSlot2[0] == "Empty") {
 		itemSlot2 = Items[enemyDrop];
 		document.getElementById("inventory2").innerHTML = Items[enemyDrop][0];
 		document.getElementById("inventory2").addEventListener("click", enemyDrop[2], { once: true });
 	}
 
-	else if (itemSlot1[2] != "Null" && itemSlot2[2] != "Null" && itemSlot3[2]== "Null") {
+	else if (itemSlot1[0] != "Empty" && itemSlot2[0] != "Empty" && itemSlot3[0] == "Empty") {
 		itemSlot3 = Items[enemyDrop];
 		document.getElementById("inventory3").innerHTML = Items[enemyDrop][0];
 		document.getElementById("inventory3").addEventListener("click", enemyDrop[2], { once: true });
