@@ -1,5 +1,10 @@
+/* Hey baby! ^w^ Added a rough enemy type and weapon effect system while I was in class today.
+ Didn't have much time to bugtest, sorry! Thanks for helping me with this fake and gay project.
+- VIVO
+ */
+
 // =================================================================================================================================================
-// ENEMY ARRAY ["NAME", "Images/img_src", Base HP, [Attack Pattern (6 turns)], [Drops (OG, Overk)], [Drop Types (OG, Overk)], [Dialogues]]
+// ENEMY ARRAY ["NAME", "Images/img_src", Base HP, [Attack Pattern (6 turns)], [Drops (OG, Overk)], [Drop Types (OG, Overk)], [Dialogues], Enemy Type]
 // =================================================================================================================================================
 
 const Enemies = [
@@ -8,25 +13,23 @@ const Enemies = [
 	[
 		// DEPTH 0 ENEMIES
 		[
-			["TRAINING DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 0, 0], [2, 4], [1, 1], ['<i>The enemy has nothing to say, but... </i> <br>', '<i>It keeps looking at another enemy, then back at what it\'s holding... </i> <br>']],
-			["MISS OBEAST", "Images/Enemy_MISS_OBEAST.png", 2, [1, 0, 0, 2, 0, 0], [1, 1], [1, 2], ['<i>"Meee- oh, my lucky charm. I\'d never give it away. You\'d have to steal it!"</i> <br>', '<i>"Maaa- oh, but if I\'m drunk, I might also, accidentally..."</i> <br>',]],
+			["TRAINING DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 0, 0], [2, 4], [1, 1], ['<i>The enemy has nothing to say, but... </i> <br>', '<i>It keeps looking at another enemy, then back at what it\'s holding... </i> <br>'], 1],
+			["MISS OBEAST", "Images/Enemy_MISS_OBEAST.png", 2, [1, 0, 0, 2, 0, 0], [1, 1], [1, 2], ['<i>"Meee- oh, my lucky charm. I\'d never give it away. You\'d have to steal it!"</i> <br>', '<i>"Maaa- oh, but if I\'m drunk, I might also, accidentally..."</i> <br>',], 0],
 		],
-		// Depth 0 Bosses
-
 
 		// DEPTH 1 ENEMIES
 		[
-			["WILD ANGEL", "Images/PLACEHOLDER.png", 3, [1, 1, 0, 0, 1, 0], [1, 2], [1, 1], ['<i>"The weak-willed are not long for this world. They all play a part in a system."</i> <br>', '<i>"Predator and prey, it\'s the natural order of things."</i> <br>', '<i>"...But what would <strong> you </strong> understand about serving a higher purpose?"</i> <br>', '<i>The enemy\'s mouth is too full to speak.</i> <br>']],
-			["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 0], [1, 1], [1, 3], ['<i>"Looking for trouble? Huh?"</i> <br>', '<i>"You don\'t know what I got under there."</i> <br>', '<i>"Hahaha. Come and get it. IF YOU CAN REACH IT!"</i> <br>']],
+			["WILD ANGEL", "Images/PLACEHOLDER.png", 3, [1, 1, 0, 0, 1, 0], [9, 10], [1, 1], ['<i>"The weak-willed are not long for this world. They all play a part in a system."</i> <br>', '<i>"Predator and prey, it\'s the natural order of things."</i> <br>', '<i>"...But what would <strong> you </strong> understand about serving a higher purpose?"</i> <br>', '<i>The enemy\'s mouth is too full to speak.</i> <br>'], 2],
+			["PATHETIC DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 0], [1, 1], [1, 3], ['<i>"Looking for trouble? Huh?"</i> <br>', '<i>"You don\'t know what I got under there."</i> <br>', '<i>"Hahaha. Come and get it. IF YOU CAN REACH IT!"</i> <br>'], 1],
 		],
 		// DEPTH 2 ENEMIES
 		[
-			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>']],
-			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2], [1, 2], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',]],
+			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>'], 3],
+			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2], [1, 2], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',], 0],
 		],
 		// DEPTH 3 ENEMIES
 		[
-			["DEPTH 3 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 1, 2, 1, 1, 1], [1, 4], [1, 1], ['<i>The enemy speaks gibberish... </i> <br>']],
+			["DEPTH 3 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 1, 2, 1, 1, 1], [1, 4], [1, 1], ['<i>The enemy speaks gibberish... </i> <br>'], 2],
 		],
 	],
 
@@ -34,10 +37,10 @@ const Enemies = [
 	[
 		// ROUND 81 SCARE
 		[
-			["CHAPELLE D'OR", "Images/PLACEHOLDER.png", NaN, [0, 0, 0, 0, 0, 0], [0, 0], [0, 0], ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>']],
+			["CHAPELLE D'OR", "Images/PLACEHOLDER.png", NaN, [0, 0, 0, 0, 0, 0], [0, 0], [0, 0], ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>'], 2],
 		],
 	],
-	
+
 	// Bosses
 	[
 		// DEPTH 0 BOSSES
@@ -67,6 +70,7 @@ const Enemies = [
 
 // ATTACK TYPE: 0 = Wait / 1 = Attack / 2 = Heal self
 // DROP TYPE: 0 = Nothing / 1 = Item / 2 = Weapon / 3 = Armor
+// ENEMY TYPE: 0 = ABOMINATION / 1 = HERALD / 2 = MALADY / 3 = NYMPH / 4 = SYMBOL
 
 // Enemies can be Normal, Special or Bosses:
 // Special enemies appear only on specific conditions.
@@ -86,20 +90,16 @@ const Items = [
 	// Empty (0)
 	["Empty", "Images/Item_Empty.png", "Null", 0],
 
-	// Positive Items (1 - 4)
 	["Energy Drink", "Images/Item_Energy.png", "Heal", 1],
 	["Sludge", "Images/Item_Sludge.png", "DMG", 2],
 	["Chimera Fetus", "Images/Item_Fetus.png", "DMG", 1],
 	["Juicy Nectar", "Images/Item_Blood.png", "Heal", 2], // True heal in itemHeal();
-
-	// Negative Items (5 - 6)
 	["Electric Caress", "Images/Item_ObeastFur.png", "Heal", -1],
 	["Piercing Gaze", "Imaes/Item_ChimEye.png", "DMG", -1],
-
-	// Useless items (7 - 8)
 	["Test UslHeal", "Images/PLACEHOLDER.png", "Heal", 0],
 	["Test UslDMG", "Images/PLACEHOLDER.png", "DMG", 0],
-	
+	["Angel Incisor", "Images/Item_Incisor.png", "DMG", 2],
+	["Sharp Halo", "Images/Item_Halo.png", "DMG", 3],
 ];
 
 // Items can be Positive, Negative or Useless:
@@ -109,27 +109,29 @@ const Items = [
 
 
 // =======================================================================================
-// WEAPON ARRAY ["Name", "Images/img_src", Damage, Accuracy, Special Effects (TBA)]
+// WEAPON ARRAY ["Name", "Images/img_src", Damage, Accuracy, Special Effect, Special Effect Detail]
 // =======================================================================================
 
 const Weapons = [
 
 	// Empty (0)
-	["None", "Images/Weapon_None.png", 1, 950],
+	["None", "Images/Weapon_None.png", 1, 950, 0, 0],
 
 	// Positive Weapons (1 - 2)
-	["Letter Opener", "Images/Weapon_Letter.png", 2, 850],
-	["Spiky Tails", "Images/Weapon_Tail.png", 3, 750],
+	["Letter Opener", "Images/Weapon_Letter.png", 2, 850, 1, 0],
+	["Spiky Tails", "Images/Weapon_Tail.png", 3, 750, 2, 1],
 
 	// Negative Weapons (3)
-	["Hand Puppet", "Images/Weapon_Dummy.png", -2, 1000],
+	["Hand Puppet", "Images/Weapon_Dummy.png", -2, 1000, 0],
 
 	// Useless Weapons (4 - 5)
-	["Test UslDMG", "Images/PLACEHOLDER.png", 0, 1000],
-	["Test UslACC", "Images/PLACEHOLDER.png", 10, -1],
-	
+	["Test UslDMG", "Images/PLACEHOLDER.png", 0, 1000, 0],
+	["Test UslACC", "Images/PLACEHOLDER.png", 10, -1, 0],
+
 ];
 
+// SPECIAL EFFECTS: 0 = Extra Damage / 1 = Double Damage / 2 = Half Damage / 3 = Immunity
+// SPECIAL EFFECT DETAIL: Follows the ENEMY TYPE order.
 // Weapons can be Positive, Negative or Useless:
 //
 // Positive Weapons will hurt the enemy when attacked.
@@ -182,7 +184,7 @@ const IntroText = [
 		["tries to get your attention...<br></span>"],
 		["tests the IntroText array...<br></span>"],
 	],
-	
+
 	// Bosses
 	[
 		["rushes at you!<br></span>"],
@@ -191,12 +193,12 @@ const IntroText = [
 		["causes a scene!<br></span>"],
 		["forcefully tests the IntroText array!<br></span>"],
 	],
-	
+
 	// Special Encounters
 	[
 		["Where do you think you're going?<br></span>"] // Round 80
 	]
-	
+
 ];
 
 
@@ -233,9 +235,9 @@ function startGame() {
 	if (!gameLoad) {
 		resetData();
 	}
-	
+
 	hasDied = false;
-	
+
 	document.body.innerHTML = '<h1 style="margin-bottom: 0">LIQUID DIET</h1>\
 		<h2 id="roundNum" style="margin-top: 0"></h2>\
 \
@@ -273,7 +275,7 @@ function startGame() {
 		</div>\
 \
 		<script src="liquid.js"> </script>';
-	
+
 	debugmode = false;
 
 	// Juicyheal stuff
@@ -349,35 +351,35 @@ function startGame() {
 	alertTitle = "ALERT TEST";
 	alertMainText = "Wow!<br>You just tested the cool alert.";
 	alertButtonText = "AWESOME BRO";
-	
+
 	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 	disableInvs();
 	depthCheck();
-	
+
 	if (!gameLoad) {
 		randomizeEnemy();
 	}
 	else {
 		gameLoad = false;
 	}
-	
+
 	gameOn = true;
 }
 
 // Load saved game
 function loadGame() {
 	gameLoad = true;
-	
+
 	startGame();
 	loadData();
-	
+
 	if (itemSlot1[0] != "Empty" && itemSlot2[2] != "Empty" && itemSlot3[2] != "Empty") {
 		fullInv = true;
 
 		// PLACEHOLDER DEBUG CONSOLE LOG
 		console.log("All item slots taken. fullInv is", fullInv);
 	}
-	
+
 	if (currentEnemy[1] == "Images/PLACEHOLDER.png") {
 		document.getElementById("enemyImg").style.height = "8.5em";
 	}
@@ -512,7 +514,7 @@ function depthCheck() {
 		currentDepth = 3;
 		depthName = "WRONG";
 	}
-	
+
 	document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
 
 	// VIVO> Unsure how to make DEPTH: WRONG unlockable.
@@ -532,7 +534,7 @@ function newGamePlus() {
 	line = 0;
 
 	equipmentUpdate();
-	
+
 	roundCounter = 0;
 	currentDepth = 0;
 	depthName = currentDepth;
@@ -543,7 +545,7 @@ function newGamePlus() {
 }
 
 function resetData() {
-	
+
 	// Round & Depth info
 	highScore = 0;
 	localStorage.setItem("roundNow", 0);
@@ -551,7 +553,7 @@ function resetData() {
 	localStorage.setItem("depthNowName", 0);
 	localStorage.setItem("topScore", JSON.stringify(menuScore));
 	document.getElementById("score").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + menuScore;
-	
+
 	saveExists = false;
 	localStorage.setItem("hasSaved", JSON.stringify(saveExists));
 	document.getElementById("contGame").disabled = true;
@@ -562,12 +564,12 @@ function resetData() {
 }
 
 function saveData() {
-	
+
 	// Round & Depth info
 	localStorage.setItem("roundNow", JSON.stringify(roundCounter));
 	localStorage.setItem("depthNow", JSON.stringify(currentDepth));
 	localStorage.setItem("depthNowName", depthName);
-	
+
 	// Player info
 	localStorage.setItem("plyMaxHealth", JSON.stringify(maxPlayerHP));
 	localStorage.setItem("plyMinHealth", JSON.stringify(minPlayerHP));
@@ -604,33 +606,33 @@ function saveData() {
 	localStorage.setItem("enemyBla", JSON.stringify(currentEnemyLines));
 	localStorage.setItem("isBoss", JSON.stringify(bossTime));
 	localStorage.setItem("isSpec", JSON.stringify(specialEncounter));
-	
+
 	if (!playedOnce) {
 		playedOnce = true;
 		localStorage.setItem("hasPlayed", JSON.stringify(playedOnce));
 	}
-	
+
 	localStorage.setItem("oldScore", JSON.stringify(highScore));
 	localStorage.setItem("topScore", JSON.stringify(menuScore));
-	
+
 	console.log("current highscore", highScore, "menu highscore", JSON.parse(localStorage.getItem("topScore")));
 	console.log("Data saved!", localStorage);
 }
 
 function loadData() {
-	
+
 	elapsedTurns = 0;
 	line = 0;
 	playedOnce = true;
-	
+
 	// Round & Depth info
 	roundCounter = JSON.parse(localStorage.getItem("roundNow"));
 	currentDepth = JSON.parse(localStorage.getItem("depthNow"));
 	depthName = localStorage.getItem("depthNowName");
-	
+
 	menuScore = JSON.parse(localStorage.getItem("topScore"));
 	highScore = JSON.parse(localStorage.getItem("oldScore"));
-	
+
 	// Player info
 	maxPlayerHP = JSON.parse(localStorage.getItem("plyMaxHealth"));
 	minPlayerHP = JSON.parse(localStorage.getItem("plyMinHealth"));
@@ -666,12 +668,12 @@ function loadData() {
 	currentEnemyLines = JSON.parse(localStorage.getItem("enemyBla"));
 	bossTime = JSON.parse(localStorage.getItem("isBoss"));
 	specialEncounter = JSON.parse(localStorage.getItem("isSpec"));
-	
+
 	depthCheck();
 	enemyIntro();
 	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
-	
+
 	enableInvs();
 	equipmentUpdate();
 
@@ -691,12 +693,12 @@ window.onbeforeunload = (event) => {
 }
 
 window.onload = (event) => {
-	
+
 	menuScore = JSON.parse(localStorage.getItem("topScore"));
 	deathMenu = JSON.parse(localStorage.getItem("hasDied"));
 	console.log("deathmenu", deathMenu, "menuscore", menuScore);
 	console.log("playedOnce =", playedOnce);
-	
+
 	if (menuScore > 0) {
 		saveExists = true;
 	}
@@ -714,12 +716,12 @@ window.onload = (event) => {
 
 function toMenu() {
 	gameOn = false;
-	
+
 	deathMenu = JSON.parse(localStorage.getItem("hasDied"));
 	console.log("hasDied =", deathMenu);
-	
+
 	score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + menuScore;
-	
+
 	document.body.innerHTML = '<h1 style="margin-bottom: 0">LIQUID DIET</h1>\
 		<h2 style="margin-top: 0"><u>by NURSEHELL</u></h2>\
 		<h3 id="score" style="margin-top: 0; display:inline-block;margin-bottom: 5px;">' + score + '</h3>&nbsp;&nbsp;&nbsp;<button id="gameDatawipe" onclick="resetData()"> RESET DATA </button>\
@@ -739,25 +741,25 @@ function toMenu() {
 		</div>\
 \
 		<script src="liquid.js"> </script>';
-	
+
 	document.getElementById("gameDatawipe").addEventListener("click", (e) => {
 		menuScore = 0;
 		localStorage.setItem("topScore", JSON.stringify(menuScore));
 		toMenu();
 	});
-	
+
 	document.getElementById("options").disabled = true;
 	document.getElementById("menuBeast").disabled = true; // SEOKU> These two are set to true for any other player to not be confused lol there's no code for them
-		
+
 	document.body.style.backgroundColor = "#d7d7d7";
-	
+
 	if (!saveExists) {
 		document.getElementById("gameDatawipe").disabled = true;
 	}
 	else {
 		document.getElementById("gameDatawipe").disabled = false;
 	}
-	
+
 	if (!deathMenu) {
 		if (!saveExists) {
 			document.getElementById("contGame").disabled = true;
@@ -818,7 +820,7 @@ function randomizeEnemy() {
 		}
 		depthCheck();
 	}
-	
+
 	console.log("Round:", roundCounter, "| Depth:", currentDepth, "| Depth Name:", depthName, "| Highscore:", highScore);
 
 	// Randomize and Boss/Special enemy setup
@@ -829,7 +831,7 @@ function randomizeEnemy() {
 			bossTime = true;
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][0].length), 0));
 			currentEnemy = Enemies[2][0][randomEnemy];
-		break;
+			break;
 
 		// Area 1 Boss
 		case 40:
@@ -849,25 +851,25 @@ function randomizeEnemy() {
 		case 80:
 			bossTime = true;
 			specialEncounter = true;
-			
+
 			document.getElementById("actionLog").innerHTML = IntroText[2][0];
-			
+
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][3].length), 0));
 			currentEnemy = Enemies[2][3][randomEnemy];
 			break;
-			
+
 		// Back to Menu (playtest) [UNFINISHED]
 		case 81:
 			randomEnemy = 0;
 			currentEnemy = Enemies[1][0][randomEnemy];
-		
+
 			alertTitle = "LIQUID DIET";
 			alertMainText = "Congratulations!<br>You have beaten the playtest!<br>Fancy a NG+?";
 			alertButton1Text = "YES";
 			alertButton2Text = "NO";
-			
+
 			customAlertChoice();
-			
+
 			btn1.id = "retryBtn";
 			btn2.id = "menuBtn";
 
@@ -930,7 +932,7 @@ function randomizeEnemy() {
 	// Set enemy HP
 	currentEnemyMaxHP = currentEnemyHP;
 	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
-	
+
 	enemyIntro();
 
 	enableAll();
@@ -944,9 +946,9 @@ function randomizeEnemy() {
 
 
 function enemyIntro() {
-	
+
 	enemyName = currentEnemy[0];
-	
+
 	// Set intro text
 	if (!bossTime && !specialEncounter) {
 		console.log("notboss & notspecial");
@@ -960,7 +962,7 @@ function enemyIntro() {
 		console.log("special");
 		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>" + IntroText[2][Math.floor(Math.random() * IntroText[2].length)];
 	}
-	
+
 }
 
 
@@ -1143,7 +1145,7 @@ function playerDefeat() {
 	disableAll();
 	actionLine = 1;
 	deleteLine = 1;
-	
+
 	hasDied = true;
 	deathMenu = hasDied;
 	localStorage.setItem("hasDied", JSON.stringify(deathMenu));
@@ -1153,7 +1155,7 @@ function playerDefeat() {
 	document.getElementById("actionLog").innerHTML += '<p style="font-size: 1.75em;margin-bottom:0.5em;"><strong><u>Try again?</u></strong></p>';
 
 	document.getElementById("actionLog").innerHTML += '<button id="retryBtn"> START ANEW </button> <button id="menuBtn"> BACK TO MENU </button>';
-	
+
 	document.getElementById("retryBtn").addEventListener("click", playerRevive);
 	document.getElementById("menuBtn").addEventListener("click", toMenu);
 }
@@ -1175,12 +1177,12 @@ function playerRevive() {
 		fullInv = false;
 		disableInvs();
 		equipmentUpdate();
-		
+
 		roundCounter = 0;
 		currentDepth = 0;
 		depthName = currentDepth;
 		depthCheck();
-		
+
 		itemSlot1[0] = "Empty";
 		itemSlot1[2] = "Null";
 		itemSlot2[0] = "Empty";
@@ -1192,11 +1194,11 @@ function playerRevive() {
 		document.getElementById("inventory3").innerHTML = itemSlot3[0];
 
 		randomizeEnemy();
-		
+
 		hasDied = false;
 		deathMenu = hasDied;
 		localStorage.setItem("hasDied", JSON.stringify(deathMenu));
-		
+
 		enableActs();
 	}, 2500 / quickerTest);
 }
@@ -1570,15 +1572,103 @@ function enemyDefeat() {
 function Attack() {
 	disableAll();
 
+	weaponEffect = currentWeapon[4];
+	weaponSpecific = currentWeapon[5];
 	critNum = currentWeapon[2] * 2;
 	hitRate = currentWeapon[3];
 	critRate = Math.floor((Math.PI / currentWeapon[3]) * 7500);
 
 	var hitRNG = Math.floor((Math.random() * 1000) + 1);
 
+	// Weapon Special Effects
+	function weaponEffectCheck() {
+
+
+		switch (weaponEffect) {
+
+
+			case 1: // Extra (+1) Damage
+
+				switch (weaponSpecific) {
+
+					case 0: // ...Against "ABOMINATIONS"
+						if (currentEnemy[7] == 0) {
+							currentEnemyHP -= 1;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against ABOMINATIONS!<br></span>";
+						}
+						break;
+
+					case 1: // ...Against "HERALDS"
+						if (currentEnemy[7] == 1) {
+							currentEnemyHP -= 1;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against HERALDS!<br></span>";
+						}
+						break;
+
+					case 2: // ...Against "MALADIES"
+						if (currentEnemy[7] == 2) {
+							currentEnemyHP -= 1;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against MALADIES!<br></span>";
+						}
+						break;
+
+					case 3: // ...Against "NYMPHS"
+						if (currentEnemy[7] == 3) {
+							currentEnemyHP -= 1;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against NYMPHS!<br></span>";
+						}
+						break;
+
+				}
+
+				break;
+
+
+			case 2: // Double (x2) Damage
+
+				switch (weaponSpecific) {
+
+					case 0: // ...Against "ABOMINATIONS"
+						if (currentEnemy[7] == 0) {
+							currentEnemyHP -= currentWeapon[2];
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against ABOMINATIONS!<br></span>";
+						}
+						break;
+
+					case 1: // ...Against "HERALDS"
+						if (currentEnemy[7] == 1) {
+							currentEnemyHP -= currentWeapon[2];
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against HERALDS!<br></span>";
+						}
+						break;
+
+					case 2: // ...Against "MALADIES"
+						if (currentEnemy[7] == 2) {
+							currentEnemyHP -= currentWeapon[2];
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against MALADIES!<br></span>";
+						}
+						break;
+
+					case 3: // ...Against "NYMPHS"
+						if (currentEnemy[7] == 3) {
+							currentEnemyHP -= currentWeapon[2];
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against NYMPHS!<br></span>";
+						}
+						break;
+
+				}
+
+				break;
+		}
+
+
+
+	}
+
+
 	// PLACEHOLDER DEBUG CONSOLE LOG
 	console.log("(MISS AREA) " + hitRate + " |", hitRNG, "| " + critRate + " (CRIT AREA)");
-	
+
 	// MEGAMISS Hit check
 	if (hitRNG === 1000) {
 		currentPlayerHP -= currentWeapon[2];
@@ -1616,6 +1706,7 @@ function Attack() {
 		else if (currentWeapon[2] > 0) {
 			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>MASSIVE CRIT!!!</strong> You tear the enemy apart!!<br></span>";
+			weaponEffectCheck()
 		}
 
 		// Useless weapon check
@@ -1639,6 +1730,7 @@ function Attack() {
 		else if (currentWeapon[2] > 0) {
 			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>CRITICAL HIT!!</strong> You tear into the enemy!<br></span>";
+			weaponEffectCheck()
 		}
 
 		// Useless weapon check
@@ -1662,6 +1754,7 @@ function Attack() {
 		else if (currentWeapon[2] > 0) {
 			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You attack the enemy!<br></span>";
+			weaponEffectCheck()
 		}
 
 		// Useless weapon check
@@ -1684,7 +1777,7 @@ function Attack() {
 	if (currentPlayerHP > maxPlayerHP) {
 		currentPlayerHP = maxPlayerHP;
 	}
-	
+
 	// Enemy HP max (min used for juicyHeal calc, do not add)
 	if (currentEnemyHP > currentEnemyMaxHP) {
 		currentEnemyMaxHP = currentEnemyHP;
@@ -2027,7 +2120,7 @@ function autoScroll() {
 // =============================
 
 if (gameOn) {
-	
+
 	if (debugmode) {
 
 		var STAT = 0;
@@ -2320,12 +2413,12 @@ function customAlertChoice(txt) {
 	twoBtns.style.marginLeft = "2em";
 	twoBtns.style.marginRight = "2em";
 	twoBtns.style.marginBottom = "0.35em";
-	
+
 	btn1 = d.getElementById("twoBtns").appendChild(d.createElement("a"));
 	// Set btn1.id in randomizeEnemy();
 	btn1.appendChild(d.createTextNode(alertButton1Text));
 	btn1.focus();
-	
+
 	btn2 = d.getElementById("twoBtns").appendChild(d.createElement("a"));
 	// Set btn2.id in randomizeEnemy();
 	btn2.appendChild(d.createTextNode(alertButton2Text));
