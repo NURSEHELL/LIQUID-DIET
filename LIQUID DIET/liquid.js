@@ -37,7 +37,7 @@ const Enemies = [
 	[
 		// ROUND 81 SCARE
 		[
-			["CHAPELLE D'OR", "Images/PLACEHOLDER.png", NaN, [0, 0, 0, 0, 0, 0], [0, 0], [0, 0], ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>'], 2],
+			["CHAPELLE D'OR", "Images/PLACEHOLDER.png", 101, [0, 0, 0, 0, 0, 0], [0, 0], [1, 1], ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>'], 2],
 		],
 	],
 	
@@ -493,6 +493,8 @@ function depthCheck() {
 		negDepths = true;
 		document.body.style.backgroundColor = "red";
 		document.getElementById("fullfilter").style.filter = "";
+		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
+		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
 		currentDepth = 3; // SEOKU> To Be Replaced by 4 or whatever. Changed so it doesn't throw errors
 		depthName = "WRONG";
 	}
@@ -501,6 +503,8 @@ function depthCheck() {
 		negDepths = false;
 		document.body.style.backgroundColor = "#d7d7d7";
 		document.getElementById("fullfilter").style.filter = "";
+		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
+		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
 		currentDepth = 0;
 		depthName = currentDepth;
 	}
@@ -509,6 +513,8 @@ function depthCheck() {
 		negDepths = false;
 		document.body.style.backgroundColor = "#999993";
 		document.getElementById("fullfilter").style.filter = "";
+		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
+		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
 		currentDepth = 1;
 		depthName = currentDepth;
 	}
@@ -516,6 +522,8 @@ function depthCheck() {
 	if (roundCounter >= 41 && roundCounter <= 60) {
 		negDepths = false;
 		document.body.style.background = "#5f70da";
+		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
+		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
 		currentDepth = 2;
 		depthName = currentDepth;
 	}
@@ -524,6 +532,8 @@ function depthCheck() {
 		negDepths = false;
 		document.body.style.background = "rgb(155, 38, 50)";
 		document.getElementById("fullfilter").style.filter = "";
+		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
+		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
 		currentDepth = 3;
 		depthName = currentDepth;
 	}
@@ -532,6 +542,8 @@ function depthCheck() {
 		negDepths = false;
 		document.body.style.background = "#e6ebff";
 		document.getElementById("fullfilter").style.filter = "";
+		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
+		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
 		currentDepth = 3;
 		depthName = "FINALITY";
 	}
@@ -541,6 +553,8 @@ function depthCheck() {
 		negDepths = false;
 		document.body.style.background = "black";
 		document.getElementById("fullfilter").style.filter = "invert() contrast(10000000000%)";
+		document.getElementById("gameSpd").style.top = "0.65em";  // These two fix an issue with the button on filter apply.
+		document.getElementById("gameSpd").style.left = "15.5em"; // Will be removed when UI is done most def.
 		currentDepth = 3; // SEOKU> To Be Replaced by 4 or whatever. Changed so it doesn't throw errors
 		depthName = "ABOVE THE SKIES";
 	}
@@ -1104,14 +1118,22 @@ function randomizeEnemy() {
 	enemyDropType = currentEnemy[5][0];
 	enemyDrop = currentEnemy[4][0];
 
-	// Enemy HP setup (+1 every Depth (*2 on Bosses))
-	if (bossTime) {
+	// Enemy HP setup
+	
+	// Bosses (+1 per Depth *2)
+	if (!specialEncounter && bossTime) {
 		currentEnemyHP = Math.floor((currentEnemy[2] + currentDepth) * 2);
 		console.log("Current Enemy's true HP: (BaseHP + CurrentDepth) * 2 (", currentEnemy[2] + currentDepth, "* 2 =", (currentEnemy[2] + currentDepth) * 2, ") (BOSSFIGHT)");
 	}
-	else if (!specialEncounter) {
+	// Normal (+1 per Depth)
+	else if (!specialEncounter && !bossTime) {
 		currentEnemyHP = Math.floor(currentEnemy[2] + currentDepth);
 		console.log("Current Enemy's true HP: BaseHP + CurrentDepth (", currentEnemy[2], "+", currentDepth, "=", (currentEnemy[2] + currentDepth), ")");
+	}
+	// Special (Base HP value)
+	else if (specialEncounter && !bossTime) {
+		currentEnemyHP = currentEnemy[2];
+		console.log("Current Enemy's true HP: currentEnemy[2] (", currentEnemy[2], ")");
 	}
 
 	enemyName = currentEnemy[0];
@@ -1872,9 +1894,8 @@ function Attack() {
 							currentEnemyHP -= 1;
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>ABOMINATIONS!</strong><br></span>";
-						}
-							
 							autoScroll();
+						}
 						break;
 
 					case 1: // ...Against "HERALDS"
@@ -1882,8 +1903,8 @@ function Attack() {
 							currentEnemyHP -= 1;
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>HERALDS!</strong><br></span>";
-						}
 							autoScroll();
+						}
 						break;
 
 					case 2: // ...Against "MALADIES"
@@ -1891,8 +1912,8 @@ function Attack() {
 							currentEnemyHP -= 1;
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>MALADIES!</strong><br></span>";
-						}
 							autoScroll();
+						}
 						break;
 
 					case 3: // ...Against "NYMPHS"
@@ -1900,8 +1921,8 @@ function Attack() {
 							currentEnemyHP -= 1;
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>NYMPHS!</strong><br></span>";
-						}
 							autoScroll();
+						}
 						break;
 				}
 				break;
@@ -1916,8 +1937,8 @@ function Attack() {
 							currentEnemyHP -= currentWeapon[2];
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>ABOMINATIONS!</strong><br></span>";
-						}
 							autoScroll();
+						}
 						break;
 
 					case 1: // ...Against "HERALDS"
@@ -1925,8 +1946,8 @@ function Attack() {
 							currentEnemyHP -= currentWeapon[2];
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>HERALDS!</strong><br></span>";
-						}
 							autoScroll();
+						}
 						break;
 
 					case 2: // ...Against "MALADIES"
@@ -1934,8 +1955,8 @@ function Attack() {
 							currentEnemyHP -= currentWeapon[2];
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>MALADIES!</strong><br></span>";
-						}
 							autoScroll();
+						}
 						break;
 
 					case 3: // ...Against "NYMPHS"
@@ -1943,8 +1964,8 @@ function Attack() {
 							currentEnemyHP -= currentWeapon[2];
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>NYMPHS!</strong><br></span>";
-						}
 							autoScroll();
+						}
 						break;
 				}
 				break;
