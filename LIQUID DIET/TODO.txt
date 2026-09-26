@@ -7,7 +7,6 @@ only hold onto one item at a time?
 TO-DO:
 
 - Bugs -
-currentEnemy can randomly become undefined (found against Round 20 boss right after MASSIVE CRIT)
 
 - Priority -
 (??? LOL)

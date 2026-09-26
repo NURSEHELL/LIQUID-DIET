@@ -24,7 +24,7 @@ const Enemies = [
 		],
 		// DEPTH 2 ENEMIES
 		[
-			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>'], 3],
+			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>']],
 			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2], [1, 2], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',], 3],
 		],
 		// DEPTH 3 ENEMIES
@@ -45,23 +45,23 @@ const Enemies = [
 	[
 		// DEPTH 0 BOSSES
 		[
-			["AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		],
 		// DEPTH 1 BOSSES
 		[
-			["AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		],
 		// DEPTH 2 BOSSES
 		[
-			["AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		],
 		// DEPTH 3 BOSSES
 		[
-			["AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
+			["OTHER AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
 		]
 
 	],
@@ -124,7 +124,7 @@ const Weapons = [
 	["Hand Puppet", "Images/Weapon_Dummy.png", -2, 1000, 0],
 
 	// Useless Weapons (4 - 5)
-	["Test UslDMG", "Images/PLACEHOLDER.png", 0, 1000, 0],
+	["Test UslDMG", "Images/PLACEHOLDER.png", 0, 1001, 0],
 	["Test UslACC", "Images/PLACEHOLDER.png", 10, -1, 0],
 	
 ];
@@ -196,7 +196,7 @@ const IntroText = [
 	
 	// Special Encounters
 	[
-		["Where do you think you're going?<br></span>"] // Round 80
+		["Where do you think you're going?<br></span>"] // Round 81
 	]
 	
 ];
@@ -1007,39 +1007,29 @@ function randomizeEnemy() {
 		// Area 0 Boss
 		case 20:
 			bossTime = true;
-			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][0].length), 0));
-			currentEnemy = Enemies[2][0][randomEnemy];
 		break;
 
 		// Area 1 Boss
 		case 40:
 			bossTime = true;
-			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][1].length), 0));
-			currentEnemy = Enemies[2][1][randomEnemy];
 			break;
 
 		// Area 2 Boss
 		case 60:
 			bossTime = true;
-			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][2].length), 0));
-			currentEnemy = Enemies[2][2][randomEnemy];
 			break;
 
 		// Area 3 Boss
 		case 80:
 			bossTime = true;
-			specialEncounter = true;
-			
-			document.getElementById("actionLog").innerHTML = IntroText[2][0];
-			
-			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][3].length), 0));
-			currentEnemy = Enemies[2][3][randomEnemy];
 			break;
 			
 		// Back to Menu (playtest) [UNFINISHED]
 		case 81:
 			randomEnemy = 0;
 			currentEnemy = Enemies[1][0][randomEnemy];
+			
+			document.getElementById("actionLog").innerHTML = IntroText[2][0];
 		
 			alertTitle = "LIQUID DIET";
 			alertMainText = "Congratulations!<br>You have beaten the playtest!<br>Fancy a NG+?";
@@ -1069,11 +1059,18 @@ function randomizeEnemy() {
 		default:
 			bossTime = false;
 			specialEncounter = false;
-
-			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[0][currentDepth].length), 0));
-			currentEnemy = Enemies[0][currentDepth][randomEnemy];
 			break;
 	}
+	
+	if (bossTime && !specialEncounter) {
+		randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][currentDepth].length), 0));
+		currentEnemy = Enemies[2][currentDepth][randomEnemy];
+	}
+	else if (!bossTime && !specialEncounter) {
+		randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[0][currentDepth].length), 0));
+		currentEnemy = Enemies[0][currentDepth][randomEnemy];
+	}
+		
 
 	// Enemy Drop setup
 	enemyDropType = currentEnemy[5][0];
@@ -1752,6 +1749,64 @@ function enemyDefeat() {
 // PLAYER ATTACKING
 // =============================
 
+// This whole part is for testing
+megaCritTest = false; // Enable these via console
+megaMissTest = false; // Testing only. Or i guess we could make those weapon things but...
+normCritTest = false; // Yea
+normMissTest = false; // Yea Yea
+
+if (megaCritTest == true) {
+	runHitTest();
+}
+if (megaMissTest == true) {
+	runHitTest();
+}
+if (normCritTest == true) {
+	runHitTest();
+}
+if (normMissTest == true) {
+	runHitTest();
+}
+
+function runHitTest() {
+	
+	if (megaCritTest == false && megaMissTest == false && normCritTest == false && normMissTest == false) {
+		megaCritTest = true;
+		megaMissTest = false;
+		normCritTest = false;
+		normMissTest = false;
+		setTimeout(() => { console.log("NORMAL HITS DEACTIVED // RUN FUNC AGAIN TO SWAP TRUEFALSE"); }, 1);
+	}
+	else if (megaCritTest == true && megaMissTest == false && normCritTest == false && normMissTest == false) {
+		megaCritTest = false;
+		megaMissTest = true;
+		normCritTest = false;
+		normMissTest = false;
+	}
+	else if (megaCritTest == false && megaMissTest == true && normCritTest == false && normMissTest == false) {
+		megaCritTest = false;
+		megaMissTest = false;
+		normCritTest = true;
+		normMissTest = false;
+	}
+	else if (megaCritTest == false && megaMissTest == false && normCritTest == true && normMissTest == false) {
+		megaCritTest = false;
+		megaMissTest = false;
+		normCritTest = false;
+		normMissTest = true;
+	}
+	else if (megaCritTest == false && megaMissTest == false && normCritTest == false && normMissTest == true) {
+		megaCritTest = false;
+		megaMissTest = false;
+		normCritTest = false;
+		normMissTest = false;
+		setTimeout(() => { console.log("NORMAL HITS REACTIVATED // RUN FUNC AGAIN TO DEACTIVATE"); }, 1);
+	}
+	
+	console.log("MEGACRIT:", megaCritTest, "MEGAMISS:", megaMissTest, "NORMCRIT:", normCritTest, "NORMMISS:", normMissTest);
+}
+
+// This whole part is the actual thing
 function Attack() {
 	disableAll();
 
@@ -1761,17 +1816,27 @@ function Attack() {
 	hitRate = currentWeapon[3];
 	critRate = Math.floor((Math.PI / currentWeapon[3]) * 7500);
 
-	var hitRNG = Math.floor((Math.random() * 1000) + 1);
+	if (megaCritTest == true) {
+		var hitRNG = 1;
+	}
+	else if (megaMissTest == true) {
+		var hitRNG = 1000;
+	}
+	else if (normCritTest == true) {
+		var hitRNG = critRate - 1;
+	}
+	else if (normMissTest == true) {
+		var hitRNG = hitRate + 1;
+	}
+	else {
+		var hitRNG = Math.floor((Math.random() * 1000) + 1);
+	}
 	
 	// Weapon Special Effects
 	function weaponEffectCheck() {
-
-
 		switch (weaponEffect) {
-
-
+			
 			case 1: // Extra (+1) Damage
-
 				switch (weaponSpecific) {
 
 					case 0: // ...Against "ABOMINATIONS"
@@ -1805,9 +1870,7 @@ function Attack() {
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>NYMPHS!</strong><br></span>";
 						}
 						break;
-
 				}
-
 				break;
 
 
@@ -1846,14 +1909,9 @@ function Attack() {
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>NYMPHS!</strong><br></span>";
 						}
 						break;
-
 				}
-
 				break;
 		}
-
-
-
 	}
 
 	// PLACEHOLDER DEBUG CONSOLE LOG
@@ -1884,7 +1942,7 @@ function Attack() {
 
 	// MEGACRIT Hit check
 	else if (hitRNG === 1) {
-		currentEnemy -= critNum * 2;
+		currentEnemyHP -= critNum * 2;
 
 		// Negative weapon check
 		if (currentWeapon[2] < 0) {
