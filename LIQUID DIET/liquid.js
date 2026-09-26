@@ -196,7 +196,7 @@ const IntroText = [
 	
 	// Special Encounters
 	[
-		["Where do you think you're going?<br></span>"] // Round 81
+		["<span style='filter: opacity(3%);'>REFRESHTHEPAGECONTINUEATTACKDONTLETITSTARTOVER</span><br></span>"] // Round 81
 	]
 	
 ];
@@ -239,7 +239,8 @@ function startGame() {
 	saveExists = true;
 	hasDied = false;
 	
-	document.body.innerHTML = '<h1 style="margin-bottom: 0; display: inline;">LIQUID DIET</h1> <button id="gameSpd" onclick="speedInc()" style="top: 1.25em;position: absolute;left: 16.5em;"></button>\
+	document.body.innerHTML = '<div id="fullfilter">\
+	<h1 style="margin-bottom: 0; display: inline;">LIQUID DIET</h1> <button id="gameSpd" onclick="speedInc()" style="top: 1.25em;position: absolute;left: 16.5em;"></button>\
 		<h2 id="roundNum" style="margin-top: 0"></h2>\
 \
 		<h3 id="enemyName"></h3>\
@@ -275,7 +276,8 @@ function startGame() {
 			</span>\
 		</div>\
 \
-		<script src="liquid.js"> </script>';
+		<script src="liquid.js"> </script>\
+	</div>';
 	
 	debugmode = false;
 
@@ -490,13 +492,15 @@ function depthCheck() {
 	if (roundCounter < 0) {
 		negDepths = true;
 		document.body.style.backgroundColor = "red";
-		currentDepth = 0; // SEOKU> To Be Replaced by 4 or whatever. Made 0 so it doesn't throw errors
+		document.getElementById("fullfilter").style.filter = "";
+		currentDepth = 3; // SEOKU> To Be Replaced by 4 or whatever. Changed so it doesn't throw errors
 		depthName = "WRONG";
 	}
 
 	if (roundCounter >= 0 && roundCounter <= 20) {
 		negDepths = false;
 		document.body.style.backgroundColor = "#d7d7d7";
+		document.getElementById("fullfilter").style.filter = "";
 		currentDepth = 0;
 		depthName = currentDepth;
 	}
@@ -504,6 +508,7 @@ function depthCheck() {
 	if (roundCounter >= 21 && roundCounter <= 40) {
 		negDepths = false;
 		document.body.style.backgroundColor = "#999993";
+		document.getElementById("fullfilter").style.filter = "";
 		currentDepth = 1;
 		depthName = currentDepth;
 	}
@@ -518,15 +523,34 @@ function depthCheck() {
 	if (roundCounter >= 61 && roundCounter <= 80) {
 		negDepths = false;
 		document.body.style.background = "rgb(155, 38, 50)";
+		document.getElementById("fullfilter").style.filter = "";
 		currentDepth = 3;
 		depthName = currentDepth;
 	}
 
 	if (roundCounter == 81) {
 		negDepths = false;
-		document.body.style.background = "white";
+		document.body.style.background = "#e6ebff";
+		document.getElementById("fullfilter").style.filter = "";
 		currentDepth = 3;
-		depthName = "FINAL";
+		depthName = "FINALITY";
+	}
+	
+	// SEOKU> If you refresh when asked for an NG+ it can keep going :eyes:
+	if (roundCounter >= 82) {
+		negDepths = false;
+		document.body.style.background = "black";
+		document.getElementById("fullfilter").style.filter = "invert() contrast(10000000000%)";
+		currentDepth = 3; // SEOKU> To Be Replaced by 4 or whatever. Changed so it doesn't throw errors
+		depthName = "ABOVE THE SKIES";
+	}
+	
+	if (roundCounter == 101) {
+		negDepths = false;
+		depthName = "NaN";
+		currentDepth = 3; // SEOKU> To Be Replaced by 4 or whatever. Changed it doesn't throw errors
+		roundsToFall = 1.02;
+		depthFall();
 	}
 	
 	if (!ngPlus) {
@@ -1026,32 +1050,36 @@ function randomizeEnemy() {
 			
 		// Back to Menu (playtest) [UNFINISHED]
 		case 81:
+			bossTime = false;
+			specialEncounter = true;
 			randomEnemy = 0;
 			currentEnemy = Enemies[1][0][randomEnemy];
 			
 			document.getElementById("actionLog").innerHTML = IntroText[2][0];
-		
-			alertTitle = "LIQUID DIET";
-			alertMainText = "Congratulations!<br>You have beaten the playtest!<br>Fancy a NG+?";
-			alertButton1Text = "YES";
-			alertButton2Text = "NO";
 			
-			customAlertChoice();
-			
-			btn1.id = "retryBtn";
-			btn2.id = "menuBtn";
+			if (!imFalling) {
+				alertTitle = "LIQUID DIET";
+				alertMainText = "Congratulations!<br>You have beaten the playtest!<br>Fancy a NG+?";
+				alertButton1Text = "YES";
+				alertButton2Text = "NO";
+				
+				customAlertChoice();
+				
+				btn1.id = "retryBtn";
+				btn2.id = "menuBtn";
 
-			btn1.onclick = function () {
-				removeCustomAlert();
-				roundsToFall = .8;
-				depthFall();
-				ngPlus = true;
-				return false;
-			}
+				btn1.onclick = function () {
+					removeCustomAlert();
+					roundsToFall = .8;
+					depthFall();
+					ngPlus = true;
+					return false;
+				}
 
-			btn2.onclick = function () {
-				toMenu();
-				return false;
+				btn2.onclick = function () {
+					toMenu();
+					return false;
+				}
 			}
 			break;
 
