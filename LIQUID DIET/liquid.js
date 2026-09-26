@@ -24,7 +24,7 @@ const Enemies = [
 		],
 		// DEPTH 2 ENEMIES
 		[
-			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>']],
+			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>'], 3],
 			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2], [1, 2], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',], 3],
 		],
 		// DEPTH 3 ENEMIES
@@ -45,23 +45,23 @@ const Enemies = [
 	[
 		// DEPTH 0 BOSSES
 		[
-			["AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
-			["OTHER AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
+			["AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
+			["OTHER AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
 		],
 		// DEPTH 1 BOSSES
 		[
-			["AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
-			["OTHER AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
+			["AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
+			["OTHER AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
 		],
 		// DEPTH 2 BOSSES
 		[
-			["AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
-			["OTHER AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
+			["AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
+			["OTHER AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
 		],
 		// DEPTH 3 BOSSES
 		[
-			["AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>']],
-			["OTHER AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>']],
+			["AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
+			["OTHER AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
 		]
 
 	],
