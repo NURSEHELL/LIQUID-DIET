@@ -12,6 +12,7 @@ TO-DO:
 (??? LOL)
 
 - Other -
+Finally make juicyHeal only affect the new item
 Original Sprites
 UI
 

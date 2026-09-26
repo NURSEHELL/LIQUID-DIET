@@ -1205,13 +1205,13 @@ function enemyTurn() {
 			var negDamage = true;
 		}
 
-		// Raised by 1 every 3 Depths. Lowered/Inverted by current armor's protection
+		// Raised by 1 every 2 Depths. Lowered/Inverted by current armor's protection
 		if (!negDamage) {
-			var enemyDmg = Math.floor(1 + (currentDepth / 3) - currentArmor[2]);
+			var enemyDmg = Math.floor(1 + (currentDepth / 2) - currentArmor[2]);
 			var playerHurt = Math.max(0, enemyDmg);
 		}
 		else {
-			var enemyDmg = Math.floor(1 + (currentDepth / 3) - (currentArmor[2] + 2));
+			var enemyDmg = Math.floor(1 + (currentDepth / 2) - (currentArmor[2] + 2));
 			var playerHurt = Math.max(0, enemyDmg);
 		}
 
@@ -2301,7 +2301,7 @@ function itemDMG() {
 	else {
 		currentEnemyHP -= itemUsed[3];
 		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
-		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You used the <strong>" + itemUsed[0] + "</strong> and inflicted <strong>" + itemUsed[3] + "HP!</strong><br></span>";
+		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You used the <strong>" + itemUsed[0] + "</strong> and inflicted <strong>" + itemUsed[3] + "DMG!</strong><br></span>";
 	}
 
 	// Check for HP in case of Overkill/Unhurt
