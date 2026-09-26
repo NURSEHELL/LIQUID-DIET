@@ -50,18 +50,18 @@ const Enemies = [
 		],
 		// DEPTH 1 BOSSES
 		[
-			["AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 1 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 1 BOSS", "Images/Enemy_IDK.png", 15, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
+			["OTHER AREA 1 BOSS", "Images/Enemy_IDK.png", 15, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
 		],
 		// DEPTH 2 BOSSES
 		[
-			["AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 2 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 2 BOSS", "Images/Enemy_IDK.png", 20, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
+			["OTHER AREA 2 BOSS", "Images/Enemy_IDK.png", 20, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
 		],
 		// DEPTH 3 BOSSES
 		[
-			["AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 3 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 3 BOSS", "Images/Enemy_IDK.png", 25, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
+			["OTHER AREA 3 BOSS", "Images/Enemy_IDK.png", 25, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
 		]
 
 	],
@@ -118,7 +118,7 @@ const Weapons = [
 
 	// Positive Weapons (1 - 2)
 	["Letter Opener", "Images/Weapon_Letter.png", 2, 850, 1, 0],
-	["Spiky Tails", "Images/Weapon_Tail.png", 3, 750, 2, 1],
+	["Spiky Tails", "Images/Weapon_Tail.png", 4, 750, 2, 1],
 
 	// Negative Weapons (3)
 	["Hand Puppet", "Images/Weapon_Dummy.png", -2, 1000, 0],
@@ -1873,6 +1873,8 @@ function Attack() {
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>ABOMINATIONS!</strong><br></span>";
 						}
+							
+							autoScroll();
 						break;
 
 					case 1: // ...Against "HERALDS"
@@ -1881,6 +1883,7 @@ function Attack() {
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>HERALDS!</strong><br></span>";
 						}
+							autoScroll();
 						break;
 
 					case 2: // ...Against "MALADIES"
@@ -1889,6 +1892,7 @@ function Attack() {
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>MALADIES!</strong><br></span>";
 						}
+							autoScroll();
 						break;
 
 					case 3: // ...Against "NYMPHS"
@@ -1897,6 +1901,7 @@ function Attack() {
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>NYMPHS!</strong><br></span>";
 						}
+							autoScroll();
 						break;
 				}
 				break;
@@ -1912,6 +1917,7 @@ function Attack() {
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>ABOMINATIONS!</strong><br></span>";
 						}
+							autoScroll();
 						break;
 
 					case 1: // ...Against "HERALDS"
@@ -1920,6 +1926,7 @@ function Attack() {
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>HERALDS!</strong><br></span>";
 						}
+							autoScroll();
 						break;
 
 					case 2: // ...Against "MALADIES"
@@ -1928,6 +1935,7 @@ function Attack() {
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>MALADIES!</strong><br></span>";
 						}
+							autoScroll();
 						break;
 
 					case 3: // ...Against "NYMPHS"
@@ -1936,6 +1944,7 @@ function Attack() {
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>NYMPHS!</strong><br></span>";
 						}
+							autoScroll();
 						break;
 				}
 				break;
