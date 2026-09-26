@@ -6,17 +6,11 @@ only hold onto one item at a time?
 
 TO-DO:
 
+- Bugs -
+currentEnemy can randomly become undefined (found against Round 20 boss right after MASSIVE CRIT)
+
 - Priority -
-Losing (DONE)
-Item inventory slots (DONE)
-Item usage (DONE)
-Item drops (DONE)
-Accuracy (DONE)
-Sequential enemies (DONE)
-Different Weapons (DONE)
-Enemy dialogue (DONE)
-High Score (DONE)
-Different "depths" (DONE)
+(??? LOL)
 
 - Other -
 Original Sprites

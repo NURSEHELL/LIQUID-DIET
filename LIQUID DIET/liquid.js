@@ -1,8 +1,9 @@
-/* Hey baby! ^w^ Added a rough enemy type and weapon effect system while I was in class today.
- Didn't have much time to bugtest, sorry! Thanks for helping me with this fake and gay project.
-- VIVO
- */
-
+// Heyo ;(^o^) SEOKU fell asleep on her keyboard, so lil old me finished the thing up!
+// I ended up testing your code also. Seems like it all works well! I'm proud of you! <3
+// Anyway, I'd best be going now. She'll notice if I keep her laptop on too long! See you soon!
+//
+//																- The Restorer
+//
 // =================================================================================================================================================
 // ENEMY ARRAY ["NAME", "Images/img_src", Base HP, [Attack Pattern (6 turns)], [Drops (OG, Overk)], [Drop Types (OG, Overk)], [Dialogues], Enemy Type]
 // =================================================================================================================================================
@@ -16,7 +17,6 @@ const Enemies = [
 			["TRAINING DUMMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 0, 0], [2, 4], [1, 1], ['<i>The enemy has nothing to say, but... </i> <br>', '<i>It keeps looking at another enemy, then back at what it\'s holding... </i> <br>'], 1],
 			["MISS OBEAST", "Images/Enemy_MISS_OBEAST.png", 2, [1, 0, 0, 2, 0, 0], [1, 1], [1, 2], ['<i>"Meee- oh, my lucky charm. I\'d never give it away. You\'d have to steal it!"</i> <br>', '<i>"Maaa- oh, but if I\'m drunk, I might also, accidentally..."</i> <br>',], 0],
 		],
-
 		// DEPTH 1 ENEMIES
 		[
 			["WILD ANGEL", "Images/PLACEHOLDER.png", 3, [1, 1, 0, 0, 1, 0], [9, 10], [1, 1], ['<i>"The weak-willed are not long for this world. They all play a part in a system."</i> <br>', '<i>"Predator and prey, it\'s the natural order of things."</i> <br>', '<i>"...But what would <strong> you </strong> understand about serving a higher purpose?"</i> <br>', '<i>The enemy\'s mouth is too full to speak.</i> <br>'], 2],
@@ -24,12 +24,12 @@ const Enemies = [
 		],
 		// DEPTH 2 ENEMIES
 		[
-			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>'], 3],
-			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2], [1, 2], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',], 0],
+			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>']],
+			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2], [1, 2], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',], 3],
 		],
 		// DEPTH 3 ENEMIES
 		[
-			["DEPTH 3 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 1, 2, 1, 1, 1], [1, 4], [1, 1], ['<i>The enemy speaks gibberish... </i> <br>'], 2],
+			["DEPTH 3 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 1, 2, 1, 1, 1], [1, 4], [1, 1], ['<i>The enemy speaks gibberish... </i> <br>'], 0],
 		],
 	],
 
@@ -40,7 +40,7 @@ const Enemies = [
 			["CHAPELLE D'OR", "Images/PLACEHOLDER.png", NaN, [0, 0, 0, 0, 0, 0], [0, 0], [0, 0], ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>'], 2],
 		],
 	],
-
+	
 	// Bosses
 	[
 		// DEPTH 0 BOSSES
@@ -87,9 +87,7 @@ const Enemies = [
 
 const Items = [
 
-	// Empty (0)
 	["Empty", "Images/Item_Empty.png", "Null", 0],
-
 	["Energy Drink", "Images/Item_Energy.png", "Heal", 1],
 	["Sludge", "Images/Item_Sludge.png", "DMG", 2],
 	["Chimera Fetus", "Images/Item_Fetus.png", "DMG", 1],
@@ -100,6 +98,7 @@ const Items = [
 	["Test UslDMG", "Images/PLACEHOLDER.png", "DMG", 0],
 	["Angel Incisor", "Images/Item_Incisor.png", "DMG", 2],
 	["Sharp Halo", "Images/Item_Halo.png", "DMG", 3],
+	
 ];
 
 // Items can be Positive, Negative or Useless:
@@ -127,11 +126,12 @@ const Weapons = [
 	// Useless Weapons (4 - 5)
 	["Test UslDMG", "Images/PLACEHOLDER.png", 0, 1000, 0],
 	["Test UslACC", "Images/PLACEHOLDER.png", 10, -1, 0],
-
+	
 ];
 
 // SPECIAL EFFECTS: 0 = Extra Damage / 1 = Double Damage / 2 = Half Damage / 3 = Immunity
 // SPECIAL EFFECT DETAIL: Follows the ENEMY TYPE order.
+//
 // Weapons can be Positive, Negative or Useless:
 //
 // Positive Weapons will hurt the enemy when attacked.
@@ -184,7 +184,7 @@ const IntroText = [
 		["tries to get your attention...<br></span>"],
 		["tests the IntroText array...<br></span>"],
 	],
-
+	
 	// Bosses
 	[
 		["rushes at you!<br></span>"],
@@ -193,12 +193,12 @@ const IntroText = [
 		["causes a scene!<br></span>"],
 		["forcefully tests the IntroText array!<br></span>"],
 	],
-
+	
 	// Special Encounters
 	[
 		["Where do you think you're going?<br></span>"] // Round 80
 	]
-
+	
 ];
 
 
@@ -206,24 +206,21 @@ const IntroText = [
 // SETUP
 // =============================
 
-quickerTest = 1; // Set this number to 100 in console to speed up transitions
+quickerTest = 1;
+roundsToFall = 1;
 gameLoad = false;
 gameOn = false;
+negDepths = JSON.parse(localStorage.getItem("negaTime"));
+
+if (negDepths == null) {
+	negDepths = false;
+}
+
+imFalling = false;
 
 if (JSON.parse(localStorage.getItem("hasDied")) == null) {
 	hasDied = false;
 	localStorage.setItem("hasDied", JSON.stringify(hasDied));
-}
-
-saveExists = JSON.parse(localStorage.getItem("hasSaved"));
-
-playedOnce = JSON.parse(localStorage.getItem("hasPlayed"));
-
-if (playedOnce) {
-	menuScore = JSON.parse(localStorage.getItem("topScore"));
-}
-else if (!playedOnce || playedOnce == null) {
-	highScore = 0;
 }
 
 
@@ -235,10 +232,14 @@ function startGame() {
 	if (!gameLoad) {
 		resetData();
 	}
+	
+	ngPlus = JSON.parse(localStorage.getItem("ngPlus"));
 
+	playedOnce = true;
+	saveExists = true;
 	hasDied = false;
-
-	document.body.innerHTML = '<h1 style="margin-bottom: 0">LIQUID DIET</h1>\
+	
+	document.body.innerHTML = '<h1 style="margin-bottom: 0; display: inline;">LIQUID DIET</h1> <button id="gameSpd" onclick="speedInc()" style="top: 1.25em;position: absolute;left: 16.5em;"></button>\
 		<h2 id="roundNum" style="margin-top: 0"></h2>\
 \
 		<h3 id="enemyName"></h3>\
@@ -275,7 +276,7 @@ function startGame() {
 		</div>\
 \
 		<script src="liquid.js"> </script>';
-
+	
 	debugmode = false;
 
 	// Juicyheal stuff
@@ -324,6 +325,7 @@ function startGame() {
 	weaponDiscardBtn.disabled = true;
 	document.getElementById("weaponEquipBtn").addEventListener("click", weaponEquip);
 	document.getElementById("weaponDiscardBtn").addEventListener("click", weaponDiscard);
+	document.getElementById("gameSpd").innerHTML = "Game Speed: " + quickerTest;
 
 	// Depth stuff
 	currentDepth = 0;
@@ -351,35 +353,35 @@ function startGame() {
 	alertTitle = "ALERT TEST";
 	alertMainText = "Wow!<br>You just tested the cool alert.";
 	alertButtonText = "AWESOME BRO";
-
+	
 	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 	disableInvs();
 	depthCheck();
-
+	
 	if (!gameLoad) {
 		randomizeEnemy();
 	}
 	else {
 		gameLoad = false;
 	}
-
+	
 	gameOn = true;
 }
 
 // Load saved game
 function loadGame() {
 	gameLoad = true;
-
+	
 	startGame();
 	loadData();
-
+	
 	if (itemSlot1[0] != "Empty" && itemSlot2[2] != "Empty" && itemSlot3[2] != "Empty") {
 		fullInv = true;
 
 		// PLACEHOLDER DEBUG CONSOLE LOG
 		console.log("All item slots taken. fullInv is", fullInv);
 	}
-
+	
 	if (currentEnemy[1] == "Images/PLACEHOLDER.png") {
 		document.getElementById("enemyImg").style.height = "8.5em";
 	}
@@ -485,37 +487,54 @@ function depthCheck() {
 
 	const pageText = document.getElementById("playerStats");
 
+	if (roundCounter < 0) {
+		negDepths = true;
+		document.body.style.backgroundColor = "red";
+		currentDepth = 0; // SEOKU> To Be Replaced by 4 or whatever. Made 0 so it doesn't throw errors
+		depthName = "WRONG";
+	}
+
 	if (roundCounter >= 0 && roundCounter <= 20) {
+		negDepths = false;
 		document.body.style.backgroundColor = "#d7d7d7";
 		currentDepth = 0;
 		depthName = currentDepth;
 	}
 
 	if (roundCounter >= 21 && roundCounter <= 40) {
+		negDepths = false;
 		document.body.style.backgroundColor = "#999993";
 		currentDepth = 1;
 		depthName = currentDepth;
 	}
 
 	if (roundCounter >= 41 && roundCounter <= 60) {
+		negDepths = false;
 		document.body.style.background = "#5f70da";
 		currentDepth = 2;
 		depthName = currentDepth;
 	}
 
 	if (roundCounter >= 61 && roundCounter <= 80) {
+		negDepths = false;
 		document.body.style.background = "rgb(155, 38, 50)";
 		currentDepth = 3;
 		depthName = currentDepth;
 	}
 
 	if (roundCounter == 81) {
-		document.body.style.background = "red";
+		negDepths = false;
+		document.body.style.background = "white";
 		currentDepth = 3;
-		depthName = "WRONG";
+		depthName = "FINAL";
 	}
-
-	document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
+	
+	if (!ngPlus) {
+		document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u>`;
+	}
+	else {
+		document.getElementById("roundNum").innerHTML = `<u>Round: ${roundCounter}</u> | <u>Depth: ${depthName}</u> (NEW GAME +)`;
+	}
 
 	// VIVO> Unsure how to make DEPTH: WRONG unlockable.
 }
@@ -534,7 +553,7 @@ function newGamePlus() {
 	line = 0;
 
 	equipmentUpdate();
-
+	
 	roundCounter = 0;
 	currentDepth = 0;
 	depthName = currentDepth;
@@ -545,7 +564,7 @@ function newGamePlus() {
 }
 
 function resetData() {
-
+	
 	// Round & Depth info
 	highScore = 0;
 	localStorage.setItem("roundNow", 0);
@@ -553,7 +572,7 @@ function resetData() {
 	localStorage.setItem("depthNowName", 0);
 	localStorage.setItem("topScore", JSON.stringify(menuScore));
 	document.getElementById("score").innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + menuScore;
-
+	
 	saveExists = false;
 	localStorage.setItem("hasSaved", JSON.stringify(saveExists));
 	document.getElementById("contGame").disabled = true;
@@ -564,12 +583,13 @@ function resetData() {
 }
 
 function saveData() {
-
+	
 	// Round & Depth info
 	localStorage.setItem("roundNow", JSON.stringify(roundCounter));
 	localStorage.setItem("depthNow", JSON.stringify(currentDepth));
 	localStorage.setItem("depthNowName", depthName);
-
+	localStorage.setItem("negaTime", JSON.stringify(negDepths));
+	
 	// Player info
 	localStorage.setItem("plyMaxHealth", JSON.stringify(maxPlayerHP));
 	localStorage.setItem("plyMinHealth", JSON.stringify(minPlayerHP));
@@ -606,33 +626,31 @@ function saveData() {
 	localStorage.setItem("enemyBla", JSON.stringify(currentEnemyLines));
 	localStorage.setItem("isBoss", JSON.stringify(bossTime));
 	localStorage.setItem("isSpec", JSON.stringify(specialEncounter));
-
-	if (!playedOnce) {
-		playedOnce = true;
-		localStorage.setItem("hasPlayed", JSON.stringify(playedOnce));
-	}
-
+	
+	localStorage.setItem("ngPlus", JSON.stringify(ngPlus));
+	
+	localStorage.setItem("hasPlayed", JSON.stringify(playedOnce));
+	
 	localStorage.setItem("oldScore", JSON.stringify(highScore));
 	localStorage.setItem("topScore", JSON.stringify(menuScore));
-
+	
 	console.log("current highscore", highScore, "menu highscore", JSON.parse(localStorage.getItem("topScore")));
 	console.log("Data saved!", localStorage);
 }
 
 function loadData() {
-
+	
 	elapsedTurns = 0;
 	line = 0;
-	playedOnce = true;
-
+	
 	// Round & Depth info
 	roundCounter = JSON.parse(localStorage.getItem("roundNow"));
 	currentDepth = JSON.parse(localStorage.getItem("depthNow"));
 	depthName = localStorage.getItem("depthNowName");
-
+	negDepths = JSON.parse(localStorage.getItem("negaTime"));
 	menuScore = JSON.parse(localStorage.getItem("topScore"));
 	highScore = JSON.parse(localStorage.getItem("oldScore"));
-
+	
 	// Player info
 	maxPlayerHP = JSON.parse(localStorage.getItem("plyMaxHealth"));
 	minPlayerHP = JSON.parse(localStorage.getItem("plyMinHealth"));
@@ -668,16 +686,27 @@ function loadData() {
 	currentEnemyLines = JSON.parse(localStorage.getItem("enemyBla"));
 	bossTime = JSON.parse(localStorage.getItem("isBoss"));
 	specialEncounter = JSON.parse(localStorage.getItem("isSpec"));
-
+	
+	ngPlus = JSON.parse(localStorage.getItem("ngPlus"));
+	
 	depthCheck();
 	enemyIntro();
 	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
-
+	
 	enableInvs();
 	equipmentUpdate();
 
 	console.log("Data loaded!", localStorage);
+}
+
+// Easing stuff
+
+// SEOKU> MASSIVE THANKS TO Andrey Sitnik AND Ivan Solovev FOR easings.net
+// SEOKU> I HATE MATH FOREVER
+
+function easeOutExpo(x) {
+  return x === 1 ? 1 : 1 - Math.pow(2, -10 * x)
 }
 
 
@@ -687,25 +716,45 @@ function loadData() {
 
 window.onbeforeunload = (event) => {
 	if (gameOn) {
-		saveData();
+		if (!imFalling) {
+			saveData();
+		}
 		localStorage.setItem("hasDied", JSON.stringify(hasDied));
 	}
 }
 
 window.onload = (event) => {
-
+	
 	menuScore = JSON.parse(localStorage.getItem("topScore"));
 	deathMenu = JSON.parse(localStorage.getItem("hasDied"));
-	console.log("deathmenu", deathMenu, "menuscore", menuScore);
-	console.log("playedOnce =", playedOnce);
+	saveExists = JSON.parse(localStorage.getItem("hasSaved"));
+	playedOnce = JSON.parse(localStorage.getItem("hasPlayed"));
 
-	if (menuScore > 0) {
+	if (playedOnce) {
+		menuScore = JSON.parse(localStorage.getItem("topScore"));
+	}
+	else if (!playedOnce || playedOnce == null) {
+		playedOnce = false;
+		highScore = 0;
+		menuScore = highScore;
+		saveExists = false;
+	}
+
+	console.log("deathMenu", deathMenu, "menuScore", menuScore);
+	console.log("playedOnce =", playedOnce);
+	console.log("saveExists =", saveExists);
+	
+	if (menuScore > 0 && !negDepths) {
 		saveExists = true;
 	}
-	else {
+	else if (menuScore <= 0 && !negDepths) {
 		highScore = 0;
 		saveExists = false;
 	}
+	else if (menuScore <= 0 && negDepths) {
+		saveExists = true;
+	}
+	
 	setTimeout(() => { toMenu() }, 10);
 };
 
@@ -716,12 +765,28 @@ window.onload = (event) => {
 
 function toMenu() {
 	gameOn = false;
-
+	
+	if (!playedOnce || playedOnce == null) {
+		menuScore = 0;
+	}
+	
+	roundCounter = JSON.parse(localStorage.getItem("roundNow"));
 	deathMenu = JSON.parse(localStorage.getItem("hasDied"));
 	console.log("hasDied =", deathMenu);
-
-	score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + menuScore;
-
+	
+	if (!negDepths) {
+		score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + menuScore;
+		document.body.style.backgroundColor = "#d7d7d7";
+	}
+	else if (negDepths && playedOnce) {
+		score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + roundCounter;
+		document.body.style.backgroundColor = "#9a5959";
+	}
+	else {
+		score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + menuScore;
+		document.body.style.backgroundColor = "#d7d7d7";
+	}
+	
 	document.body.innerHTML = '<h1 style="margin-bottom: 0">LIQUID DIET</h1>\
 		<h2 style="margin-top: 0"><u>by NURSEHELL</u></h2>\
 		<h3 id="score" style="margin-top: 0; display:inline-block;margin-bottom: 5px;">' + score + '</h3>&nbsp;&nbsp;&nbsp;<button id="gameDatawipe" onclick="resetData()"> RESET DATA </button>\
@@ -741,25 +806,26 @@ function toMenu() {
 		</div>\
 \
 		<script src="liquid.js"> </script>';
-
+	
 	document.getElementById("gameDatawipe").addEventListener("click", (e) => {
 		menuScore = 0;
-		localStorage.setItem("topScore", JSON.stringify(menuScore));
+		highScore = 0;
+		hasDied = false;
+		playedOnce = false;
+		saveExists = false;
 		toMenu();
 	});
-
+	
 	document.getElementById("options").disabled = true;
 	document.getElementById("menuBeast").disabled = true; // SEOKU> These two are set to true for any other player to not be confused lol there's no code for them
-
-	document.body.style.backgroundColor = "#d7d7d7";
-
+	
 	if (!saveExists) {
 		document.getElementById("gameDatawipe").disabled = true;
 	}
 	else {
 		document.getElementById("gameDatawipe").disabled = false;
 	}
-
+	
 	if (!deathMenu) {
 		if (!saveExists) {
 			document.getElementById("contGame").disabled = true;
@@ -772,6 +838,84 @@ function toMenu() {
 	}
 }
 
+
+// =============================
+// GAME SPEED
+// =============================
+
+function speedInc() {
+	switch (quickerTest) {
+		case 1:
+			quickerTest = 2;
+			document.getElementById("gameSpd").innerHTML = "Game Speed: " + quickerTest;
+			break;
+		
+		case 2:
+			quickerTest = 3;
+			document.getElementById("gameSpd").innerHTML = "Game Speed: " + quickerTest;
+			break;
+		
+		case 3:
+			quickerTest = 4;
+			document.getElementById("gameSpd").innerHTML = "Game Speed: " + quickerTest;
+			break;
+		
+		case 4:
+			quickerTest = 1;
+			document.getElementById("gameSpd").innerHTML = "Game Speed: " + quickerTest;
+			break;
+	}
+}
+
+
+// =============================
+// FALLING TO NEGATIVES
+// =============================
+
+function depthFall() {
+	
+	imFalling = true;
+	console.log("IM FALING!!!!");
+	disableAll();
+
+	var ogRound = roundCounter;
+	
+	// roundsToFall to be set between 0 and 1 BEFORE caling depthFall(). Examples:
+	// 1 round = .01 / 25 rounds = .25 / 50 rounds = .5 / 75 rounds = .75 / 100 rounds = 1
+	for (let i = roundsToFall; i > 0; i -= .01) {
+		
+		disableAll();
+		
+		console.log("i:", i);
+
+		setTimeout(() => {
+		
+			var fakeEnemy = roundCounter;
+			roundCounter--;
+			depthCheck();
+			
+			console.log("round", roundCounter, "depth", currentDepth, "fakeenemy", fakeEnemy);
+
+			if (fakeEnemy > roundCounter) {
+				fakeEnemy--;
+				randomizeEnemy();
+				disableAll();
+			}
+			
+			if (roundCounter == ogRound - (roundsToFall*100)) {
+				imFalling = false;
+				saveData();
+				score = 
+				enableAll();
+			}
+
+			console.log("i =", i);
+			console.log("ROUND =", roundCounter, "OGROUND =", ogRound);
+			console.log("TIMER =", easeOutExpo(i) * 15000);
+			
+		}, easeOutExpo(i) * 15000);
+	}
+}
 
 // =============================
 // INITIALIZE ENEMY
@@ -793,13 +937,34 @@ function randomizeEnemy() {
 	// Round up if ran away
 	if (ranOff) {
 		ranOff = false;
-		roundCounter++;
-		if (highScore < roundCounter) {
-			highScore = roundCounter;
-			if (menuScore < roundCounter) {
-				menuScore = roundCounter;
-				console.log("surpassed highscore");
-				localStorage.setItem("topScore", JSON.stringify(menuScore));
+		
+		// Negative Rounds
+		if (!negDepths) {
+			roundCounter++;
+			
+			if (highScore < roundCounter) {
+				highScore = roundCounter;
+				
+				if (menuScore < roundCounter) {
+					menuScore = roundCounter;
+					console.log("surpassed highscore");
+					localStorage.setItem("topScore", JSON.stringify(menuScore));
+				}
+			}
+		}
+		
+		// Positive Rounds
+		else {
+			roundCounter--;
+			
+			if (highScore > roundCounter) {
+				highScore = roundCounter;
+				
+				if (menuScore > roundCounter) {
+					menuScore = roundCounter;
+					console.log("surpassed highscore");
+					localStorage.setItem("topScore", JSON.stringify(menuScore));
+				}
 			}
 		}
 		depthCheck();
@@ -809,18 +974,31 @@ function randomizeEnemy() {
 		enemyKilled = false;
 
 		// Up Round Counter by 1
-		roundCounter++;
-		if (highScore < roundCounter) {
-			highScore = roundCounter;
-			if (menuScore < roundCounter) {
-				menuScore = roundCounter;
-				console.log("surpassed highscore");
-				localStorage.setItem("topScore", JSON.stringify(menuScore));
+		if (!negDepths) {
+			roundCounter++;
+			if (highScore < roundCounter) {
+				highScore = roundCounter;
+				if (menuScore < roundCounter) {
+					menuScore = roundCounter;
+					console.log("surpassed highscore");
+					localStorage.setItem("topScore", JSON.stringify(menuScore));
+				}
+			}
+		}
+		else {
+			roundCounter--;
+			if (highScore > roundCounter) {
+				highScore = roundCounter;
+				if (menuScore > roundCounter) {
+					menuScore = roundCounter;
+					console.log("surpassed highscore");
+					localStorage.setItem("topScore", JSON.stringify(menuScore));
+				}
 			}
 		}
 		depthCheck();
 	}
-
+	
 	console.log("Round:", roundCounter, "| Depth:", currentDepth, "| Depth Name:", depthName, "| Highscore:", highScore);
 
 	// Randomize and Boss/Special enemy setup
@@ -831,7 +1009,7 @@ function randomizeEnemy() {
 			bossTime = true;
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][0].length), 0));
 			currentEnemy = Enemies[2][0][randomEnemy];
-			break;
+		break;
 
 		// Area 1 Boss
 		case 40:
@@ -851,31 +1029,33 @@ function randomizeEnemy() {
 		case 80:
 			bossTime = true;
 			specialEncounter = true;
-
+			
 			document.getElementById("actionLog").innerHTML = IntroText[2][0];
-
+			
 			randomEnemy = Math.floor(Math.max(Math.random() * (Enemies[2][3].length), 0));
 			currentEnemy = Enemies[2][3][randomEnemy];
 			break;
-
+			
 		// Back to Menu (playtest) [UNFINISHED]
 		case 81:
 			randomEnemy = 0;
 			currentEnemy = Enemies[1][0][randomEnemy];
-
+		
 			alertTitle = "LIQUID DIET";
 			alertMainText = "Congratulations!<br>You have beaten the playtest!<br>Fancy a NG+?";
 			alertButton1Text = "YES";
 			alertButton2Text = "NO";
-
+			
 			customAlertChoice();
-
+			
 			btn1.id = "retryBtn";
 			btn2.id = "menuBtn";
 
 			btn1.onclick = function () {
-				newGamePlus();
 				removeCustomAlert();
+				roundsToFall = .8;
+				depthFall();
+				ngPlus = true;
 				return false;
 			}
 
@@ -932,23 +1112,26 @@ function randomizeEnemy() {
 	// Set enemy HP
 	currentEnemyMaxHP = currentEnemyHP;
 	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
-
+	
 	enemyIntro();
 
 	enableAll();
 
 	saveExists = true;
 	localStorage.setItem("hasSaved", JSON.stringify(saveExists));
-	saveData();
+	
+	if (!imFalling) {
+		saveData();
+	}
 
 	return;
 }
 
 
 function enemyIntro() {
-
+	
 	enemyName = currentEnemy[0];
-
+	
 	// Set intro text
 	if (!bossTime && !specialEncounter) {
 		console.log("notboss & notspecial");
@@ -962,7 +1145,7 @@ function enemyIntro() {
 		console.log("special");
 		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>" + IntroText[2][Math.floor(Math.random() * IntroText[2].length)];
 	}
-
+	
 }
 
 
@@ -1145,7 +1328,7 @@ function playerDefeat() {
 	disableAll();
 	actionLine = 1;
 	deleteLine = 1;
-
+	
 	hasDied = true;
 	deathMenu = hasDied;
 	localStorage.setItem("hasDied", JSON.stringify(deathMenu));
@@ -1155,7 +1338,7 @@ function playerDefeat() {
 	document.getElementById("actionLog").innerHTML += '<p style="font-size: 1.75em;margin-bottom:0.5em;"><strong><u>Try again?</u></strong></p>';
 
 	document.getElementById("actionLog").innerHTML += '<button id="retryBtn"> START ANEW </button> <button id="menuBtn"> BACK TO MENU </button>';
-
+	
 	document.getElementById("retryBtn").addEventListener("click", playerRevive);
 	document.getElementById("menuBtn").addEventListener("click", toMenu);
 }
@@ -1177,12 +1360,12 @@ function playerRevive() {
 		fullInv = false;
 		disableInvs();
 		equipmentUpdate();
-
+		
 		roundCounter = 0;
 		currentDepth = 0;
 		depthName = currentDepth;
 		depthCheck();
-
+		
 		itemSlot1[0] = "Empty";
 		itemSlot1[2] = "Null";
 		itemSlot2[0] = "Empty";
@@ -1194,11 +1377,11 @@ function playerRevive() {
 		document.getElementById("inventory3").innerHTML = itemSlot3[0];
 
 		randomizeEnemy();
-
+		
 		hasDied = false;
 		deathMenu = hasDied;
 		localStorage.setItem("hasDied", JSON.stringify(deathMenu));
-
+		
 		enableActs();
 	}, 2500 / quickerTest);
 }
@@ -1579,7 +1762,7 @@ function Attack() {
 	critRate = Math.floor((Math.PI / currentWeapon[3]) * 7500);
 
 	var hitRNG = Math.floor((Math.random() * 1000) + 1);
-
+	
 	// Weapon Special Effects
 	function weaponEffectCheck() {
 
@@ -1594,28 +1777,32 @@ function Attack() {
 					case 0: // ...Against "ABOMINATIONS"
 						if (currentEnemy[7] == 0) {
 							currentEnemyHP -= 1;
-							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against ABOMINATIONS!<br></span>";
+							actionLine++;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>ABOMINATIONS!</strong><br></span>";
 						}
 						break;
 
 					case 1: // ...Against "HERALDS"
 						if (currentEnemy[7] == 1) {
 							currentEnemyHP -= 1;
-							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against HERALDS!<br></span>";
+							actionLine++;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>HERALDS!</strong><br></span>";
 						}
 						break;
 
 					case 2: // ...Against "MALADIES"
 						if (currentEnemy[7] == 2) {
 							currentEnemyHP -= 1;
-							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against MALADIES!<br></span>";
+							actionLine++;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>MALADIES!</strong><br></span>";
 						}
 						break;
 
 					case 3: // ...Against "NYMPHS"
 						if (currentEnemy[7] == 3) {
 							currentEnemyHP -= 1;
-							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against NYMPHS!<br></span>";
+							actionLine++;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>NYMPHS!</strong><br></span>";
 						}
 						break;
 
@@ -1631,28 +1818,32 @@ function Attack() {
 					case 0: // ...Against "ABOMINATIONS"
 						if (currentEnemy[7] == 0) {
 							currentEnemyHP -= currentWeapon[2];
-							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against ABOMINATIONS!<br></span>";
+							actionLine++;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>ABOMINATIONS!</strong><br></span>";
 						}
 						break;
 
 					case 1: // ...Against "HERALDS"
 						if (currentEnemy[7] == 1) {
 							currentEnemyHP -= currentWeapon[2];
-							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against HERALDS!<br></span>";
+							actionLine++;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>HERALDS!</strong><br></span>";
 						}
 						break;
 
 					case 2: // ...Against "MALADIES"
 						if (currentEnemy[7] == 2) {
 							currentEnemyHP -= currentWeapon[2];
-							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against MALADIES!<br></span>";
+							actionLine++;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>MALADIES!</strong><br></span>";
 						}
 						break;
 
 					case 3: // ...Against "NYMPHS"
 						if (currentEnemy[7] == 3) {
 							currentEnemyHP -= currentWeapon[2];
-							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against NYMPHS!<br></span>";
+							actionLine++;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>NYMPHS!</strong><br></span>";
 						}
 						break;
 
@@ -1665,10 +1856,9 @@ function Attack() {
 
 	}
 
-
 	// PLACEHOLDER DEBUG CONSOLE LOG
 	console.log("(MISS AREA) " + hitRate + " |", hitRNG, "| " + critRate + " (CRIT AREA)");
-
+	
 	// MEGAMISS Hit check
 	if (hitRNG === 1000) {
 		currentPlayerHP -= currentWeapon[2];
@@ -1706,7 +1896,7 @@ function Attack() {
 		else if (currentWeapon[2] > 0) {
 			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>MASSIVE CRIT!!!</strong> You tear the enemy apart!!<br></span>";
-			weaponEffectCheck()
+			weaponEffectCheck();
 		}
 
 		// Useless weapon check
@@ -1730,7 +1920,7 @@ function Attack() {
 		else if (currentWeapon[2] > 0) {
 			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>CRITICAL HIT!!</strong> You tear into the enemy!<br></span>";
-			weaponEffectCheck()
+			weaponEffectCheck();
 		}
 
 		// Useless weapon check
@@ -1754,7 +1944,7 @@ function Attack() {
 		else if (currentWeapon[2] > 0) {
 			actionLine++;
 			document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "You attack the enemy!<br></span>";
-			weaponEffectCheck()
+			weaponEffectCheck();
 		}
 
 		// Useless weapon check
@@ -1777,7 +1967,7 @@ function Attack() {
 	if (currentPlayerHP > maxPlayerHP) {
 		currentPlayerHP = maxPlayerHP;
 	}
-
+	
 	// Enemy HP max (min used for juicyHeal calc, do not add)
 	if (currentEnemyHP > currentEnemyMaxHP) {
 		currentEnemyMaxHP = currentEnemyHP;
@@ -2120,7 +2310,7 @@ function autoScroll() {
 // =============================
 
 if (gameOn) {
-
+	
 	if (debugmode) {
 
 		var STAT = 0;
@@ -2413,12 +2603,12 @@ function customAlertChoice(txt) {
 	twoBtns.style.marginLeft = "2em";
 	twoBtns.style.marginRight = "2em";
 	twoBtns.style.marginBottom = "0.35em";
-
+	
 	btn1 = d.getElementById("twoBtns").appendChild(d.createElement("a"));
 	// Set btn1.id in randomizeEnemy();
 	btn1.appendChild(d.createTextNode(alertButton1Text));
 	btn1.focus();
-
+	
 	btn2 = d.getElementById("twoBtns").appendChild(d.createElement("a"));
 	// Set btn2.id in randomizeEnemy();
 	btn2.appendChild(d.createTextNode(alertButton2Text));
