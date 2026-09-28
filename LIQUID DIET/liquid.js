@@ -39,8 +39,8 @@ const Enemies = [
 		],
 		// NEGATIVE DEPTHS
 		[
-			["%HELLP", "Images/Enemy_PATHETIC_DUMMY.png", 5, [1, 1, 2, 1, 1, 1], [0, 7], [0, 1], ['<i>Syndrome%</i> <br>', '<i> at 10:48, 15 August 2004, </i> <br>',], 4],
-			["NEGATIVE ENEMY 2", "Images/PLACEHOLDER.png", 6, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>The enemy tests the Negative Depth... </i> <br>'], 4],
+			["%HELLP", "Images/Enemy_PATHETIC_DUMMY.png", 13, [1, 1, 2, 1, 1, 1], [0, 7], [0, 1], ['<i>Syndrome%</i> <br>', '<i> at 10:48, 15 August 2004, </i> <br>',], 4],
+			["NEGATIVE ENEMY 2", "Images/PLACEHOLDER.png", 16, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>The enemy tests the Negative Depth... </i> <br>'], 4],
 		],
 	],
 
@@ -1224,6 +1224,9 @@ function randomizeEnemy() {
 		console.log("HELLOOOOO OVER 82 WHY DONT YOU WORK");
 		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>The <strong>" + enemyName + "</strong> " + IntroText[1][Math.floor(Math.random() * IntroText[1].length)];
 	}
+	else if (roundCounter <= -1 && !specialEncounter) {
+		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>" + IntroText[3][Math.floor(Math.random() * IntroText[3].length)];
+	}
 
 	enableAll();
 
@@ -1254,9 +1257,6 @@ function enemyIntro() {
 	else if (specialEncounter) {
 		console.log("special");
 		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>" + IntroText[2][specialIntro];
-	}
-	else if (negDepths) {
-		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>" + IntroText[3][Math.floor(Math.random() * IntroText[3].length)];
 	}
 }
 
