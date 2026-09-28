@@ -1,0 +1,21 @@
+- Game Design -
+SEOKU> What if fleeing from enemies (successfully, of course) simply REROLLED the round instead of skipping it? I added it to the current commit but I dunno if you want that. I think it makes the thing a bit more interesting. Lemme know
+SEOKU> I think you had this idea also but with how AWFUL some runs can start if you're unlucky I thought about the upgrades again. What if for each milestone (like, getting past 2/3 Depths or something) you could choose to Permanently upgrade your Starting HP/ATK/Run Chance/Hit Chance/Whatever i dunno? And that'd stick across runs. Might make stuff trivial tho so it might be best to have it be a random chance of finding an "enemy" (ally) that gives you one? Up to you. I'd be down to work on that
+
+
+- Enemies -
+
+
+
+- Items & Equipment -
+SEOKU> Maybe we could have some kinda invisicloak (random name) armor that only boosts evasion. Like when you wear it you have more chances of escape. Added it already but we can take it out
+
+
+- Depths & Rounds -
+
+
+
+- Story -
+
+
+

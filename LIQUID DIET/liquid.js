@@ -2,7 +2,11 @@
 // I ended up testing your code also. Seems like it all works well! I'm proud of you! <3
 // Anyway, I'd best be going now. She'll notice if I keep her laptop on too long! See you soon!
 //																- The Restorer
-//
+
+// Well, I had left this message a few nights ago, but it seems you never saw it...
+// Still, I stand by all I said! Hope you're still doing good, partner! ;(^o^)
+//																- The Restorer
+
 // =================================================================================================================================================
 // ENEMY ARRAY ["NAME", "Images/img_src", Base HP, [Attack Pattern (6 turns)], [Drops (OG, Overk)], [Drop Types (OG, Overk)], [Dialogues], Enemy Type]
 // =================================================================================================================================================
@@ -24,7 +28,7 @@ const Enemies = [
 		// DEPTH 2 ENEMIES
 		[
 			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 4, [2, 1, 0, 0, 1, 1], [5, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>'], 3],
-			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2], [1, 2], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',], 3],
+			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [0, 1, 1, 0, 1, 0], [3, 2], [1, 2], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',], 3],
 		],
 		// DEPTH 3 ENEMIES
 		[
@@ -51,7 +55,7 @@ const Enemies = [
 		],
 		// DEPTH 101 SCARE
 		[
-			["IL MASSIMO", "Images/PLACEHOLDER.png", NaN, [2, 2, 2, 2, 1, 1], [0, 0], [0, 0], ['<i>LASCIAMI ENTRARE</i> <br>'], 0],
+			["IL MASSIMO", "Images/PLACEHOLDER.png", 100, [2, 2, 2, 2, 1, 1], [0, 0], [0, 0], ['<i>LASCIAMI ENTRARE</i> <br>'], 0],
 		],
 	],
 	
@@ -59,8 +63,8 @@ const Enemies = [
 	[
 		// DEPTH 0 BOSSES
 		[
-			["AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [11, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [11, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [11, 4], [1, 3], ['<i>"helo i am a test"</i> <br>'], 0],
+			["OTHER AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [11, 4], [1, 3], ['<i>"helo i am a test 2"</i> <br>'], 0],
 		],
 		// DEPTH 1 BOSSES
 		[
@@ -162,17 +166,11 @@ const Weapons = [
 
 const Armors = [
 
-	// Empty (0)
-	["None", "Images/Armor_None.png", 0],
-
-	// Positive Armors (1)
-	["Test Pos", "Images/PLACEHOLDER.png", 1],
-
-	// Negative Armors (2)
-	["Test Neg", "Images/PLACEHOLDER.png", -1],
-
-	// Useless Armors (3)
-	["Test Usl", "Images/PLACEHOLDER.png", 0],
+	["None", "Images/Armor_None.png", 0],           // 0
+	["Test Pos", "Images/PLACEHOLDER.png", 1],      // 1
+	["Test Neg", "Images/PLACEHOLDER.png", -1],     // 2
+	["Test Usl", "Images/PLACEHOLDER.png", 0],      // 3
+	["Invisicloak", "Images/Armor_LabCoat.png", 0]  // 4 (Raises evasion in Run();)
 
 ];
 
@@ -236,12 +234,18 @@ roundsToFall = 1;
 gameLoad = false;
 gameOn = false;
 negDepths = JSON.parse(localStorage.getItem("negaTime"));
+knowsNeg = JSON.parse(localStorage.getItem("knowsNeg"));
+negRound = JSON.parse(localStorage.getItem("negRound"));
 
 if (negDepths == null) {
 	negDepths = false;
 }
 
-imFalling = false;
+if (knowsNeg == null) {
+	knowsNeg = false;
+}
+
+imFalling = undefined;
 
 if (JSON.parse(localStorage.getItem("hasDied")) == null) {
 	hasDied = false;
@@ -419,9 +423,13 @@ function loadGame() {
 	
 	if (JSON.parse(localStorage.getItem("enemyHealth")) <= 0) {
 		document.getElementById("enemyHP").innerHTML = "<strong>" + 0 + "/" + currentEnemyMaxHP + "</strong>";
-		currentEnemyHP == JSON.parse(localStorage.getItem("enemyHealth"));
+		currentEnemyHP = JSON.parse(localStorage.getItem("enemyHealth"));
 		
 		enemyDefeat();
+	}
+
+	if (roundCounter == 101) {
+		disableAll(); // IM LOSING IT
 	}
 }
 
@@ -436,18 +444,18 @@ function disableInvs() {
 	knowsWeapons = false;
 	knowsArmors = false;
 
-	inventory1.disabled = true;
-	inventory2.disabled = true;
-	inventory3.disabled = true;
+	document.getElementById("inventory1").disabled = true;
+	document.getElementById("inventory2").disabled = true;
+	document.getElementById("inventory3").disabled = true;
 }
 
 function disableAll() {
 	playerAttack.disabled = true;
 	talking.disabled = true;
 	runAway.disabled = true;
-	inventory1.disabled = true;
-	inventory2.disabled = true;
-	inventory3.disabled = true;
+	document.getElementById("inventory1").disabled = true;
+	document.getElementById("inventory2").disabled = true;
+	document.getElementById("inventory3").disabled = true;
 }
 
 function enableActs() {
@@ -459,25 +467,25 @@ function enableActs() {
 
 function enableInvs() {
 	if (itemSlot1[0] == "Empty" || itemSlot1 == Items[0]) {
-		inventory1.disabled = true;
+		document.getElementById("inventory1").disabled = true;
 	}
 	else {
-		inventory1.disabled = false;
+		document.getElementById("inventory1").disabled = false;
 		item1taken = true;
 	}
 
 	if (itemSlot2[0] == "Empty" || itemSlot2 == Items[0]) {
-		inventory2.disabled = true;
+		document.getElementById("inventory2").disabled = true;
 	}
 	else {
-		inventory2.disabled = false;
+		document.getElementById("inventory2").disabled = false;
 	}
 
 	if (itemSlot3[0] == "Empty" || itemSlot3 == Items[0]) {
-		inventory3.disabled = true;
+		document.getElementById("inventory3").disabled = true;
 	}
 	else {
-		inventory3.disabled = false;
+		document.getElementById("inventory3").disabled = false;
 	}
 }
 
@@ -494,24 +502,24 @@ function enableAll() {
 	runAway.disabled = false;
 
 	if (itemSlot1[0] == "Empty") {
-		inventory1.disabled = true;
+		document.getElementById("inventory1").disabled = true;
 	}
 	else {
-		inventory1.disabled = false;
+		document.getElementById("inventory1").disabled = false;
 	}
 
 	if (itemSlot2[0] == "Empty") {
-		inventory2.disabled = true;
+		document.getElementById("inventory2").disabled = true;
 	}
 	else {
-		inventory2.disabled = false;
+		document.getElementById("inventory2").disabled = false;
 	}
 
 	if (itemSlot3[0] == "Empty") {
-		inventory3.disabled = true;
+		document.getElementById("inventory3").disabled = true;
 	}
 	else {
-		inventory3.disabled = false;
+		document.getElementById("inventory3").disabled = false;
 	}
 
 	runFail = false;
@@ -524,6 +532,7 @@ function depthCheck() {
 
 	if (roundCounter < 0) {
 		negDepths = true;
+		knowsNeg = true;
 		document.getElementById("fullpage").style = "";
 		document.body.style.backgroundColor = "red";
 		document.getElementById("fullfilter").style = "";
@@ -657,6 +666,7 @@ function resetData() {
 	
 	// Round & Depth info
 	highScore = 0;
+	negDepths = false;
 	localStorage.setItem("roundNow", 0);
 	localStorage.setItem("depthNow", 0);
 	localStorage.setItem("depthNowName", 0);
@@ -680,6 +690,7 @@ function saveData() {
 	localStorage.setItem("depthNowName", depthName);
 	localStorage.setItem("negaTime", JSON.stringify(negDepths));
 	localStorage.setItem("turnAmt", JSON.stringify(elapsedTurns));
+	localStorage.setItem("negRound", JSON.stringify(negRound));
 	
 	// Player info
 	localStorage.setItem("plyMaxHealth", JSON.stringify(maxPlayerHP));
@@ -690,6 +701,7 @@ function saveData() {
 	localStorage.setItem("plyKnowsW", JSON.stringify(knowsWeapons));
 	localStorage.setItem("plyKnowsA", JSON.stringify(knowsArmors));
 	localStorage.setItem("hasDied", JSON.stringify(deathMenu));
+	localStorage.setItem("knowsNeg", JSON.stringify(knowsNeg));
 
 	// Item & Inventory info
 	localStorage.setItem("1stItem", JSON.stringify(itemSlot1));
@@ -745,6 +757,7 @@ function loadData() {
 	menuScore = JSON.parse(localStorage.getItem("topScore"));
 	highScore = JSON.parse(localStorage.getItem("oldScore"));
 	elapsedTurns = JSON.parse(localStorage.getItem("turnAmt"));
+	negRound = JSON.parse(localStorage.getItem("negRound"));
 	
 	// Player info
 	maxPlayerHP = JSON.parse(localStorage.getItem("plyMaxHealth"));
@@ -754,6 +767,7 @@ function loadData() {
 	currentArmor = JSON.parse(localStorage.getItem("plyArmor"));
 	knowsWeapons = JSON.parse(localStorage.getItem("plyKnowsW"));
 	knowsArmors = JSON.parse(localStorage.getItem("plyKnowsA"));
+	knowsNeg = JSON.parse(localStorage.getItem("knowsNeg"));
 
 	// Item & Inventory info
 	itemSlot1[0] = localStorage.getItem("1stItemName");
@@ -792,7 +806,9 @@ function loadData() {
 	document.getElementById("playerHP").innerHTML = "<strong>" + currentPlayerHP + "/" + maxPlayerHP + "</strong>";
 	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 	
-	enableInvs();
+	if (roundCounter != 101) {
+		enableInvs();
+	}
 	equipmentUpdate();
 
 	console.log("Data loaded!", localStorage);
@@ -827,6 +843,7 @@ window.onload = (event) => {
 	deathMenu = JSON.parse(localStorage.getItem("hasDied"));
 	saveExists = JSON.parse(localStorage.getItem("hasSaved"));
 	playedOnce = JSON.parse(localStorage.getItem("hasPlayed"));
+	knowsNeg = JSON.parse(localStorage.getItem("knowsNeg"));
 
 	if (playedOnce) {
 		menuScore = JSON.parse(localStorage.getItem("topScore"));
@@ -872,12 +889,12 @@ function toMenu() {
 	deathMenu = JSON.parse(localStorage.getItem("hasDied"));
 	console.log("hasDied =", deathMenu);
 	
-	if (!negDepths) {
+	if (!knowsNeg) {
 		score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + menuScore;
 		document.body.style.backgroundColor = "#d7d7d7";
 	}
-	else if (negDepths && playedOnce) {
-		score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + roundCounter;
+	else if (knowsNeg && playedOnce) {
+		score = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HIGHSCORE: " + negRound;
 		document.body.style.backgroundColor = "#9a5959";
 	}
 	else {
@@ -905,12 +922,14 @@ function toMenu() {
 \
 		<script src="liquid.js"> </script>';
 	
+	// For stuff we wanna wipe when pressing the button but NOT when starting a new game (why tf does vsc try to guess what i'll type??? ew)
 	document.getElementById("gameDatawipe").addEventListener("click", (e) => {
 		menuScore = 0;
 		highScore = 0;
 		hasDied = false;
 		playedOnce = false;
 		saveExists = false;
+		knowsNeg = false;
 		toMenu();
 	});
 	
@@ -974,13 +993,12 @@ function depthFall() {
 	
 	imFalling = true;
 	console.log("IM FALING!!!!");
-	disableAll();
 
 	var ogRound = roundCounter;
 	
 	// roundsToFall to be set between 0 and 1 BEFORE caling depthFall(). Examples:
 	// 1 round = .01 / 25 rounds = .25 / 50 rounds = .5 / 75 rounds = .75 / 100 rounds = 1
-	for (let i = roundsToFall; i > 0; i -= .01) {
+	for (let i = roundsToFall; i > 0; i -= 0.01) {
 		
 		disableAll();
 		
@@ -1002,8 +1020,14 @@ function depthFall() {
 			
 			if (roundCounter == ogRound - (roundsToFall*100)) {
 				imFalling = false;
+				document.getElementById("gameSpd").disabled = false;
+				
+				if (roundCounter < 0) {
+					negRound = roundCounter;
+					console.log("negRound =", negRound);
+				}
+
 				saveData();
-				score = 
 				enableAll();
 			}
 
@@ -1032,69 +1056,46 @@ function randomizeEnemy() {
 
 	equipWhat = undefined;
 
-	// Round up if ran away
-	if (ranOff) {
-		ranOff = false;
-		
-		// Negative Rounds
-		if (!negDepths) {
-			roundCounter++;
-			
-			if (highScore < roundCounter) {
-				highScore = roundCounter;
-				
-				if (menuScore < roundCounter) {
-					menuScore = roundCounter;
-					console.log("surpassed highscore");
-					localStorage.setItem("topScore", JSON.stringify(menuScore));
-				}
-			}
-		}
-		
-		// Positive Rounds
-		else {
-			roundCounter--;
-			
-			if (highScore > roundCounter) {
-				highScore = roundCounter;
-				
-				if (menuScore > roundCounter) {
-					menuScore = roundCounter;
-					console.log("surpassed highscore");
-					localStorage.setItem("topScore", JSON.stringify(menuScore));
-				}
-			}
-		}
-		depthCheck();
-	}
+	// Round up if ran away (IMFALLING NECESSARY FOR DEPTHFALL)
+	if (!imFalling) {
+		if (!ranOff || enemyKilled) {
+			enemyKilled = false;
 
-	if (enemyKilled) {
-		enemyKilled = false;
-
-		// Up Round Counter by 1
-		if (!negDepths) {
-			roundCounter++;
-			if (highScore < roundCounter) {
-				highScore = roundCounter;
-				if (menuScore < roundCounter) {
-					menuScore = roundCounter;
-					console.log("surpassed highscore");
-					localStorage.setItem("topScore", JSON.stringify(menuScore));
+			// Negative Rounds
+			if (!negDepths) {
+				roundCounter++;
+				
+				if (highScore < roundCounter) {
+					highScore = roundCounter;
+					
+					if (menuScore < roundCounter) {
+						menuScore = roundCounter;
+						console.log("surpassed highscore");
+						localStorage.setItem("topScore", JSON.stringify(menuScore));
+					}
 				}
 			}
-		}
-		else {
-			roundCounter--;
-			if (highScore > roundCounter) {
-				highScore = roundCounter;
-				if (menuScore > roundCounter) {
-					menuScore = roundCounter;
-					console.log("surpassed highscore");
-					localStorage.setItem("topScore", JSON.stringify(menuScore));
+			
+			// Positive Rounds
+			else {
+				roundCounter--;
+				negRound = roundCounter;
+				
+				if (highScore > roundCounter) {
+					highScore = roundCounter;
+					
+					if (menuScore > roundCounter) {
+						menuScore = roundCounter;
+						console.log("surpassed highscore (negative style)");
+						localStorage.setItem("topScore", JSON.stringify(menuScore));
+					}
 				}
 			}
+			depthCheck();
 		}
-		depthCheck();
+		else if (ranOff) {
+			ranOff = false;
+		}
 	}
 	
 	console.log("Round:", roundCounter, "| Depth:", currentDepth, "| Depth Name:", depthName, "| Highscore:", highScore);
@@ -1118,6 +1119,8 @@ function randomizeEnemy() {
 			randomEnemy = 0;
 			currentEnemy = Enemies[1][0][randomEnemy];
 			specialIntro = 0;
+			document.getElementById("gameSpd").disabled = true;
+			disableAll();
 			
 			if (!imFalling) {
 				alertTitle = "LIQUID DIET";
@@ -1132,7 +1135,7 @@ function randomizeEnemy() {
 
 				btn1.onclick = function () {
 					removeCustomAlert();
-					roundsToFall = .81; // Goes to R0
+					roundsToFall = .8; // Goes to R1
 					depthFall();
 					ngPlus = true;
 					return false;
@@ -1147,6 +1150,8 @@ function randomizeEnemy() {
 			
 		// To Negative Rounds
 		case 101:
+			document.getElementById("gameSpd").disabled = true;
+			disableAll();
 			bossTime = false;
 			specialEncounter = true;
 			randomEnemy = 0;
@@ -1215,7 +1220,13 @@ function randomizeEnemy() {
 
 	// Set enemy HP
 	currentEnemyMaxHP = currentEnemyHP;
-	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+
+	if (roundCounter == 101) {
+		document.getElementById("enemyHP").innerHTML = "<strong>" + NaN + "/" + NaN + "</strong>";
+	}
+	else {
+		document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
+	}
 	
 	enemyIntro();
 	
@@ -1227,7 +1238,9 @@ function randomizeEnemy() {
 		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>" + IntroText[3][Math.floor(Math.random() * IntroText[3].length)];
 	}
 
-	enableAll();
+	if (roundCounter != 101) {
+		enableAll();
+	}
 
 	saveExists = true;
 	localStorage.setItem("hasSaved", JSON.stringify(saveExists));
@@ -1728,7 +1741,7 @@ function grantWeapon() {
 function grantArmor() {
 	console.log("Armor drop:", Armors[enemyDrop][0]);
 
-	if (currentArmor == Armors[enemyDrop]) {
+	if (currentArmor[0] == Armors[enemyDrop][0]) {
 		console.log("... but said armor is already equipped, so...");
 		alrEquipped();
 		return;
@@ -2224,7 +2237,9 @@ function Attack() {
 		}
 	}, 1000 / quickerTest);
 
-	runFail = false;
+	if (!bossTime) {
+		runFail = false;
+	}
 
 	autoScroll();
 }
@@ -2236,16 +2251,33 @@ function Attack() {
 
 function Run() {
 
+	if (bossTime) {
+		runFail = true;
+		actionLine++;
+		document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "<strong>Can't flee!</strong> The enemy has you cornered!<br></span>";
+		document.getElementById("runAway").disabled = true;
+		autoScroll();
+		return;
+	}
+
+	// RUN RNG (Needs to be HIGHEST to LOWEST)
+
 	// Normal Run chance
-	if (currentWeapon != Weapons[3]) {
+	if (currentWeapon[0] != Weapons[3][0] && currentArmor[0] != Armors[4][0]) {
 		var runRNG = Math.floor((Math.random() * 100) + 1);
 		var runOffLimit = 85;
 	}
 
-	// HandPuppet Run chance
-	else {
+	// Invisicloak Run chance
+	else if (currentArmor[0] == Armors[4][0]) {
 		var runRNG = Math.floor((Math.random() * 100) + 1);
-		var runOffLimit = 25;
+		var runOffLimit = 35;
+	}
+
+	// HandPuppet Run chance
+	else if (currentWeapon[0] == Weapons[3][0]) {
+		var runRNG = Math.floor((Math.random() * 100) + 1);
+		var runOffLimit = 5;
 	}
 
 	if (runRNG >= runOffLimit) {
@@ -2267,7 +2299,7 @@ function Run() {
 		actionLine = 1;
 		deleteLine = 1;
 
-		document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "You managed to escape... <br></span>";
+		document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "You escaped, yet before you could go any further... <br></span>";
 		setTimeout(() => { randomizeEnemy(); }, 2500 / quickerTest);
 	}
 	else {
@@ -2315,7 +2347,7 @@ function useItem(e) {
 				fullInv = false;
 				itemSlot1 = Items[0];
 				document.getElementById("inventory1").innerHTML = Items[0][0];
-				inventory1.disabled = true;
+				document.getElementById("inventory1").disabled = true;
 			}
 			break;
 
@@ -2336,7 +2368,7 @@ function useItem(e) {
 				fullInv = false;
 				itemSlot2 = Items[0];
 				document.getElementById("inventory2").innerHTML = Items[0][0];
-				inventory2.disabled = true;
+				document.getElementById("inventory2").disabled = true;
 			}
 			break;
 
@@ -2357,7 +2389,7 @@ function useItem(e) {
 				fullInv = false;
 				itemSlot3 = Items[0];
 				document.getElementById("inventory3").innerHTML = Items[0][0];
-				inventory3.disabled = true;
+				document.getElementById("inventory3").disabled = true;
 			}
 			break;
 	}
