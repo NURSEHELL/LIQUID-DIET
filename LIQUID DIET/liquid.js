@@ -24,20 +24,35 @@ const Enemies = [
 		],
 		// DEPTH 2 ENEMIES
 		[
-			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>'], 3],
+			["DEPTH 2 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 4, [2, 1, 0, 0, 1, 1], [5, 4], [1, 1], ['<i>You cannot understand this enemy... </i> <br>'], 3],
 			["ANASTASIA'S CHIMERA", "Images/Enemy_ANASTASIA_CHIMERA.png", 4, [1, 0, 1, 0, 1, 0], [3, 2], [1, 2], ['<i>"My, what are you grabbing at? Haha~"</i> <br>', '<i>"Don\'t talk to my son or I will call the police."</i> <br>', '<i>"I only give myself to those strong enough to knock me out~"</i> <br>', '<i>"Who do you think you are? I\'m stronger than you will ever be."</i> <br>',], 3],
 		],
 		// DEPTH 3 ENEMIES
 		[
 			["DEPTH 3 ENEMY", "Images/Enemy_PATHETIC_DUMMY.png", 3, [1, 1, 2, 1, 1, 1], [1, 4], [1, 1], ['<i>The enemy speaks gibberish... </i> <br>'], 0],
+			["OTHER DEPTH 3 ENEMY", "Images/PLACEHOLDER.png", 5, [1, 0, 2, 2, 0, 1], [1, 4], [1, 1], ['<i>The enemy tests the 3rd Depth... </i> <br>'], 0],
+		],
+		// ABOVE THE SKIES DEPTHS
+		[
+			["WHERE ARE YOU NOW?", "Images/Enemy_PATHETIC_DUMMY.png", 5, [0, 0, 2, 2, 2, 0], [7, 8], [1, 1], ['<i>"What a situation!What a situation!What a situation!What a situation!"</i> <br>', '<i>"I can\'t wrap my head around this!I can\'t wrap my head around this!I can\'t wrap my head around this!I can\'t wrap my head around this!"</i> <br>',], 0],
+			["ATS ENEMY 2", "Images/PLACEHOLDER.png", 4, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>The enemy goes Above and beyond... </i> <br>'], 0],
+		],
+		// NEGATIVE DEPTHS
+		[
+			["%HELLP", "Images/Enemy_PATHETIC_DUMMY.png", 5, [1, 1, 2, 1, 1, 1], [0, 7], [0, 1], ['<i>Syndrome%</i> <br>', '<i> at 10:48, 15 August 2004, </i> <br>',], 4],
+			["NEGATIVE ENEMY 2", "Images/PLACEHOLDER.png", 6, [0, 1, 0, 0, 1, 1], [1, 4], [1, 1], ['<i>The enemy tests the Negative Depth... </i> <br>'], 4],
 		],
 	],
 
 	// Special Enemies
 	[
-		// ROUND 81 SCARE
+		// ROUND 81 SPOOK
 		[
-			["CHAPELLE D'OR", "Images/PLACEHOLDER.png", 101, [0, 0, 0, 0, 0, 0], [0, 0], [1, 1], ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>'], 2],
+			["CHAPELLE D'OR", "Images/PLACEHOLDER.png", 81, [0, 0, 0, 0, 0, 0], [0, 0], [1, 1], ['<i>"Oh? A new visitor? Welcome to the hospital!"</i> <br>', '<i>"Say, are you lost?"</i> <br>', '<i>"There\'s nothing in this part of the building."</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>The enemy is silent...</i> <br>', '<i>"Scream for help if you\'re still able. Letting you live won\'t delay your death. Hahaha..."</i> <br>'], 2],
+		],
+		// DEPTH 101 SCARE
+		[
+			["IL MASSIMO", "Images/PLACEHOLDER.png", NaN, [2, 2, 2, 2, 1, 1], [0, 0], [0, 0], ['<i>LASCIAMI ENTRARE</i> <br>'], 0],
 		],
 	],
 	
@@ -45,23 +60,23 @@ const Enemies = [
 	[
 		// DEPTH 0 BOSSES
 		[
-			["AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [11, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
+			["OTHER AREA 0 BOSS", "Images/Enemy_IDK.png", 10, [0, 1, 1, 0, 2, 1], [11, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
 		],
 		// DEPTH 1 BOSSES
 		[
-			["AREA 1 BOSS", "Images/Enemy_IDK.png", 15, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 1 BOSS", "Images/Enemy_IDK.png", 15, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 1 BOSS", "Images/Enemy_IDK.png", 15, [0, 1, 1, 0, 2, 1], [11, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
+			["OTHER AREA 1 BOSS", "Images/Enemy_IDK.png", 15, [0, 1, 1, 0, 2, 1], [11, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
 		],
 		// DEPTH 2 BOSSES
 		[
-			["AREA 2 BOSS", "Images/Enemy_IDK.png", 20, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 2 BOSS", "Images/Enemy_IDK.png", 20, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 2 BOSS", "Images/Enemy_IDK.png", 20, [0, 1, 1, 0, 2, 1], [11, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 4],
+			["OTHER AREA 2 BOSS", "Images/Enemy_IDK.png", 20, [0, 1, 1, 0, 2, 1], [11, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 4],
 		],
 		// DEPTH 3 BOSSES
 		[
-			["AREA 3 BOSS", "Images/Enemy_IDK.png", 25, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 0],
-			["OTHER AREA 3 BOSS", "Images/Enemy_IDK.png", 25, [0, 1, 1, 0, 2, 1], [2, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 0],
+			["AREA 3 BOSS", "Images/Enemy_IDK.png", 25, [0, 1, 1, 0, 2, 1], [11, 3], [1, 2], ['<i>"helo i am a test"</i> <br>'], 4],
+			["OTHER AREA 3 BOSS", "Images/Enemy_IDK.png", 25, [0, 1, 1, 0, 2, 1], [11, 3], [1, 2], ['<i>"helo i am a test 2"</i> <br>'], 4],
 		]
 
 	],
@@ -87,17 +102,18 @@ const Enemies = [
 
 const Items = [
 
-	["Empty", "Images/Item_Empty.png", "Null", 0],
-	["Energy Drink", "Images/Item_Energy.png", "Heal", 1],
-	["Sludge", "Images/Item_Sludge.png", "DMG", 2],
-	["Chimera Fetus", "Images/Item_Fetus.png", "DMG", 1],
-	["Juicy Nectar", "Images/Item_Blood.png", "Heal", 2], // True heal in itemHeal();
-	["Electric Caress", "Images/Item_ObeastFur.png", "Heal", -1],
-	["Piercing Gaze", "Imaes/Item_ChimEye.png", "DMG", -1],
-	["Test UslHeal", "Images/PLACEHOLDER.png", "Heal", 0],
-	["Test UslDMG", "Images/PLACEHOLDER.png", "DMG", 0],
-	["Angel Incisor", "Images/Item_Incisor.png", "DMG", 2],
-	["Sharp Halo", "Images/Item_Halo.png", "DMG", 3],
+	["Empty", "Images/Item_Empty.png", "Null", 0],                // 0
+	["Energy Drink", "Images/Item_Energy.png", "Heal", 1],		  // 1
+	["Sludge", "Images/Item_Sludge.png", "DMG", 2],               // 2
+	["Chimera Fetus", "Images/Item_Fetus.png", "DMG", 1],         // 3
+	["Juicy Nectar", "Images/Item_Blood.png", "Heal", 2],         // 4 - True heal in itemHeal();
+	["Electric Caress", "Images/Item_ObeastFur.png", "Heal", -1], // 5
+	["Piercing Gaze", "Imaes/Item_ChimEye.png", "DMG", -1],       // 6
+	["Test UslHeal", "Images/PLACEHOLDER.png", "Heal", 0],        // 7
+	["Test UslDMG", "Images/PLACEHOLDER.png", "DMG", 0],          // 8
+	["Angel Incisor", "Images/Item_Incisor.png", "DMG", 2],       // 9
+	["Sharp Halo", "Images/Item_Halo.png", "DMG", 3],             // 10
+	["Utensil", "Images/Item_Utensil.png", "DMG", 1],             // 11
 	
 ];
 
@@ -118,7 +134,7 @@ const Weapons = [
 
 	// Positive Weapons (1 - 2)
 	["Letter Opener", "Images/Weapon_Letter.png", 2, 850, 1, 0],
-	["Spiky Tails", "Images/Weapon_Tail.png", 4, 750, 2, 1],
+	["Spiky Tails", "Images/Weapon_Tail.png", 4, 750, 2, 4],
 
 	// Negative Weapons (3)
 	["Hand Puppet", "Images/Weapon_Dummy.png", -2, 1000, 0],
@@ -185,7 +201,7 @@ const IntroText = [
 		["tests the IntroText array...<br></span>"],
 	],
 	
-	// Bosses
+	// Bosses & Post-81 Depths
 	[
 		["rushes at you!<br></span>"],
 		["wants to fight!<br></span>"],
@@ -196,7 +212,17 @@ const IntroText = [
 	
 	// Special Encounters
 	[
-		["<span style='filter: opacity(3%);'>REFRESHTHEPAGECONTINUEATTACKDONTLETITSTARTOVER</span><br></span>"] // Round 81
+		["<span style='filter: opacity(5%);'>REFRESHTHEPAGEREACH100DONTLETTHECYCLEKEEPGOING</span><br></span>"], // Round 81
+		["<strong># LIQUID-DIET</strong><br>A browser game inspired by NO-SKIN by NoEye-Soft.<br>Javascript coding exercise for NURSEHELL, with help from SEOKU!<br></span>"], // Round 101
+	],
+	
+	// Negative Rounds
+	[
+		["have you ever welcomed death?<br></span>"],
+		["Everything is falling up!<br></span>"],
+		["Calm down.<br></span>"],
+		["When did you first start being yourself?<br></span>"],
+		["SOMETHING WONDERFUL HAS HAPPENED<br></span>"],
 	]
 	
 ];
@@ -240,7 +266,7 @@ function startGame() {
 	hasDied = false;
 	
 	document.body.innerHTML = '<div id="fullfilter">\
-	<h1 style="margin-bottom: 0; display: inline;">LIQUID DIET</h1> <button id="gameSpd" onclick="speedInc()" style="top: 1.25em;position: absolute;left: 16.5em;"></button>\
+	<h1 style="margin-bottom: 0; display: inline;">LIQUID DIET</h1> <button id="gameSpd" onclick="speedInc()"></button>\
 		<h2 id="roundNum" style="margin-top: 0"></h2>\
 \
 		<h3 id="enemyName"></h3>\
@@ -301,6 +327,7 @@ function startGame() {
 	enemyDropType = undefined;
 	specialEncounter = false;
 	bossTime = false;
+	specialIntro = undefined;
 
 	// Player stuff
 	minPlayerHP = ogPlayerMinHP = 0;
@@ -389,6 +416,13 @@ function loadGame() {
 	}
 	else {
 		document.getElementById("enemyImg").style.height = "auto";
+	}
+	
+	if (JSON.parse(localStorage.getItem("enemyHealth")) <= 0) {
+		document.getElementById("enemyHP").innerHTML = "<strong>" + 0 + "/" + currentEnemyMaxHP + "</strong>";
+		currentEnemyHP == JSON.parse(localStorage.getItem("enemyHealth"));
+		
+		enemyDefeat();
 	}
 }
 
@@ -491,20 +525,19 @@ function depthCheck() {
 
 	if (roundCounter < 0) {
 		negDepths = true;
+		document.getElementById("fullpage").style = "";
 		document.body.style.backgroundColor = "red";
-		document.getElementById("fullfilter").style.filter = "";
-		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
-		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
-		currentDepth = 3; // SEOKU> To Be Replaced by 4 or whatever. Changed so it doesn't throw errors
+		document.getElementById("fullfilter").style = "";
+		document.getElementById("gameSpd").style = "position: absolute; top: 1.25em; left: 16.5em";  // Fixes an issue with btn on filter apply. Will be deleted when UI is done most def.
+		currentDepth = 5; // SEOKU> Can be replaced later. Having fun whimsy
 		depthName = "WRONG";
 	}
 
 	if (roundCounter >= 0 && roundCounter <= 20) {
 		negDepths = false;
 		document.body.style.backgroundColor = "#d7d7d7";
-		document.getElementById("fullfilter").style.filter = "";
-		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
-		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
+		document.getElementById("fullfilter").style = "";
+		document.getElementById("gameSpd").style = "position: absolute; top: 1.25em; left: 16.5em";  // Fixes an issue with btn on filter apply. Will be deleted when UI is done most def.
 		currentDepth = 0;
 		depthName = currentDepth;
 	}
@@ -512,9 +545,8 @@ function depthCheck() {
 	if (roundCounter >= 21 && roundCounter <= 40) {
 		negDepths = false;
 		document.body.style.backgroundColor = "#999993";
-		document.getElementById("fullfilter").style.filter = "";
-		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
-		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
+		document.getElementById("fullfilter").style = "";
+		document.getElementById("gameSpd").style = "position: absolute; top: 1.25em; left: 16.5em";  // Fixes an issue with btn on filter apply. Will be deleted when UI is done most def.
 		currentDepth = 1;
 		depthName = currentDepth;
 	}
@@ -522,8 +554,8 @@ function depthCheck() {
 	if (roundCounter >= 41 && roundCounter <= 60) {
 		negDepths = false;
 		document.body.style.background = "#5f70da";
-		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
-		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
+		document.getElementById("fullfilter").style = "";
+		document.getElementById("gameSpd").style = "position: absolute; top: 1.25em; left: 16.5em";  // Fixes an issue with btn on filter apply. Will be deleted when UI is done most def.
 		currentDepth = 2;
 		depthName = currentDepth;
 	}
@@ -531,9 +563,8 @@ function depthCheck() {
 	if (roundCounter >= 61 && roundCounter <= 80) {
 		negDepths = false;
 		document.body.style.background = "rgb(155, 38, 50)";
-		document.getElementById("fullfilter").style.filter = "";
-		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
-		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
+		document.getElementById("fullfilter").style = "";
+		document.getElementById("gameSpd").style = "position: absolute; top: 1.25em; left: 16.5em";  // Fixes an issue with btn on filter apply. Will be deleted when UI is done most def.
 		currentDepth = 3;
 		depthName = currentDepth;
 	}
@@ -541,9 +572,8 @@ function depthCheck() {
 	if (roundCounter == 81) {
 		negDepths = false;
 		document.body.style.background = "#e6ebff";
-		document.getElementById("fullfilter").style.filter = "";
-		document.getElementById("gameSpd").style.top = "1.25em";  // These two fix an issue with the button on filter apply.
-		document.getElementById("gameSpd").style.left = "16.5em"; // Will be removed when UI is done most def.
+		document.getElementById("fullfilter").style = "";
+		document.getElementById("gameSpd").style = "position: absolute; top: 1.25em; left: 16.5em";  // Fixes an issue with btn on filter apply. Will be deleted when UI is done most def.
 		currentDepth = 3;
 		depthName = "FINALITY";
 	}
@@ -552,19 +582,42 @@ function depthCheck() {
 	if (roundCounter >= 82) {
 		negDepths = false;
 		document.body.style.background = "black";
-		document.getElementById("fullfilter").style.filter = "invert() contrast(10000000000%)";
-		document.getElementById("gameSpd").style.top = "0.65em";  // These two fix an issue with the button on filter apply.
-		document.getElementById("gameSpd").style.left = "15.5em"; // Will be removed when UI is done most def.
-		currentDepth = 3; // SEOKU> To Be Replaced by 4 or whatever. Changed so it doesn't throw errors
+		document.getElementById("fullfilter").style = "filter: invert() contrast(10000000000%)";
+		document.getElementById("gameSpd").style = "position: absolute; top: 0.65em; left: 15.5em";  // Fixes an issue with btn on filter apply. Will be deleted when UI is done most def.
+		document.getElementById("enemyImg").style = "";
+		document.getElementById("playerAttack").style = "";
+		document.getElementById("talking").style = "";
+		document.getElementById("runAway").style = "";
+		document.getElementById("inventory1").style = "";
+		document.getElementById("inventory2").style = "";
+		document.getElementById("inventory3").style = "";
+		document.getElementById("actionLog").innerHTML = IntroText[2][0];
+		currentDepth = 4;
 		depthName = "ABOVE THE SKIES";
 	}
 	
 	if (roundCounter == 101) {
 		negDepths = false;
+		
+		var blackBtn = "font-family: monospace;border: none;background-color: black;color: white";
+		
+		document.getElementById("fullpage").style = "min-height: 100%; cursor: wait";
+		document.body.style = "background-color: #000000;opacity: 1;background-image: linear-gradient(45deg, #ff00e7 25%, transparent 25%, transparent 75%, #ff00e7 75%), linear-gradient(45deg, #ff00e7 25%, transparent 25%, transparent 75%, #ff00e7 75%);background-size: 20px 20px;background-position: 0 0, 10px 10px";
+		document.getElementById("fullfilter").style = blackBtn;
+		document.getElementById("gameSpd").style = blackBtn
+		document.getElementById("enemyImg").style = "filter:opacity(0%)";
+		document.getElementById("playerAttack").style = blackBtn;
+		document.getElementById("talking").style = blackBtn;
+		document.getElementById("runAway").style = blackBtn;
+		document.getElementById("inventory1").style = blackBtn;
+		document.getElementById("inventory2").style = blackBtn;
+		document.getElementById("inventory3").style = blackBtn;
+		document.getElementById("actionLog").innerHTML = IntroText[2][1];
+		currentDepth = 0;
 		depthName = "NaN";
-		currentDepth = 3; // SEOKU> To Be Replaced by 4 or whatever. Changed it doesn't throw errors
-		roundsToFall = 1.02;
-		depthFall();
+		roundsToFall = 1.02; // Goes to R-1
+		disableAll();
+		setTimeout(() => { depthFall() }, 5000);
 	}
 	
 	if (!ngPlus) {
@@ -627,6 +680,7 @@ function saveData() {
 	localStorage.setItem("depthNow", JSON.stringify(currentDepth));
 	localStorage.setItem("depthNowName", depthName);
 	localStorage.setItem("negaTime", JSON.stringify(negDepths));
+	localStorage.setItem("turnAmt", JSON.stringify(elapsedTurns));
 	
 	// Player info
 	localStorage.setItem("plyMaxHealth", JSON.stringify(maxPlayerHP));
@@ -651,7 +705,7 @@ function saveData() {
 	localStorage.setItem("3rdItemName", itemSlot3[0]);
 	localStorage.setItem("3rdItemType", itemSlot3[2]);
 	localStorage.setItem("3rdInv", document.getElementById("inventory3").innerHTML);
-	localStorage.getItem("InvFull", JSON.stringify(fullInv));
+	localStorage.setItem("InvFull", JSON.stringify(fullInv));
 
 	// Enemy info
 	localStorage.setItem("enemyNow", JSON.stringify(currentEnemy));
@@ -664,6 +718,7 @@ function saveData() {
 	localStorage.setItem("enemyBla", JSON.stringify(currentEnemyLines));
 	localStorage.setItem("isBoss", JSON.stringify(bossTime));
 	localStorage.setItem("isSpec", JSON.stringify(specialEncounter));
+	localStorage.setItem("intro", JSON.stringify(specialIntro));
 	
 	localStorage.setItem("ngPlus", JSON.stringify(ngPlus));
 	
@@ -671,6 +726,8 @@ function saveData() {
 	
 	localStorage.setItem("oldScore", JSON.stringify(highScore));
 	localStorage.setItem("topScore", JSON.stringify(menuScore));
+	
+	localStorage.setItem("speed", JSON.stringify(quickerTest));
 	
 	console.log("current highscore", highScore, "menu highscore", JSON.parse(localStorage.getItem("topScore")));
 	console.log("Data saved!", localStorage);
@@ -688,6 +745,7 @@ function loadData() {
 	negDepths = JSON.parse(localStorage.getItem("negaTime"));
 	menuScore = JSON.parse(localStorage.getItem("topScore"));
 	highScore = JSON.parse(localStorage.getItem("oldScore"));
+	elapsedTurns = JSON.parse(localStorage.getItem("turnAmt"));
 	
 	// Player info
 	maxPlayerHP = JSON.parse(localStorage.getItem("plyMaxHealth"));
@@ -724,8 +782,11 @@ function loadData() {
 	currentEnemyLines = JSON.parse(localStorage.getItem("enemyBla"));
 	bossTime = JSON.parse(localStorage.getItem("isBoss"));
 	specialEncounter = JSON.parse(localStorage.getItem("isSpec"));
+	specialIntro = JSON.parse(localStorage.getItem("intro"));
 	
 	ngPlus = JSON.parse(localStorage.getItem("ngPlus"));
+	quickerTest = JSON.parse(localStorage.getItem("speed"));
+	document.getElementById("gameSpd").innerHTML = "Game Speed: " + quickerTest;
 	
 	depthCheck();
 	enemyIntro();
@@ -1042,34 +1103,22 @@ function randomizeEnemy() {
 	// Randomize and Boss/Special enemy setup
 	switch (roundCounter) {
 
-		// Area 0 Boss
+		// Area Bosses (yes, this works)
 		case 20:
-			bossTime = true;
-		break;
-
-		// Area 1 Boss
 		case 40:
-			bossTime = true;
-			break;
-
-		// Area 2 Boss
 		case 60:
-			bossTime = true;
-			break;
-
-		// Area 3 Boss
 		case 80:
 			bossTime = true;
+			specialEncounter = false;
 			break;
 			
-		// Back to Menu (playtest) [UNFINISHED]
+		// New Game +
 		case 81:
 			bossTime = false;
 			specialEncounter = true;
 			randomEnemy = 0;
 			currentEnemy = Enemies[1][0][randomEnemy];
-			
-			document.getElementById("actionLog").innerHTML = IntroText[2][0];
+			specialIntro = 0;
 			
 			if (!imFalling) {
 				alertTitle = "LIQUID DIET";
@@ -1084,7 +1133,7 @@ function randomizeEnemy() {
 
 				btn1.onclick = function () {
 					removeCustomAlert();
-					roundsToFall = .8;
+					roundsToFall = .81; // Goes to R0
 					depthFall();
 					ngPlus = true;
 					return false;
@@ -1095,6 +1144,15 @@ function randomizeEnemy() {
 					return false;
 				}
 			}
+			break;
+			
+		// To Negative Rounds
+		case 101:
+			bossTime = false;
+			specialEncounter = true;
+			randomEnemy = 0;
+			currentEnemy = Enemies[1][1][randomEnemy];
+			specialIntro = 1;
 			break;
 
 		// BASIC ENEMIES
@@ -1161,6 +1219,11 @@ function randomizeEnemy() {
 	document.getElementById("enemyHP").innerHTML = "<strong>" + currentEnemyHP + "/" + currentEnemyMaxHP + "</strong>";
 	
 	enemyIntro();
+	
+	if (roundCounter >= 82 && !specialEncounter) {
+		console.log("HELLOOOOO OVER 82 WHY DONT YOU WORK");
+		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>The <strong>" + enemyName + "</strong> " + IntroText[1][Math.floor(Math.random() * IntroText[1].length)];
+	}
 
 	enableAll();
 
@@ -1190,9 +1253,11 @@ function enemyIntro() {
 	}
 	else if (specialEncounter) {
 		console.log("special");
-		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>" + IntroText[2][Math.floor(Math.random() * IntroText[2].length)];
+		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>" + IntroText[2][specialIntro];
 	}
-	
+	else if (negDepths) {
+		document.getElementById("actionLog").innerHTML = "<span id='" + actionLine + "'>" + IntroText[3][Math.floor(Math.random() * IntroText[3].length)];
+	}
 }
 
 
@@ -1640,7 +1705,7 @@ function setupItem() {
 function grantWeapon() {
 	console.log("Weapon drop:", Weapons[enemyDrop][0]);
 
-	if (currentWeapon == Weapons[enemyDrop]) {
+	if (currentWeapon[0] == Weapons[enemyDrop][0]) {
 		console.log("... but said weapon is already equipped, so...");
 		alrEquipped();
 		return;
@@ -1748,16 +1813,11 @@ function enemyDefeat() {
 	document.getElementById("actionLog").innerHTML = '<span id="' + actionLine + '">' + "Enemy defeated! <strong>Round won!</strong><br></span>";
 	enemyKilled = true;
 
-	var normalOverk = !bossTime && enemyDropType != 2 && enemyDropType != 3;
-
 	// Check if overk
 	if (currentEnemyHP < 0) {
 
-		// Check if Not reskin + Not boss + Not wpndrop + Not armdrop. If so, set overk drop
-		if (normalOverk) {
-			enemyDropType = currentEnemy[5][1];
-			enemyDrop = currentEnemy[4][1];
-		}
+		enemyDropType = currentEnemy[5][1];
+		enemyDrop = currentEnemy[4][1];
 
 		// Juicyheal HP setup
 		lastEnemyHP = currentEnemyHP;
@@ -1924,6 +1984,15 @@ function Attack() {
 							autoScroll();
 						}
 						break;
+
+					case 4: // ...Against "SYMBOLS"
+						if (currentEnemy[7] == 4) {
+							currentEnemyHP -= 1;
+							actionLine++;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>SYMBOLS!</strong><br></span>";
+							autoScroll();
+						}
+						break;
 				}
 				break;
 
@@ -1964,6 +2033,15 @@ function Attack() {
 							currentEnemyHP -= currentWeapon[2];
 							actionLine++;
 							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>NYMPHS!</strong><br></span>";
+							autoScroll();
+						}
+						break;
+
+					case 4: // ...Against "NYMPHS"
+						if (currentEnemy[7] == 4) {
+							currentEnemyHP -= currentWeapon[2];
+							actionLine++;
+							document.getElementById("actionLog").innerHTML += '<span id="' + actionLine + '">' + "Your weapon deals extra damage against <strong>SYMBOLS!</strong><br></span>";
 							autoScroll();
 						}
 						break;
@@ -2385,7 +2463,7 @@ function itemNull() {
 
 function specialTimerMoment() {
 
-	if (currentWeapon == Weapons[3] && !specialTimerActive) {
+	if (currentWeapon[0] == Weapons[3][0] && !specialTimerActive) {
 		specialTimer = 0;
 		specialTimerMax = 3;
 		specialTimerActive = true;
