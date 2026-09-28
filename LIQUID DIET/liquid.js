@@ -1,7 +1,6 @@
 // Heyo ;(^o^) SEOKU fell asleep on her keyboard, so lil old me finished the thing up!
 // I ended up testing your code also. Seems like it all works well! I'm proud of you! <3
 // Anyway, I'd best be going now. She'll notice if I keep her laptop on too long! See you soon!
-//
 //																- The Restorer
 //
 // =================================================================================================================================================
