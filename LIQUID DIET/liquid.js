@@ -326,7 +326,7 @@ function startGame() {
 	enemyDropType = undefined;
 	specialEncounter = false;
 	bossTime = false;
-	specialIntro = undefined;
+	specialIntro = 0;
 
 	// Player stuff
 	minPlayerHP = ogPlayerMinHP = 0;
